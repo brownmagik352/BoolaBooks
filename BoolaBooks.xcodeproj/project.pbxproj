@@ -7,21 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16EB5EA5F6B899E6564F1D9C /* Pods_BoolaBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C42949986528392FCCF85A /* Pods_BoolaBooks.framework */; };
 		88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323C9D1E14706A00B38A02 /* AppDelegate.swift */; };
-		88323CA01E14706A00B38A02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323C9F1E14706A00B38A02 /* ViewController.swift */; };
 		88323CA31E14706A00B38A02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA11E14706A00B38A02 /* Main.storyboard */; };
 		88323CA51E14706A00B38A02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA41E14706A00B38A02 /* Assets.xcassets */; };
 		88323CA81E14706A00B38A02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */; };
+		88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323CAF1E14768D00B38A02 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18C42949986528392FCCF85A /* Pods_BoolaBooks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BoolaBooks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3641A826F7C5F74D550934DB /* Pods-BoolaBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoolaBooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoolaBooks/Pods-BoolaBooks.release.xcconfig"; sourceTree = "<group>"; };
+		4AFC49CFBB7B2E18C9EA4042 /* Pods-BoolaBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoolaBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoolaBooks/Pods-BoolaBooks.debug.xcconfig"; sourceTree = "<group>"; };
 		88323C9A1E14706A00B38A02 /* BoolaBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoolaBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88323C9D1E14706A00B38A02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		88323C9F1E14706A00B38A02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		88323CA21E14706A00B38A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88323CA41E14706A00B38A02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88323CA71E14706A00B38A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88323CA91E14706A00B38A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88323CAF1E14768D00B38A02 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16EB5EA5F6B899E6564F1D9C /* Pods_BoolaBooks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06F9E805B0A7A2863EDF1CC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				18C42949986528392FCCF85A /* Pods_BoolaBooks.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		88323C911E14706A00B38A02 = {
 			isa = PBXGroup;
 			children = (
 				88323C9C1E14706A00B38A02 /* BoolaBooks */,
 				88323C9B1E14706A00B38A02 /* Products */,
+				E5DAE81386FE91E9F6C51BA2 /* Pods */,
+				06F9E805B0A7A2863EDF1CC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +70,22 @@
 			isa = PBXGroup;
 			children = (
 				88323C9D1E14706A00B38A02 /* AppDelegate.swift */,
-				88323C9F1E14706A00B38A02 /* ViewController.swift */,
 				88323CA11E14706A00B38A02 /* Main.storyboard */,
 				88323CA41E14706A00B38A02 /* Assets.xcassets */,
 				88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */,
 				88323CA91E14706A00B38A02 /* Info.plist */,
+				88323CAF1E14768D00B38A02 /* LoginViewController.swift */,
 			);
 			path = BoolaBooks;
+			sourceTree = "<group>";
+		};
+		E5DAE81386FE91E9F6C51BA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4AFC49CFBB7B2E18C9EA4042 /* Pods-BoolaBooks.debug.xcconfig */,
+				3641A826F7C5F74D550934DB /* Pods-BoolaBooks.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88323CAC1E14706A00B38A02 /* Build configuration list for PBXNativeTarget "BoolaBooks" */;
 			buildPhases = (
+				488433A43746EE8E4A5B50DF /* [CP] Check Pods Manifest.lock */,
 				88323C961E14706A00B38A02 /* Sources */,
 				88323C971E14706A00B38A02 /* Frameworks */,
 				88323C981E14706A00B38A02 /* Resources */,
+				6F5F094C0A7135DA52AEBB4C /* [CP] Embed Pods Frameworks */,
+				5B7378DCC846416686D0DD07 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,12 +159,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		488433A43746EE8E4A5B50DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5B7378DCC846416686D0DD07 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoolaBooks/Pods-BoolaBooks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F5F094C0A7135DA52AEBB4C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BoolaBooks/Pods-BoolaBooks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		88323C961E14706A00B38A02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88323CA01E14706A00B38A02 /* ViewController.swift in Sources */,
+				88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */,
 				88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,11 +332,12 @@
 		};
 		88323CAD1E14706A00B38A02 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AFC49CFBB7B2E18C9EA4042 /* Pods-BoolaBooks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LHSZ2GW276;
 				INFOPLIST_FILE = BoolaBooks/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apsuman.BoolaBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -271,11 +347,12 @@
 		};
 		88323CAE1E14706A00B38A02 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3641A826F7C5F74D550934DB /* Pods-BoolaBooks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LHSZ2GW276;
 				INFOPLIST_FILE = BoolaBooks/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.apsuman.BoolaBooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,6 +379,7 @@
 				88323CAE1E14706A00B38A02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
