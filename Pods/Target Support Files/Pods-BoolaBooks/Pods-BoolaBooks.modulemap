@@ -1,0 +1,6 @@
+framework module Pods_BoolaBooks {
+  umbrella header "Pods-BoolaBooks-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -70,11 +70,11 @@
 			isa = PBXGroup;
 			children = (
 				88323C9D1E14706A00B38A02 /* AppDelegate.swift */,
+				88323CAF1E14768D00B38A02 /* LoginViewController.swift */,
 				88323CA11E14706A00B38A02 /* Main.storyboard */,
 				88323CA41E14706A00B38A02 /* Assets.xcassets */,
 				88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */,
 				88323CA91E14706A00B38A02 /* Info.plist */,
-				88323CAF1E14768D00B38A02 /* LoginViewController.swift */,
 			);
 			path = BoolaBooks;
 			sourceTree = "<group>";
