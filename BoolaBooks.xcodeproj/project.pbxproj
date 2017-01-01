@@ -13,6 +13,7 @@
 		88323CA51E14706A00B38A02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA41E14706A00B38A02 /* Assets.xcassets */; };
 		88323CA81E14706A00B38A02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */; };
 		88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323CAF1E14768D00B38A02 /* LoginViewController.swift */; };
+		88323CB21E14897700B38A02 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323CB11E14897700B38A02 /* ScanViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		88323CA71E14706A00B38A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88323CA91E14706A00B38A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88323CAF1E14768D00B38A02 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		88323CB11E14897700B38A02 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				88323CA41E14706A00B38A02 /* Assets.xcassets */,
 				88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */,
 				88323CA91E14706A00B38A02 /* Info.plist */,
+				88323CB11E14897700B38A02 /* ScanViewController.swift */,
 			);
 			path = BoolaBooks;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			files = (
 				88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */,
 				88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */,
+				88323CB21E14897700B38A02 /* ScanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

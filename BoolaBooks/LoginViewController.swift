@@ -8,8 +8,23 @@
 
 import UIKit
 import FBSDKLoginKit
+import Alamofire
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
+    // needed to move past initial login screen if already authenticated
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let prefs = UserDefaults.standard
+        if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token") {
+            // ADVANCE TO NEXT SCREEN IF APP TOKEN EXISTS (USER IS ALREADY LOGGED IN)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "scanView") as! ScanViewController
+            self.present(vc, animated: true, completion: nil)
+
+        }
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +43,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        
         if error != nil {
             print(error)
             return
@@ -40,41 +56,43 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         graphRequest?.start(completionHandler: { [weak self] connection, result, error in
             if error != nil {
                 print("error \(error)")
-            } else{
+            } else {
                 let fbResult = result as! Dictionary<String, AnyObject>
-                print(fbResult["email"] as? String)
                 // USING FB INFO NOW LOG IN TO APP
-//                let parameters: Parameters = [
-//                    "user": [
-//                        "email": fbResult["email"] as? String,
-//                        "provider": "facebook",
-//                        "uid": fbResult["id"] as? String,
-//                        "name": fbResult["name"] as? String,
-//                        "image": fbResult["picture"] as? String,
-//                        "oauth_token": FBSDKAccessToken.current().tokenString
-//                    ]
-//                ]
-//                
-//                Alamofire.request("https://boolabooks.herokuapp.com/api/v1/auth/facebook", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-//                    print("***** FB AUTH REQUEST *****")
-//                    print(response.request)  // original URL request
-//                    print(response.response) // HTTP URL response
-//                    print(response.data)     // server data
-//                    print(response.result)   // result of response serialization
-//                    
-//                    if let JSON = response.result.value {
-//                        print("JSON: \(JSON)")
-//                    }
-//                }
+                let parameters: Parameters = [
+                    "user": [
+                        "email": fbResult["email"] as? String,
+                        "provider": "facebook",
+                        "uid": fbResult["id"] as? String,
+                        "name": fbResult["name"] as? String,
+                        "image": fbResult["picture"] as? String,
+                        "oauth_token": FBSDKAccessToken.current().tokenString
+                    ]
+                ]
+                
+                Alamofire.request("https://boolabooks.herokuapp.com/api/v1/auth/facebook", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+
+                    if let result = response.result.value {
+                        let JSON = result as! NSDictionary
+//                        print(JSON["email"]!)
+//                        print(JSON["oauth_token"]!)
+                        
+                        // save login info
+                        let prefs = UserDefaults.standard
+                        prefs.setValue(JSON["email"]!, forKey: "email")
+                        prefs.setValue(JSON["oauth_token"]!, forKey: "rails_token")
+                    }
+                    
+                }
+                
+                // ADVANCE TO NEXT SCREEN AFTER LOGIN
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "scanView") as! ScanViewController
+                self?.present(vc, animated: true, completion: nil)
+                
             }
         })
-        
-        //        // ADVANCE TO NEXT SCREEN AFTER LOGIN
-        //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //        let vc = storyboard.instantiateViewController(withIdentifier: "helloView") as! HelloViewController
-        //        self.present(vc, animated: true, completion: nil)
-        
-        
+    
     }
 
     override func didReceiveMemoryWarning() {

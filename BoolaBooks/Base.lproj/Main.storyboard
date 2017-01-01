@@ -27,5 +27,32 @@
             </objects>
             <point key="canvasLocation" x="-160" y="-72"/>
         </scene>
+        <!--Scan-->
+        <scene sceneID="ZIh-Z5-wGg">
+            <objects>
+                <viewController storyboardIdentifier="scanView" title="Scan" id="O9M-KO-Xog" customClass="ScanViewController" customModule="BoolaBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YqY-6c-1Ij"/>
+                        <viewControllerLayoutGuide type="bottom" id="UXs-4U-BC4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="prC-Q1-Pcq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qL-YA-z4J">
+                                <rect key="frame" x="166" y="135" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tzP-HH-H7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="725.60000000000002" y="-72.413793103448285"/>
+        </scene>
     </scenes>
 </document>
