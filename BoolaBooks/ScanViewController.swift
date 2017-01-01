@@ -2,12 +2,11 @@
 //  ScanViewController.swift
 //  BoolaBooks
 //
-//  Created by Apurv Suman on 12/28/16.
-//  Copyright © 2016 Apurv Suman. All rights reserved.
+//  Created by Apurv Suman on 1/1/17.
+//  Copyright © 2017 Apurv Suman. All rights reserved.
 //
 
 import UIKit
-import FBSDKLoginKit
 
 class ScanViewController: UIViewController {
 

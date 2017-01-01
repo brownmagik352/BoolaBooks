@@ -19,7 +19,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token") {
             // ADVANCE TO NEXT SCREEN IF APP TOKEN EXISTS (USER IS ALREADY LOGGED IN)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "scanView") as! ScanViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "tabView")
             self.present(vc, animated: true, completion: nil)
 
         }
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 
                 // ADVANCE TO NEXT SCREEN AFTER LOGIN
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "scanView") as! ScanViewController
+                let vc = storyboard.instantiateViewController(withIdentifier: "tabView")
                 self?.present(vc, animated: true, completion: nil)
                 
             }
