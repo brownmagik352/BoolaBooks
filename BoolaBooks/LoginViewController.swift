@@ -80,7 +80,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         // save login info
                         let prefs = UserDefaults.standard
                         prefs.setValue(JSON["email"]!, forKey: "email")
-                        prefs.setValue(JSON["oauth_token"]!, forKey: "rails_token")
+                        prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
                     }
                     
                 }

@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class ScanViewController: UIViewController {
+    
+    // MARK: - Properties
+    @IBOutlet weak var manualISBNfield: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,5 +35,23 @@ class ScanViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - Actions
+    @IBAction func manualISBNlookup(_ sender: UIButton) {
+        let parameters: Parameters = ["isbn": manualISBNfield.text! ]
+        
+        let prefs = UserDefaults.standard
+        let headers: HTTPHeaders = [
+            "X-User-Email": prefs.string(forKey: "email")!,
+            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "Content-type": "application/json",
+            "Accept": "application/json"
+        ]
+
+        Alamofire.request("https://boolabooks.herokuapp.com/api/v1/publications/isbn", parameters: parameters, headers: headers).responseJSON { response in
+            debugPrint(response)
+        }
+    }
+    
 
 }
