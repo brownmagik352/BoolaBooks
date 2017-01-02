@@ -13,7 +13,7 @@ class UploadViewController: UIViewController {
     
     // MARK: - Properties
     var isbn: String? // Set by Segue from ScanViewController
-    var listing: Listing?
+    var publication_id: Int?
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var priceField: UITextField!
@@ -42,7 +42,7 @@ class UploadViewController: UIViewController {
     }
     
     @IBAction func upload(_ sender: UIBarButtonItem) {
-//        uploadListing()
+        uploadListing()
         dismiss(animated: true, completion: nil)
     }
     
@@ -58,40 +58,36 @@ class UploadViewController: UIViewController {
     */
     
     // MARK: - BoolaBooks API Calls
-//    func uploadListing() {
-//        
-//        let prefs = UserDefaults.standard
-//        let headers: HTTPHeaders = [
-//            "X-User-Email": prefs.string(forKey: "email")!,
-//            "X-User-Token": prefs.string(forKey: "rails_token")!,
-//            "Content-type": "application/json",
-//            "Accept": "application/json"
-//        ]
-//        
-//        // Route currently does not define course
-//        let parameters: Parameters = [
-//            "listing": [
-//                "publication_id": listing?.publication_id,
-//                "condition": ,
-//                "buyable": ,
-//                "price": ,
-//                "notes": "" // not supported in MVP
-//            ]
-//        ]
-//        
-//        Alamofire.request("https://boolabooks.herokuapp.com/api/v1/auth/facebook", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-//            
-//            if let result = response.result.value {
-//                let JSON = result as! NSDictionary
-//                
-//                // save login info
-//                let prefs = UserDefaults.standard
-//                prefs.setValue(JSON["email"]!, forKey: "email")
-//                prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
-//            }
-//            
-//        }
-//    }
+    
+    // Upload Listing to BoolaBooks Server
+    func uploadListing() {
+        
+        let prefs = UserDefaults.standard
+        let headers: HTTPHeaders = [
+            "X-User-Email": prefs.string(forKey: "email")!,
+            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "Content-type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        // Notes not supported in MVP
+        // Course not defined in Route 1/2/17
+        let parameters: Parameters = [
+            "listing": [
+                "publication_id": publication_id!,
+                "condition": conditionControl.titleForSegment(at: conditionControl.selectedSegmentIndex)!,
+                "buyable": buyableControl.titleForSegment(at: buyableControl.selectedSegmentIndex) == "Buy",
+                "price": Float(priceField.text!) ?? 0.00,
+                "notes": ""
+            ]
+        ]
+        
+        Alamofire.request("https://boolabooks.herokuapp.com/api/v1/listings/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+            if (response.result.error == nil) {
+                print("SUCCESSFUL UPLOAD")
+            }
+        }
+    }
     
     // Using BoolaBooks API to look up a publication from an ISBN Number
     func ISBNLookup() {
@@ -108,12 +104,16 @@ class UploadViewController: UIViewController {
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/publications/isbn", parameters: parameters, headers: headers).responseJSON { response in
             
+            if (response.result.error == nil) {
+                print("SUCCESSFUL ISBN LOOKUP")
+            }
+            
             // Grab and display publication info
             if let result = response.result.value {
                 let JSON = result as! NSDictionary
                 
                 // Grab publication ID for listing
-                self.listing?.publication_id = JSON["id"] as? Int
+                self.publication_id = JSON["id"] as? Int
                 
                 // Display publication info
                 self.titleLabel.text = JSON["title"] as? String

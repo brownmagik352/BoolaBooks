@@ -8,6 +8,8 @@
 
 import UIKit
 
+// ACTUALLY DON'T NEED THIS?
+
 class Listing {
 
     var publication_id: Int?
