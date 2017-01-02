@@ -29,7 +29,7 @@
         <!--Search-->
         <scene sceneID="Lqz-dl-Qu0">
             <objects>
-                <viewController id="CTf-f7-GZI" sceneMemberID="viewController">
+                <viewController id="CTf-f7-GZI" customClass="SearchViewController" customModule="BoolaBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Pwy-EV-nQ6"/>
                         <viewControllerLayoutGuide type="bottom" id="BH9-RV-WIv"/>
@@ -37,13 +37,61 @@
                     <view key="view" contentMode="scaleToFill" id="EPh-gA-OGz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by ISBN, course#, author, etc." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Ru-tjP">
+                                <rect key="frame" x="16" y="174" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-PF-FYm">
+                                <rect key="frame" x="16" y="212" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <segue destination="FXG-Ll-gTI" kind="show" id="daA-qJ-3OL"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" id="Bjb-CZ-rpr"/>
+                    <connections>
+                        <outlet property="searchField" destination="Gu8-Ru-tjP" id="wRe-IB-WFW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3SP-xi-YeC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1554" y="254"/>
+            <point key="canvasLocation" x="1552.8" y="253.2233883058471"/>
+        </scene>
+        <!--Search Results Table View Controller-->
+        <scene sceneID="cNv-SG-U5e">
+            <objects>
+                <tableViewController id="FXG-Ll-gTI" customClass="SearchResultsTableViewController" customModule="BoolaBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jqx-zC-0Ao">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8KV-nB-U6x">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8KV-nB-U6x" id="pSC-Tm-zYZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FXG-Ll-gTI" id="jHw-06-VV1"/>
+                            <outlet property="delegate" destination="FXG-Ll-gTI" id="Xqx-5a-5Hb"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VPf-a0-ECB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="254"/>
         </scene>
         <!--Chat-->
         <scene sceneID="yer-xh-Z8k">
@@ -62,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSk-0g-WU6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1553" y="1020"/>
+            <point key="canvasLocation" x="1553" y="1076"/>
         </scene>
         <!--Sell-->
         <scene sceneID="NE1-AN-PKJ">
