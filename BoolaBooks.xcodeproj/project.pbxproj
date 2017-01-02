@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		16EB5EA5F6B899E6564F1D9C /* Pods_BoolaBooks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C42949986528392FCCF85A /* Pods_BoolaBooks.framework */; };
 		88286A981E19A66700C6A161 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88286A971E19A66700C6A161 /* ScanViewController.swift */; };
+		88286A9A1E19CB8600C6A161 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88286A991E19CB8600C6A161 /* UploadViewController.swift */; };
+		88286A9C1E1A091B00C6A161 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88286A9B1E1A091B00C6A161 /* Listing.swift */; };
 		88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323C9D1E14706A00B38A02 /* AppDelegate.swift */; };
 		88323CA31E14706A00B38A02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA11E14706A00B38A02 /* Main.storyboard */; };
 		88323CA51E14706A00B38A02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA41E14706A00B38A02 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 		3641A826F7C5F74D550934DB /* Pods-BoolaBooks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoolaBooks.release.xcconfig"; path = "Pods/Target Support Files/Pods-BoolaBooks/Pods-BoolaBooks.release.xcconfig"; sourceTree = "<group>"; };
 		4AFC49CFBB7B2E18C9EA4042 /* Pods-BoolaBooks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BoolaBooks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BoolaBooks/Pods-BoolaBooks.debug.xcconfig"; sourceTree = "<group>"; };
 		88286A971E19A66700C6A161 /* ScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
+		88286A991E19CB8600C6A161 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
+		88286A9B1E1A091B00C6A161 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		88323C9A1E14706A00B38A02 /* BoolaBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoolaBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88323C9D1E14706A00B38A02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88323CA21E14706A00B38A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */,
 				88323CA91E14706A00B38A02 /* Info.plist */,
 				88286A971E19A66700C6A161 /* ScanViewController.swift */,
+				88286A991E19CB8600C6A161 /* UploadViewController.swift */,
+				88286A9B1E1A091B00C6A161 /* Listing.swift */,
 			);
 			path = BoolaBooks;
 			sourceTree = "<group>";
@@ -215,7 +221,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88286A9C1E1A091B00C6A161 /* Listing.swift in Sources */,
 				88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */,
+				88286A9A1E19CB8600C6A161 /* UploadViewController.swift in Sources */,
 				88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */,
 				88286A981E19A66700C6A161 /* ScanViewController.swift in Sources */,
 			);

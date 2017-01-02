@@ -74,9 +74,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
-//                        print(JSON["email"]!)
-//                        print(JSON["oauth_token"]!)
-                        
+
                         // save login info
                         let prefs = UserDefaults.standard
                         prefs.setValue(JSON["email"]!, forKey: "email")
