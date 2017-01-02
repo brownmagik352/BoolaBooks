@@ -7,17 +7,21 @@
 //
 
 import UIKit
-//import Alamofire
+import MTBBarcodeScanner
 
 class ScanViewController: UIViewController {
     
     // MARK: - Properties
     @IBOutlet weak var manualISBNfield: UITextField!
+    @IBOutlet weak var scanISBNPreview: UIImageView!
+    var scanISBN: String?
+    var scanner: MTBBarcodeScanner?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scanner = MTBBarcodeScanner(previewView: scanISBNPreview)
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,6 +35,22 @@ class ScanViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! UploadViewController
         destinationVC.isbn = manualISBNfield.text!
+    }
+    
+    // MARK: - Actions
+    @IBAction func startISBNScan(_ sender: UIButton) {
+        self.scanner?.startScanning(resultBlock: { codes in
+            let codeObjects = codes as! [AVMetadataMachineReadableCodeObject]?
+            for code in codeObjects! {
+                let stringValue = code.stringValue!
+                if stringValue.characters.count == 13 {
+                    self.scanner?.stopScanning()
+                    self.scanISBN = stringValue
+                    self.manualISBNfield.text = stringValue
+                }
+            }
+            
+        }, error: nil)
     }
 
 }

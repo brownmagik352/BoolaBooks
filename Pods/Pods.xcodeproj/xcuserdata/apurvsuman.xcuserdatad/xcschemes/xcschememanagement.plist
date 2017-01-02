@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MTBBarcodeScanner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-BoolaBooks.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -53,11 +58,6 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>332F91393FB1DE033D370B4CEDDD5FCF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3D6708A2B4D3393C1BF1B4A85D7E401A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,7 +87,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9DF61A38842AB92FE7443ED3A096DCD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A7FEAA14E89971698ACA148F7F7202F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE6FDC9FCD6134F5B0553F65C0D25F99</key>
 		<dict>
 			<key>primary</key>
 			<true/>

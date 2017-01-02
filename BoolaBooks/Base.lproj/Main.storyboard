@@ -99,6 +99,9 @@
                                 <rect key="frame" x="67" y="228" width="240" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Scan ISBN"/>
+                                <connections>
+                                    <action selector="startISBNScan:" destination="eKT-j2-b2j" eventType="touchUpInside" id="9IM-cm-kh5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,6 +109,7 @@
                     <tabBarItem key="tabBarItem" title="Sell" id="NN7-62-xsx"/>
                     <connections>
                         <outlet property="manualISBNfield" destination="rJB-7k-ZIr" id="79Q-gQ-zBb"/>
+                        <outlet property="scanISBNPreview" destination="VXQ-4V-B7b" id="pqY-AX-xAW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H9W-fN-Hno" userLabel="First Responder" sceneMemberID="firstResponder"/>

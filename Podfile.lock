@@ -25,12 +25,14 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.18.0):
     - FBSDKCoreKit
+  - MTBBarcodeScanner (3.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - FacebookCore
   - FacebookLogin
   - FacebookShare
+  - MTBBarcodeScanner
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
@@ -41,7 +43,8 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
   FBSDKShareKit: 0b8d6cc3f103c75297eb3c62caec284a2ccf1b9e
+  MTBBarcodeScanner: 6d397077f1a4a886050df8e66584a59a1dc429e7
 
-PODFILE CHECKSUM: a6e42f5675b79387513af28941978cb623c0cc85
+PODFILE CHECKSUM: 58239c1c6aee985460b7821497fc8197b7c156fc
 
 COCOAPODS: 1.1.1

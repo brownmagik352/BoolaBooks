@@ -12,4 +12,6 @@ target 'BoolaBooks' do
 
   pod 'Alamofire', '~> 4.0'
 
+  pod "MTBBarcodeScanner"
+
 end
