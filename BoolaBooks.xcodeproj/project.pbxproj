@@ -13,6 +13,7 @@
 		88286A9C1E1A091B00C6A161 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88286A9B1E1A091B00C6A161 /* Listing.swift */; };
 		88286A9E1E1AB27F00C6A161 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88286A9D1E1AB27F00C6A161 /* SearchViewController.swift */; };
 		88286AA01E1AB3B200C6A161 /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88286A9F1E1AB3B200C6A161 /* SearchResultsTableViewController.swift */; };
+		88286AA21E1B2AC900C6A161 /* ListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88286AA11E1B2AC900C6A161 /* ListingTableViewCell.swift */; };
 		88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323C9D1E14706A00B38A02 /* AppDelegate.swift */; };
 		88323CA31E14706A00B38A02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA11E14706A00B38A02 /* Main.storyboard */; };
 		88323CA51E14706A00B38A02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA41E14706A00B38A02 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		88286A9B1E1A091B00C6A161 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		88286A9D1E1AB27F00C6A161 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		88286A9F1E1AB3B200C6A161 /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		88286AA11E1B2AC900C6A161 /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
 		88323C9A1E14706A00B38A02 /* BoolaBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoolaBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88323C9D1E14706A00B38A02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88323CA21E14706A00B38A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				88286A9B1E1A091B00C6A161 /* Listing.swift */,
 				88286A9D1E1AB27F00C6A161 /* SearchViewController.swift */,
 				88286A9F1E1AB3B200C6A161 /* SearchResultsTableViewController.swift */,
+				88286AA11E1B2AC900C6A161 /* ListingTableViewCell.swift */,
 			);
 			path = BoolaBooks;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			files = (
 				88286A9E1E1AB27F00C6A161 /* SearchViewController.swift in Sources */,
 				88286A9C1E1A091B00C6A161 /* Listing.swift in Sources */,
+				88286AA21E1B2AC900C6A161 /* ListingTableViewCell.swift in Sources */,
 				88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */,
 				88286A9A1E19CB8600C6A161 /* UploadViewController.swift in Sources */,
 				88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */,

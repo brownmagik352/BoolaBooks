@@ -8,16 +8,21 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class SearchResultsTableViewController: UITableViewController {
     
+    
+    
     // MARK: - Properties
     var searchQuery: String?
+    var listings: [[String:Any]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         search()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,23 +39,45 @@ class SearchResultsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return listings.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cellIdentifier = "ListingTableViewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ListingTableViewCell
+        
+        // for now, pullinng listing and its publication info
+        let listing = listings[indexPath.row]
+        let publication = listing["publication"] as! Dictionary<String, Any>
+        let courses: Array<String> = publication["courses"] as! Array<String>
+        
+        
+        // Populate the labels in the table cell
+        cell.titleLabel.text = publication["title"] as? String
+        if courses.count > 0 {
+            cell.courseLabel.text = courses[0]
+        } else {
+            cell.courseLabel.text = "No Course Info Available"
+        }
+        cell.priceLabel.text = "$\(listing["price"]!)"
+        cell.conditionLabel.text = listing["condition"] as? String
+        cell.buyableLabel.text = "\(listing["buyable"]!)"
+//        // Get image using URL - App Transport allows for Google Books specifically right now
+        if let url  = NSURL(string: (publication["image"] as? String)!),
+            let data = NSData(contentsOf: url as URL)
+        {
+            cell.photoView.image = UIImage(data: data as Data)
+        }
+     
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -98,7 +125,8 @@ class SearchResultsTableViewController: UITableViewController {
     */
     
     // MARK: - BoolaBooks API Calls
-    // Using BoolaBooks API to look up a publication from an ISBN Number
+    
+    // Using BoolaBooks API to find all listings for a given search
     func search() {
         
         let prefs = UserDefaults.standard
@@ -112,19 +140,22 @@ class SearchResultsTableViewController: UITableViewController {
         let parameters: Parameters = ["query": searchQuery!, "num_items": 10 ]
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/search", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            debugPrint(response)
-            if (response.result.error == nil) {
-                print("SUCCESSFUL SEARCH")
-            }
-    
-//            if let result = response.result.value {
-//                let JSON = result as! Array<Any>
-//                
-//                print(JSON[1])
-//                print(JSON[2])
-//            }
-        }
-        
-    }
 
+            if (response.result.error == nil) {
+                print("**SUCCESSFUL SEARCH**")
+            }
+            
+            // parse search results from JSON
+            if let data = response.data {
+                let json = JSON(data: data)
+//                print(json)
+                // avoid null at end
+                for i in 0..<json.arrayObject!.count {
+                    self.listings.append(json.arrayObject?[i] as! Dictionary<String, Any>)
+                }
+                self.tableView.reloadData() // need this so that once new data is in table can pull it out
+            }
+        }
+    }
+    
 }

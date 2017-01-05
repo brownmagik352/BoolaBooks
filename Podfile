@@ -11,6 +11,7 @@ target 'BoolaBooks' do
   pod 'FacebookShare'
 
   pod 'Alamofire', '~> 4.0'
+  pod 'SwiftyJSON'
 
   pod "MTBBarcodeScanner"
 

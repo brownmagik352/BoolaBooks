@@ -84,7 +84,7 @@ class UploadViewController: UIViewController {
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/listings/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             if (response.result.error == nil) {
-                print("SUCCESSFUL UPLOAD")
+                print("**SUCCESSFUL UPLOAD**")
             }
         }
     }
@@ -105,7 +105,7 @@ class UploadViewController: UIViewController {
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/publications/isbn", parameters: parameters, headers: headers).responseJSON { response in
             
             if (response.result.error == nil) {
-                print("SUCCESSFUL ISBN LOOKUP")
+                print("**SUCCESSFUL ISBN LOOKUP**")
             }
             
             // Grab and display publication info

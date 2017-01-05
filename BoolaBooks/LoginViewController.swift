@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             return
         }
         
-        print("SUCCESSFUL LOG IN")
+        print("**SUCCESSFUL LOG IN**")
         
         // Use FB Token to Get User Info
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, name, email, picture"])
