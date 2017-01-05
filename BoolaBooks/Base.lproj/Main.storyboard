@@ -129,7 +129,7 @@
                                     <outlet property="photoView" destination="BU5-8F-oZs" id="akn-vR-rwS"/>
                                     <outlet property="priceLabel" destination="SzQ-34-msd" id="SQu-oY-hVD"/>
                                     <outlet property="titleLabel" destination="lAS-PQ-Q1m" id="YbS-BU-AZf"/>
-                                    <segue destination="7iN-2m-n6k" kind="show" id="E7j-Y2-RBm"/>
+                                    <segue destination="7iN-2m-n6k" kind="show" identifier="" id="E7j-Y2-RBm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -143,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="3247.1999999999998" y="253.2233883058471"/>
         </scene>
-        <!--View Controller-->
+        <!--Listing Detail View Controller-->
         <scene sceneID="1q8-Fa-QqN">
             <objects>
-                <viewController id="7iN-2m-n6k" sceneMemberID="viewController">
+                <viewController id="7iN-2m-n6k" customClass="ListingDetailViewController" customModule="BoolaBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pIx-pN-2vd"/>
                         <viewControllerLayoutGuide type="bottom" id="73u-Ef-2oV"/>
@@ -190,28 +190,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UJ4-rf-QXr">
-                                <rect key="frame" x="191" y="431" width="121" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-NJ-JXG">
+                                <rect key="frame" x="193" y="429" width="121" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Buy"/>
-                                    <segment title="Rent"/>
-                                </segments>
-                                <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                            </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tHt-Ju-c2A">
-                                <rect key="frame" x="64" y="431" width="121" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSh-WP-pVs">
+                                <rect key="frame" x="64" y="429" width="121" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Used"/>
-                                    <segment title="New"/>
-                                </segments>
-                                <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                            </segmentedControl>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-mC-xpo">
-                                <rect key="frame" x="64" y="84" width="248" height="288"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9c-qL-AMG">
                                 <rect key="frame" x="64" y="383" width="248" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -219,9 +211,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-mC-xpo">
+                                <rect key="frame" x="64" y="84" width="248" height="288"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="authorLabel" destination="sYh-DA-Z7o" id="GED-vm-ejF"/>
+                        <outlet property="buyableLabel" destination="8Ln-NJ-JXG" id="awT-xt-vsO"/>
+                        <outlet property="conditionLabel" destination="eSh-WP-pVs" id="5fH-R0-GZi"/>
+                        <outlet property="courseLabel" destination="fV9-Uk-08x" id="4sX-pg-Guj"/>
+                        <outlet property="editionLabel" destination="0UW-0w-EKx" id="ZXj-1E-8X8"/>
+                        <outlet property="photoView" destination="G7M-mC-xpo" id="syR-z7-pdO"/>
+                        <outlet property="priceLabel" destination="J9c-qL-AMG" id="lnW-Ox-HIS"/>
+                        <outlet property="titleLabel" destination="1QY-B4-zHN" id="fmX-1b-bCN"/>
+                        <outlet property="yearLabel" destination="1b7-gq-1go" id="rwD-TZ-OaI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SWy-KT-ecv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

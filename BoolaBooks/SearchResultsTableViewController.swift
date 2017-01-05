@@ -60,11 +60,7 @@ class SearchResultsTableViewController: UITableViewController {
         
         // Populate the labels in the table cell
         cell.titleLabel.text = publication["title"] as? String
-        if courses.count > 0 {
-            cell.courseLabel.text = courses[0]
-        } else {
-            cell.courseLabel.text = "No Course Info Available"
-        }
+        cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info Available" // needs to show all courses actually
         cell.priceLabel.text = "$\(listing["price"]!)"
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = "\(listing["buyable"]!)"
@@ -114,15 +110,47 @@ class SearchResultsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        //using code from Apple guide for convenience
+        
+        guard let listingDetailViewController = segue.destination as? ListingDetailViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
+        guard let selectedListingCell = sender as? ListingTableViewCell else {
+            fatalError("Unexpected sender: \(sender)")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedListingCell) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        // grab the necessary info about the selected listing
+        let selectedListing = listings[indexPath.row]
+        let selectedListingPublication = selectedListing["publication"] as! Dictionary<String, Any>
+        let selectedListingCourses: Array<String> = selectedListingPublication["courses"] as! Array<String>
+
+        // pass on the data in the segue, have to pass it to variables rather than the label directly
+        if let url  = NSURL(string: (selectedListingPublication["image"] as? String)!),
+            let data = NSData(contentsOf: url as URL)
+        {
+            listingDetailViewController.photoImage = UIImage(data: data as Data)
+        }
+        
+        listingDetailViewController.priceString = selectedListing["price"] as? String
+        listingDetailViewController.conditionString = selectedListing["condition"] as? String
+        listingDetailViewController.buyableString = selectedListing["buyable"] as! Bool ? "Buy" : "Rent"
+        listingDetailViewController.courseString = selectedListingCourses.count > 0 ? selectedListingCourses[0] : "No Course Info Available" // needs to show all courses actually
+        listingDetailViewController.titleString = selectedListingPublication["title"] as? String
+        listingDetailViewController.authorString = selectedListingPublication["author"] as? String
+        listingDetailViewController.yearString = selectedListingPublication["year"] as? String
+        listingDetailViewController.editionString = selectedListingPublication["edition"] as? String
     }
-    */
+    
     
     // MARK: - BoolaBooks API Calls
     
@@ -145,12 +173,9 @@ class SearchResultsTableViewController: UITableViewController {
                 print("**SUCCESSFUL SEARCH**")
             }
             
-            debugPrint(response)
-            
             // parse search results from JSON
             if let data = response.data {
                 let json = JSON(data: data)
-//                print(json)
                 // avoid null at end
                 for i in 0..<json.arrayObject!.count {
                     self.listings.append(json.arrayObject?[i] as! Dictionary<String, Any>)
