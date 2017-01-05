@@ -19,7 +19,7 @@ class UploadViewController: UIViewController {
     @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var conditionControl: UISegmentedControl!
     @IBOutlet weak var buyableControl: UISegmentedControl!
-    @IBOutlet weak var courseField: UITextField! // not supported in route 1/2/17
+    @IBOutlet weak var courseField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
@@ -70,23 +70,32 @@ class UploadViewController: UIViewController {
             "Accept": "application/json"
         ]
         
+        // prepare course array to be sent in params
+        let courses = [courseField.text!]
+        
         // Notes not supported in MVP
-        // Course not defined in Route 1/2/17
         let parameters: Parameters = [
             "listing": [
                 "publication_id": publication_id!,
                 "condition": conditionControl.titleForSegment(at: conditionControl.selectedSegmentIndex)!,
                 "buyable": buyableControl.titleForSegment(at: buyableControl.selectedSegmentIndex) == "Buy",
                 "price": Float(priceField.text!) ?? 0.00,
-                "notes": ""
+                "notes": "",
+                "courses": courses
             ]
         ]
         
+        /* DEBUGGING REQUEST */
+        let request =  Alamofire.request("https://boolabooks.herokuapp.com/api/v1/listings/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+        debugPrint(request)
+        
+        /*
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/listings/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
             if (response.result.error == nil) {
                 print("**SUCCESSFUL UPLOAD**")
             }
         }
+         */
     }
     
     // Using BoolaBooks API to look up a publication from an ISBN Number

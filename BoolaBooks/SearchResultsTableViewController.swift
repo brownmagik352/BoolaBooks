@@ -137,13 +137,15 @@ class SearchResultsTableViewController: UITableViewController {
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = ["query": searchQuery!, "num_items": 10 ]
+        let parameters: Parameters = ["query": searchQuery!, "num_items": 20 ]
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/search", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
 
             if (response.result.error == nil) {
                 print("**SUCCESSFUL SEARCH**")
             }
+            
+            debugPrint(response)
             
             // parse search results from JSON
             if let data = response.data {
