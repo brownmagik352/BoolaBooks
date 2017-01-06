@@ -332,7 +332,7 @@
                             <constraint firstItem="rJB-7k-ZIr" firstAttribute="top" secondItem="BS7-Do-mLL" secondAttribute="bottom" constant="37" id="cjR-BY-xHK"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Sell" id="NN7-62-xsx"/>
+                    <tabBarItem key="tabBarItem" title="Sell" image="sell" id="NN7-62-xsx"/>
                     <connections>
                         <outlet property="manualISBNfield" destination="rJB-7k-ZIr" id="79Q-gQ-zBb"/>
                         <outlet property="scanISBNPreview" destination="VXQ-4V-B7b" id="pqY-AX-xAW"/>
@@ -504,7 +504,7 @@
         <scene sceneID="EOz-r1-VUB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gjw-RF-YzX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" id="Bjb-CZ-rpr"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="Bjb-CZ-rpr"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="A8T-Qu-R2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -520,4 +520,7 @@
             <point key="canvasLocation" x="1552.8" y="253.2233883058471"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="sell" width="25" height="25"/>
+    </resources>
 </document>
