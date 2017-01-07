@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
         let prefs = UserDefaults.standard
-        if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token") {
+        if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token"),  let _ = prefs.string(forKey: "fb_uid") {
             // ADVANCE TO NEXT SCREEN IF APP TOKEN EXISTS (USER IS ALREADY LOGGED IN)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "tabView")
@@ -79,6 +79,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         let prefs = UserDefaults.standard
                         prefs.setValue(JSON["email"]!, forKey: "email")
                         prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
+                        prefs.setValue(JSON["uid"]!, forKey: "fb_uid")
                     }
                     
                 }
