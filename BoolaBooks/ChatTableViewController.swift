@@ -13,7 +13,7 @@ import SwiftyJSON
 class ChatTableViewController: UITableViewController {
     
     // MARK: - Properties
-    var sellChats: [[String:Any]] = [] // selling is going to go first since the app is structured sell-first in general
+    var sellChats: [[String:Any]] = [] // selling is going to go first (section #0) since the app is structured sell-first in general
     var buyChats: [[String:Any]] = []
 
     override func viewDidLoad() {
@@ -140,7 +140,6 @@ class ChatTableViewController: UITableViewController {
         ]
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/conversations", headers: headers).responseJSON { response in
-//            debugPrint(response)
             
             if (response.result.error == nil) {
                 print("**SUCCESSFUL CHATS LOOKUP**")
@@ -151,18 +150,14 @@ class ChatTableViewController: UITableViewController {
                 let json = JSON(data: data)
                 
                 // parse all selling chats
-//                print(json["selling"])
                 for i in 0..<json["selling"].arrayObject!.count {
                     self.sellChats.append(json["selling"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
-                print(self.sellChats)
                 
                 // parse all buying chats
-//                print(json["buying"][0])
                 for i in 0..<json["buying"].arrayObject!.count {
                     self.buyChats.append(json["buying"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
-                print(self.buyChats)
                 
                 // need this so that once new data is in table can pull it out
                 self.tableView.reloadData()
