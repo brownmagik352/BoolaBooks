@@ -116,19 +116,33 @@ class ChatTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        guard let chatDetailViewController = segue.destination as? ChatDetailViewController else {
+            fatalError("Unexpected destination: \(segue.destination)")
+        }
+        
+        guard let selectedChatCell = sender as? ChatTableViewCell else {
+            fatalError("Unexpected sender: \(sender)")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedChatCell) else {
+            fatalError("The selected cell is not being displayed by the table")
+        }
+        
+        let chat: Dictionary <String, Any> = indexPath.section == 0 ? sellChats[indexPath.row] : buyChats[indexPath.row]
+        chatDetailViewController.conversationID = chat["id"] as! Int
+
     }
-    */
+ 
     
     // MARK: - BoolaBooks API Calls
     
-    // Using BoolaBooks API to find all listings for a given search
+    // Find all listings for a given search
     func getConversations() {
         
         let prefs = UserDefaults.standard

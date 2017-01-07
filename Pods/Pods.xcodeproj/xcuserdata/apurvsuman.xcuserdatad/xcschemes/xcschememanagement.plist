@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftWebSocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,6 +67,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>05A00228F92D1C4D661A83ED2B0DD0E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>332F91393FB1DE033D370B4CEDDD5FCF</key>
 		<dict>
 			<key>primary</key>
@@ -87,11 +97,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7BBFD4C262496B03633C6F2AD06A899F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
@@ -107,17 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A96F2B5662DBFAF7869E4DCDD75C3137</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE6FDC9FCD6134F5B0553F65C0D25F99</key>
+		<key>C84F5D20A7B6704B3CA7D9BF53922F08</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>DDBCFDE490CDFDABF6F16A26F346932D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF6D5F7754FD3407B6259A60E8ADF52F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

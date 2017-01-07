@@ -12,6 +12,8 @@ target 'BoolaBooks' do
 
   pod 'Alamofire', '~> 4.0'
   pod 'SwiftyJSON'
+  
+  pod 'SwiftWebSocket'
 
   pod "MTBBarcodeScanner"
 

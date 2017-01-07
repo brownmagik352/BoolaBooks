@@ -26,6 +26,7 @@ PODS:
   - FBSDKShareKit (4.18.0):
     - FBSDKCoreKit
   - MTBBarcodeScanner (3.1.0)
+  - SwiftWebSocket (2.6.5)
   - SwiftyJSON (3.1.3)
 
 DEPENDENCIES:
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - FacebookLogin
   - FacebookShare
   - MTBBarcodeScanner
+  - SwiftWebSocket
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -46,8 +48,9 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
   FBSDKShareKit: 0b8d6cc3f103c75297eb3c62caec284a2ccf1b9e
   MTBBarcodeScanner: 6d397077f1a4a886050df8e66584a59a1dc429e7
+  SwiftWebSocket: 1ef8a0efb023544643bdf480c1ec4a62b204f293
   SwiftyJSON: 38a8ea2006779c0fc4c310cb2ee8195327740faf
 
-PODFILE CHECKSUM: cf2935b5e0cd997121f25141ed0483e21e5e555b
+PODFILE CHECKSUM: 3fd258dbe89d18012f1ec3d8dc4c2546db45760b
 
 COCOAPODS: 1.1.1
