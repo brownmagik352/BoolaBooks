@@ -122,6 +122,7 @@ class ChatTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        // Figure out which cell/chat was selected
         guard let chatDetailViewController = segue.destination as? ChatDetailViewController else {
             fatalError("Unexpected destination: \(segue.destination)")
         }
@@ -134,8 +135,9 @@ class ChatTableViewController: UITableViewController {
             fatalError("The selected cell is not being displayed by the table")
         }
         
+        // Send ConversationID for selected Chat
         let chat: Dictionary <String, Any> = indexPath.section == 0 ? sellChats[indexPath.row] : buyChats[indexPath.row]
-        chatDetailViewController.conversationID = chat["id"] as! Int
+        chatDetailViewController.conversationID = chat["id"] as? Int
 
     }
  

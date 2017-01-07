@@ -18,7 +18,7 @@ class ChatDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        chat()
+        chatListen()
 
         // Do any additional setup after loading the view.
     }
@@ -41,43 +41,45 @@ class ChatDetailViewController: UIViewController {
     
     // MARK: - BoolaBooks API Calls
     
-    func chat() {
+    func chatListen() {
 
+        // Initialize WebSocket
         let prefs = UserDefaults.standard
         let urlWithParams = "wss://boolabooks.herokuapp.com/cable?token=\(prefs.string(forKey: "rails_token")!)&uid=\(prefs.string(forKey: "fb_uid")!)"
         let request = NSMutableURLRequest(url: NSURL(string: urlWithParams)! as URL)
-        
         let ws = WebSocket(request: request as URLRequest)
+        
+        // helper function
         let send : ()->() = {
             
-            // hard-coded need to update
-            let dict1 = ["channel": "ConversationsChannel", "conversation_id": self.conversationID!] as [String: Any?]
-            let json1 = JSON(dict1)
-            let rawJSON1 = json1.rawString()
-            let dict = ["command": "subscribe", "identifier": rawJSON1 ] as [String: Any?]
+            let identifierDict = ["channel": "ConversationsChannel", "conversation_id": self.conversationID!] as [String: Any?]
+            let identifierJSON = JSON(identifierDict)
+            let identifierRawString = identifierJSON.rawString()
+            let dict = ["command": "subscribe", "identifier": identifierRawString ] as [String: Any?]
             let json = JSON(dict)
             let msg = json.rawString()
             
             ws.send(msg!)
         }
         
-//        ws.event.open = {
-//            print("opened")
-//            send()
-//        }
-//        
+        // Connect to Channel
+        ws.event.open = {
+            print("opened")
+            send()
+        }
+//
 //        ws.event.close = { code, reason, clean in
 //            print("close")
 //        }
-        
-        ws.event.error = { error in
-            print("error \(error)")
-        }
+//        
+//        ws.event.error = { error in
+//            print("error \(error)")
+//        }
         
         // parse the messasge
         ws.event.message = { message in
             if let text = message as? String {
-                print("recv: \(text)")
+                print("received: \(text)")
             }
         }
     }
