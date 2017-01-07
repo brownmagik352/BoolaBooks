@@ -52,7 +52,7 @@ class SearchResultsTableViewController: UITableViewController {
         let cellIdentifier = "ListingTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ListingTableViewCell
         
-        // for now, pullinng listing and its publication info
+        // for now, pulling listing, publication, and course info (listing -> publication -> courses)
         let listing = listings[indexPath.row]
         let publication = listing["publication"] as! Dictionary<String, Any>
         let courses: Array<String> = publication["courses"] as! Array<String>
