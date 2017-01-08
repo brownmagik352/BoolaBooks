@@ -48,7 +48,9 @@ class ChatDetailViewController: UIViewController {
         ws?.event.message = { message in
             if let text = message as? String {
                 if text.range(of: "sender_name") != nil {
-                   self.lastMessageLabel.text = text
+                    let encodedString : NSData = (text as NSString).data(using: String.Encoding.utf8.rawValue)! as NSData
+                    var json = JSON(data: encodedString as Data)
+                    self.lastMessageLabel.text = "(\(json["message"]["sender_name"])) \(json["message"]["text"])"
                 }
                 print("RECEIVED:\(text)")
             }
