@@ -179,21 +179,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2h-fA-GgN">
-                                <rect key="frame" x="184" y="234" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Send"/>
-                                <connections>
-                                    <action selector="sendMessage:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="IGJ-dt-kT3"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jBw-v9-pBj">
+                                <rect key="frame" x="30" y="89.000000000000014" width="354" height="128.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Other Person's Recent Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-YC-han">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Send Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3j-1l-Qqv">
+                                        <rect key="frame" x="0.0" y="26.333333333333329" width="354" height="30.000000000000014"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2h-fA-GgN">
+                                        <rect key="frame" x="0.0" y="62.333333333333343" width="354" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendMessage:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="IGJ-dt-kT3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-cY-AcV">
+                                        <rect key="frame" x="0.0" y="98.333333333333343" width="354" height="30"/>
+                                        <state key="normal" title="Mark as Sold"/>
+                                        <connections>
+                                            <action selector="markAsSold:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="ej1-oW-05Y"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jBw-v9-pBj" firstAttribute="top" secondItem="3Z9-uO-mvT" secondAttribute="bottom" constant="25" id="T4f-9j-fAb"/>
+                            <constraint firstItem="jBw-v9-pBj" firstAttribute="leading" secondItem="4Co-rg-11P" secondAttribute="leadingMargin" constant="10" id="duH-W9-IMI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jBw-v9-pBj" secondAttribute="trailing" constant="10" id="fne-qY-r18"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lastMessageLabel" destination="QkF-YC-han" id="C2N-QW-00J"/>
+                        <outlet property="sendMessageField" destination="A3j-1l-Qqv" id="6Or-ds-SGB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HhW-3M-icT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3397.1014492753625" y="937.50000000000011"/>
+            <point key="canvasLocation" x="3246" y="938"/>
         </scene>
         <!--Search Results Table View Controller-->
         <scene sceneID="cNv-SG-U5e">

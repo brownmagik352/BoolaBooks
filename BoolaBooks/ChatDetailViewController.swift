@@ -9,13 +9,18 @@
 import UIKit
 import SwiftWebSocket
 import SwiftyJSON
+import Alamofire
 
 class ChatDetailViewController: UIViewController {
     
     // MARK: - Properties
     var conversationID: Int?
+    var listingID: Int?
     var ws: WebSocket?
 
+    @IBOutlet weak var lastMessageLabel: UILabel!
+    @IBOutlet weak var sendMessageField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +47,10 @@ class ChatDetailViewController: UIViewController {
         // parse the messasge
         ws?.event.message = { message in
             if let text = message as? String {
-                print("received: \(text)")
+                if text.range(of: "sender_name") != nil {
+                   self.lastMessageLabel.text = text
+                }
+                print("RECEIVED:\(text)")
             }
         }
     }
@@ -76,8 +84,7 @@ class ChatDetailViewController: UIViewController {
 
     @IBAction func sendMessage(_ sender: UIButton) {
         
-        // hard-coded message right now
-        let dataDict = ["conversation_id": self.conversationID!, "text": "iOS CLIENT", "action": "send_message"] as [String: Any?]
+        let dataDict = ["conversation_id": self.conversationID!, "text": sendMessageField.text, "action": "send_message"] as [String: Any?]
         let dataJSON = JSON(dataDict)
         let dataRawString = dataJSON.rawString()
         
@@ -92,5 +99,25 @@ class ChatDetailViewController: UIViewController {
         self.ws?.send(msg!)
         print("Sent: \(msg!)")
         
+    }
+
+    @IBAction func markAsSold(_ sender: UIButton) {
+        
+        let prefs = UserDefaults.standard
+        let headers: HTTPHeaders = [
+            "X-User-Email": prefs.string(forKey: "email")!,
+            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "Content-type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        let urlString = "https://boolabooks.herokuapp.com/api/v1/listings/sold/\(self.listingID!)"
+        
+        Alamofire.request(urlString, method: .post, headers: headers).responseJSON { response in
+            if (response.result.error == nil) {
+                print("**SUCCESSFUL MARK AS SOLD**")
+            }
+        }
+
     }
 }

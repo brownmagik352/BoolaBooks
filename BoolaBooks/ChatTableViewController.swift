@@ -136,9 +136,11 @@ class ChatTableViewController: UITableViewController {
         }
         
         // Send ConversationID for selected Chat
-        let chat: Dictionary <String, Any> = indexPath.section == 0 ? sellChats[indexPath.row] : buyChats[indexPath.row]
+        let chat: Dictionary<String, Any> = indexPath.section == 0 ? sellChats[indexPath.row] : buyChats[indexPath.row]
         chatDetailViewController.conversationID = chat["id"] as? Int
-
+        let listing = chat["listing"] as! Dictionary<String, Any>
+        chatDetailViewController.listingID = listing["id"] as? Int
+        
     }
  
     
