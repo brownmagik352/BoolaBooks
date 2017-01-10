@@ -71,7 +71,9 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // scroll to the end of messages when first loading view
     override func viewDidAppear(_ animated: Bool) {
-        messagesTableView.scrollToRow(at: IndexPath(row: messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
+        if messages.count > 0 {
+            messagesTableView.scrollToRow(at: IndexPath(row: messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
