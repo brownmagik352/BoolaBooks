@@ -86,7 +86,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oe7-2f-Lem" id="daa-WD-CxG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xw9-iy-MlE">
@@ -179,53 +179,102 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jBw-v9-pBj">
-                                <rect key="frame" x="30" y="89.000000000000014" width="354" height="128.33333333333337"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="abr-ag-N6f">
+                                <rect key="frame" x="30" y="139" width="354" height="458"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageTableViewCell" id="weK-hJ-kv9" customClass="MessageTableViewCell" customModule="BoolaBooks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="354" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="weK-hJ-kv9" id="DtX-If-rYT">
+                                            <rect key="frame" x="0.0" y="0.0" width="354" height="66"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="69x-tQ-IJa">
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="45" id="P1W-la-t7p"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vi-rQ-hU7">
+                                                    <rect key="frame" x="50" y="11" width="291" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="3Vi-rQ-hU7" firstAttribute="leading" secondItem="69x-tQ-IJa" secondAttribute="trailing" constant="5" id="0Oe-Ws-kvy"/>
+                                                <constraint firstAttribute="bottom" secondItem="69x-tQ-IJa" secondAttribute="bottom" id="6JG-VD-85J"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3Vi-rQ-hU7" secondAttribute="trailing" constant="5" id="6fc-PK-i8V"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3Vi-rQ-hU7" secondAttribute="bottom" constant="3" id="8Rc-YU-QYv"/>
+                                                <constraint firstItem="3Vi-rQ-hU7" firstAttribute="top" secondItem="DtX-If-rYT" secondAttribute="topMargin" constant="3" id="QkU-JK-Ft0"/>
+                                                <constraint firstItem="69x-tQ-IJa" firstAttribute="leading" secondItem="DtX-If-rYT" secondAttribute="leading" id="bbM-Cd-3hf"/>
+                                                <constraint firstItem="69x-tQ-IJa" firstAttribute="top" secondItem="DtX-If-rYT" secondAttribute="top" id="h01-ga-SWG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageWordsLabel" destination="3Vi-rQ-hU7" id="VJI-JE-SBv"/>
+                                            <outlet property="senderImage" destination="69x-tQ-IJa" id="NU9-iO-Vpz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fRz-Qa-9l7" id="YPk-av-Bnk"/>
+                                    <outlet property="delegate" destination="fRz-Qa-9l7" id="gCg-jz-S5P"/>
+                                </connections>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="428-pl-V3O">
+                                <rect key="frame" x="30" y="617" width="354" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Other Person's Recent Message" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkF-YC-han">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Send Message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A3j-1l-Qqv">
-                                        <rect key="frame" x="0.0" y="26.333333333333329" width="354" height="30.000000000000014"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reply" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="A3j-1l-Qqv">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2h-fA-GgN">
-                                        <rect key="frame" x="0.0" y="62.333333333333343" width="354" height="30"/>
-                                        <state key="normal" title="Send"/>
-                                        <connections>
-                                            <action selector="sendMessage:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="IGJ-dt-kT3"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-cY-AcV">
-                                        <rect key="frame" x="0.0" y="98.333333333333343" width="354" height="30"/>
-                                        <state key="normal" title="Mark as Sold"/>
-                                        <connections>
-                                            <action selector="markAsSold:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="ej1-oW-05Y"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gw9-Rn-8AN">
+                                        <rect key="frame" x="0.0" y="30" width="354" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-cY-AcV">
+                                                <rect key="frame" x="0.0" y="0.0" width="177" height="30"/>
+                                                <state key="normal" title="Mark as Sold"/>
+                                                <connections>
+                                                    <action selector="markAsSold:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="ej1-oW-05Y"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2h-fA-GgN">
+                                                <rect key="frame" x="177" y="0.0" width="177" height="30"/>
+                                                <state key="normal" title="Send"/>
+                                                <connections>
+                                                    <action selector="sendMessage:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="IGJ-dt-kT3"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jBw-v9-pBj" firstAttribute="top" secondItem="3Z9-uO-mvT" secondAttribute="bottom" constant="25" id="T4f-9j-fAb"/>
-                            <constraint firstItem="jBw-v9-pBj" firstAttribute="leading" secondItem="4Co-rg-11P" secondAttribute="leadingMargin" constant="10" id="duH-W9-IMI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jBw-v9-pBj" secondAttribute="trailing" constant="10" id="fne-qY-r18"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="428-pl-V3O" secondAttribute="trailing" constant="10" id="4tH-qh-MZ3"/>
+                            <constraint firstItem="428-pl-V3O" firstAttribute="top" secondItem="abr-ag-N6f" secondAttribute="bottom" constant="20" id="DCt-Dl-nw6"/>
+                            <constraint firstItem="abr-ag-N6f" firstAttribute="centerY" secondItem="4Co-rg-11P" secondAttribute="centerY" id="K9c-FP-T7b"/>
+                            <constraint firstItem="abr-ag-N6f" firstAttribute="centerX" secondItem="4Co-rg-11P" secondAttribute="centerX" id="L4Y-PV-dc2"/>
+                            <constraint firstItem="abr-ag-N6f" firstAttribute="leading" secondItem="4Co-rg-11P" secondAttribute="leadingMargin" constant="10" id="NAj-y1-BEO"/>
+                            <constraint firstItem="QKz-rE-fJg" firstAttribute="top" secondItem="428-pl-V3O" secondAttribute="bottom" constant="10" id="dyV-m8-wYP"/>
+                            <constraint firstItem="428-pl-V3O" firstAttribute="leading" secondItem="4Co-rg-11P" secondAttribute="leadingMargin" constant="10" id="l7m-Mp-V50"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="abr-ag-N6f" secondAttribute="trailing" constant="10" id="zly-1Y-2xD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="lastMessageLabel" destination="QkF-YC-han" id="C2N-QW-00J"/>
+                        <outlet property="messagesTableView" destination="abr-ag-N6f" id="zM7-jW-q9B"/>
                         <outlet property="sendMessageField" destination="A3j-1l-Qqv" id="6Or-ds-SGB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HhW-3M-icT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3246" y="938"/>
+            <point key="canvasLocation" x="3244.9275362318845" y="937.50000000000011"/>
         </scene>
         <!--Search Results Table View Controller-->
         <scene sceneID="cNv-SG-U5e">
@@ -240,7 +289,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8KV-nB-U6x" id="pSC-Tm-zYZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BU5-8F-oZs">

@@ -11,18 +11,28 @@ import SwiftWebSocket
 import SwiftyJSON
 import Alamofire
 
-class ChatDetailViewController: UIViewController {
+class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     // MARK: - Properties
+    
+    // Outlets
+    @IBOutlet weak var messagesTableView: UITableView!
+    @IBOutlet weak var sendMessageField: UITextField!
+    
+    // Class Variables
     var conversationID: Int?
     var listingID: Int?
     var ws: WebSocket?
-
-    @IBOutlet weak var lastMessageLabel: UILabel!
-    @IBOutlet weak var sendMessageField: UITextField!
+    var messages: Array<String> = ["apple", "banana", "cheese"]
+    
+    // MARK: - Base Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // initialize messages table & newMessage Field
+        self.messagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell") // required for tableViews embedded in UIViewControllers
+        sendMessageField.delegate = self
         
         // Initialize WebSocket
         let prefs = UserDefaults.standard
@@ -50,11 +60,18 @@ class ChatDetailViewController: UIViewController {
                 if text.range(of: "sender_name") != nil {
                     let encodedString : NSData = (text as NSString).data(using: String.Encoding.utf8.rawValue)! as NSData
                     var json = JSON(data: encodedString as Data)
-                    self.lastMessageLabel.text = "(\(json["message"]["sender_name"])) \(json["message"]["text"])"
+                    self.messages.append("(\(json["message"]["sender_name"])) \(json["message"]["text"])")
+                    self.messagesTableView.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
+                    self.messagesTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
                 }
                 print("RECEIVED:\(text)")
             }
         }
+    }
+    
+    // scroll to the end of messages when first loading view
+    override func viewDidAppear(_ animated: Bool) {
+        messagesTableView.scrollToRow(at: IndexPath(row: messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,6 +99,56 @@ class ChatDetailViewController: UIViewController {
     }
     */
     
+    // MARK: - TableView Protocol
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MessageTableViewCell = self.messagesTableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell") as! MessageTableViewCell
+        
+        // get cell value
+        let message = messages[indexPath.row]
+        
+        // Populate the labels in the table cell
+        cell.messageWordsLabel.text = message
+        
+        return cell
+        
+    }
+    
+    // MARK: - Moving Text Field Up When Using KB, UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        animateViewMoving(up: true, moveValue: 250)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        animateViewMoving(up: false, moveValue: 250)
+    }
+    
+    // Lifting the view up
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        let movementDuration:TimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations( "animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration )
+        self.view.frame = self.view.frame.offsetBy(dx: 0,  dy: movement)
+        UIView.commitAnimations()
+    }
+    
+    // Dismiss KB  - touch outside the field after editing has started
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        sendMessageField.resignFirstResponder()
+        self.view.endEditing(true)
+    }
+    
     // MARK: - Actions
 
     @IBAction func sendMessage(_ sender: UIButton) {
@@ -100,6 +167,7 @@ class ChatDetailViewController: UIViewController {
         
         self.ws?.send(msg!)
         print("Sent: \(msg!)")
+        sendMessageField.text = ""
         
     }
 

@@ -20,7 +20,8 @@ class ChatTableViewController: UITableViewController {
         super.viewDidLoad()
         
         getConversations()
-        self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0)    }
+//        self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0)    
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,7 +70,7 @@ class ChatTableViewController: UITableViewController {
         cell.priceLabel.text = "$\(listing["price"]!)"
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = "\(listing["buyable"]!)"
-        //        // Get image using URL - App Transport allows for Google Books specifically right now
+        // Get image using URL - App Transport allows for Google Books specifically right now
         if let url  = NSURL(string: (publication["image"] as? String)!),
             let data = NSData(contentsOf: url as URL)
         {
@@ -138,8 +139,18 @@ class ChatTableViewController: UITableViewController {
         // Send ConversationID for selected Chat
         let chat: Dictionary<String, Any> = indexPath.section == 0 ? sellChats[indexPath.row] : buyChats[indexPath.row]
         chatDetailViewController.conversationID = chat["id"] as? Int
+        
+        // Send Listing for selected Chat (need for Marking Item as Sold and providing context about chat)
         let listing = chat["listing"] as! Dictionary<String, Any>
         chatDetailViewController.listingID = listing["id"] as? Int
+        
+        // Send existing chat messages for selected Chat
+        let messagesMeta = chat["messages"] as! Array<Dictionary<String, Any>>
+        var messages: [String] = []
+        for i in 0..<messagesMeta.count {
+            messages.append("\(messagesMeta[i]["text"]!)")
+        }
+        chatDetailViewController.messages = messages
         
     }
  
@@ -177,7 +188,7 @@ class ChatTableViewController: UITableViewController {
                     self.buyChats.append(json["buying"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
                 
-                // need this so that once new data is in table can pull it out
+                // need this so that once new data is in table can update to show it
                 self.tableView.reloadData()
             }
         }

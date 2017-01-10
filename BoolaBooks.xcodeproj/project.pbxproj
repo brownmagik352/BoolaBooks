@@ -20,6 +20,7 @@
 		88323CA51E14706A00B38A02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA41E14706A00B38A02 /* Assets.xcassets */; };
 		88323CA81E14706A00B38A02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */; };
 		88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323CAF1E14768D00B38A02 /* LoginViewController.swift */; };
+		8848FC321E24D3B2005CBC6E /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848FC311E24D3B2005CBC6E /* MessageTableViewCell.swift */; };
 		886659051E20BB7500D3CA66 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659041E20BB7500D3CA66 /* ChatTableViewController.swift */; };
 		886659071E20BBAC00D3CA66 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659061E20BBAC00D3CA66 /* ChatTableViewCell.swift */; };
 		8866590A1E218BA400D3CA66 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659091E218BA400D3CA66 /* ChatDetailViewController.swift */; };
@@ -43,6 +44,7 @@
 		88323CA71E14706A00B38A02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88323CA91E14706A00B38A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88323CAF1E14768D00B38A02 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8848FC311E24D3B2005CBC6E /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		886659041E20BB7500D3CA66 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		886659061E20BBAC00D3CA66 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		886659081E216F7E00D3CA66 /* BoolaBooks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoolaBooks.entitlements; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				886659041E20BB7500D3CA66 /* ChatTableViewController.swift */,
 				886659061E20BBAC00D3CA66 /* ChatTableViewCell.swift */,
 				886659091E218BA400D3CA66 /* ChatDetailViewController.swift */,
+				8848FC311E24D3B2005CBC6E /* MessageTableViewCell.swift */,
 			);
 			path = BoolaBooks;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				88286A9A1E19CB8600C6A161 /* UploadViewController.swift in Sources */,
 				886659071E20BBAC00D3CA66 /* ChatTableViewCell.swift in Sources */,
 				88323C9E1E14706A00B38A02 /* AppDelegate.swift in Sources */,
+				8848FC321E24D3B2005CBC6E /* MessageTableViewCell.swift in Sources */,
 				88286AA41E1E3A3700C6A161 /* ListingDetailViewController.swift in Sources */,
 				88286AA01E1AB3B200C6A161 /* SearchResultsTableViewController.swift in Sources */,
 				88286A981E19A66700C6A161 /* ScanViewController.swift in Sources */,
