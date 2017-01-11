@@ -124,9 +124,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.messageWordsLabel.text = message
         // Populate the image in the table cell
         if let url  = NSURL(string: imageString) {
-            print(url)
             if let data = NSData(contentsOf: url as URL) {
-                print(data)
                 cell.senderImage.image = UIImage(data: data as Data)
             }
         }

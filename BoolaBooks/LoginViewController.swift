@@ -17,6 +17,25 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         let prefs = UserDefaults.standard
         if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token"),  let _ = prefs.string(forKey: "fb_uid") {
+            
+            // register device for notifications
+            let headers: HTTPHeaders = [
+                "X-User-Email": prefs.string(forKey: "email")!,
+                "X-User-Token": prefs.string(forKey: "rails_token")!,
+                "Content-type": "application/json",
+                "Accept": "application/json"
+            ]
+            
+            let parameters: Parameters = [
+                "apn_token": prefs.string(forKey: "device_token")!
+            ]
+            
+            Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                if (response.result.error == nil) {
+                    print("**SUCCESSFUL DEVICE REGISTRATION**")
+                }
+            }
+            
             // ADVANCE TO NEXT SCREEN IF APP TOKEN EXISTS (USER IS ALREADY LOGGED IN)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "tabView")
@@ -80,8 +99,26 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         prefs.setValue(JSON["email"]!, forKey: "email")
                         prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
                         prefs.setValue(JSON["uid"]!, forKey: "fb_uid")
+                        
+                        // register device for notifications
+                        let headers: HTTPHeaders = [
+                            "X-User-Email": prefs.string(forKey: "email")!,
+                            "X-User-Token": prefs.string(forKey: "rails_token")!,
+                            "Content-type": "application/json",
+                            "Accept": "application/json"
+                        ]
+                        
+                        let parameters: Parameters = [
+                            "apn_token": prefs.string(forKey: "device_token")!
+                        ]
+                        
+                        Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+                            if (response.result.error == nil) {
+                                print("**SUCCESSFUL DEVICE REGISTRATION**")
+                            }
+                        }
                     }
-                    
+
                 }
                 
                 // ADVANCE TO NEXT SCREEN AFTER LOGIN

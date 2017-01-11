@@ -43,7 +43,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for i in 0..<deviceToken.count {
             token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
         }
-        print("DEVICE TOKEN = \(token)") // need to send this to the server instead
+        
+        var newToken = "<"
+        for i in 0..<token.characters.count {
+            if i % 8 == 0 && i > 1 {
+                newToken = newToken + " "
+            }
+            newToken = newToken + String(token[token.index(token.startIndex, offsetBy: i)])
+        }
+        newToken = newToken + ">"
+        
+        let prefs = UserDefaults.standard
+        prefs.setValue(newToken, forKey: "device_token")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
