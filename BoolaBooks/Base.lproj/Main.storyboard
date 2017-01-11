@@ -458,6 +458,13 @@
                             <constraint firstAttribute="bottom" secondItem="FTs-Wc-h5C" secondAttribute="bottom" constant="316" id="xHG-b5-210"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="UuF-30-DbT">
+                        <barButtonItem key="rightBarButtonItem" title="Start Chat With Seller" id="2vF-6A-l8w">
+                            <connections>
+                                <action selector="startChat:" destination="7iN-2m-n6k" id="Ye7-SA-bu5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="sYh-DA-Z7o" id="GED-vm-ejF"/>
                         <outlet property="buyableLabel" destination="8Ln-NJ-JXG" id="awT-xt-vsO"/>

@@ -149,6 +149,7 @@ class SearchResultsTableViewController: UITableViewController {
         listingDetailViewController.authorString = selectedListingPublication["author"] as? String
         listingDetailViewController.yearString = selectedListingPublication["year"] as? String
         listingDetailViewController.editionString = selectedListingPublication["edition"] as? String
+        listingDetailViewController.listingID = selectedListing["id"] as? Int
     }
     
     

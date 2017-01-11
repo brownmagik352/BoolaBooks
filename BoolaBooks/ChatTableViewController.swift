@@ -150,7 +150,7 @@ class ChatTableViewController: UITableViewController {
         let sellerID = seller["id"] as! Int
         let sellerPhoto = "\(seller["image"]!)"
         let buyer = chat["buyer"] as! Dictionary<String,Any>
-        let buyerID = buyer["id"] as? Int
+//        let buyerID = buyer["id"] as? Int
         let buyerPhoto = "\(buyer["image"]!)"
         
         let messagesMeta = chat["messages"] as! Array<Dictionary<String, Any>>
