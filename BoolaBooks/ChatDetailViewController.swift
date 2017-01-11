@@ -23,7 +23,8 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     var conversationID: Int?
     var listingID: Int?
     var ws: WebSocket?
-    var messages: Array<String> = ["apple", "banana", "cheese"]
+    var messages: Array<String> = [] // actual text of messages
+    var imageStrings: Array<String> = [] // image of message sender
     
     // MARK: - Base Functions
     
@@ -60,7 +61,8 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 if text.range(of: "sender_name") != nil {
                     let encodedString : NSData = (text as NSString).data(using: String.Encoding.utf8.rawValue)! as NSData
                     var json = JSON(data: encodedString as Data)
-                    self.messages.append("(\(json["message"]["sender_name"])) \(json["message"]["text"])")
+                    self.messages.append("\(json["message"]["text"])")
+                    self.imageStrings.append("\(json["message"]["sender_image"])")
                     self.messagesTableView.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
                     self.messagesTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
                 }
@@ -116,9 +118,18 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // get cell value
         let message = messages[indexPath.row]
+        let imageString = imageStrings[indexPath.row]
         
-        // Populate the labels in the table cell
+        // Populate the label in the table cell
         cell.messageWordsLabel.text = message
+        // Populate the image in the table cell
+        if let url  = NSURL(string: imageString) {
+            print(url)
+            if let data = NSData(contentsOf: url as URL) {
+                print(data)
+                cell.senderImage.image = UIImage(data: data as Data)
+            }
+        }
         
         return cell
         
