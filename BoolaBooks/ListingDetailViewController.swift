@@ -39,7 +39,7 @@ class ListingDetailViewController: UIViewController {
         super.viewDidLoad()
 
         photoView.image = photoImage
-        priceLabel.text = priceString
+        priceLabel.text = "$" + priceString!
         conditionLabel.text = conditionString
         buyableLabel.text = buyableString
         courseLabel.text = courseString
