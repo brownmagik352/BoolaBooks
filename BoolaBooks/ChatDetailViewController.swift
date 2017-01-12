@@ -32,7 +32,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         
         // call just to make sure the messages get marked as unread
-//        getConversationDetail(chatID: self.conversationID!)
+        getConversationDetail(chatID: self.conversationID!)
         
         // initialize messages table & newMessage Field
         self.messagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell") // required for tableViews embedded in UIViewControllers
