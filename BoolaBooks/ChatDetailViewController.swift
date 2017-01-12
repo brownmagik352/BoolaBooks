@@ -31,6 +31,9 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // call just to make sure the messages get marked as unread
+//        getConversationDetail(chatID: self.conversationID!)
+        
         // initialize messages table & newMessage Field
         self.messagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell") // required for tableViews embedded in UIViewControllers
         sendMessageField.delegate = self
@@ -200,5 +203,35 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
 
+    }
+    
+    // MARK: - BoolaBooks API Calls
+    func getConversationDetail(chatID: Int) {
+        
+        let prefs = UserDefaults.standard
+        let headers: HTTPHeaders = [
+            "X-User-Email": prefs.string(forKey: "email")!,
+            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "Content-type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        Alamofire.request("https://boolabooks.herokuapp.com/api/v1/conversations/\(chatID)", headers: headers).responseJSON { response in
+            
+            if (response.result.error == nil) {
+                print("**SUCCESSFUL DETAIL CHAT LOOKUP**")
+            }
+            
+            // parse search results from JSON
+            //            if let data = response.data {
+            //                let json = JSON(data: data)
+            //
+            //                var messages: [String] = []
+            //
+            //                for i in 0..<json["messages"].count {
+            //                    messages.append(json["messages"][i]["text"])
+            //                }
+            //            }
+        }
     }
 }

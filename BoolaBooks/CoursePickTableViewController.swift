@@ -119,7 +119,7 @@ class CoursePickTableViewController: UITableViewController {
     }
     
     
-    // BoolaBooks API Calls
+    // MARK: - BoolaBooks API Calls
     func getAllCourses() {
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [

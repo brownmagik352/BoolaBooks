@@ -17,15 +17,16 @@ class ChatTableViewController: UITableViewController {
     var buyChats: [[String:Any]] = []
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        getConversations()
-//        self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0)    
+        super.viewDidLoad() 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getConversations()
     }
 
     // MARK: - Table view data source
@@ -63,10 +64,12 @@ class ChatTableViewController: UITableViewController {
         let publication = listing["publication"] as! Dictionary<String, Any>
         let courses: Array<String> = publication["courses"] as! Array<String>
         
+        let unreadCount = chat["num_unread_by_seller"] as? Int
+        let unread = unreadCount! > 0 ? "**" : ""
         
         // Populate the labels in the table cell
-        cell.titleLabel.text = publication["title"] as? String
-        cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info Available" // needs to show all courses actually
+        cell.titleLabel.text = unread + (publication["title"] as? String)!
+        cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info" // needs to show all courses actually
         cell.priceLabel.text = "$\(listing["price"]!)"
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = "\(listing["buyable"]!)"
