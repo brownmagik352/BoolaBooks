@@ -26,6 +26,7 @@
 		886659051E20BB7500D3CA66 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659041E20BB7500D3CA66 /* ChatTableViewController.swift */; };
 		886659071E20BBAC00D3CA66 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659061E20BBAC00D3CA66 /* ChatTableViewCell.swift */; };
 		8866590A1E218BA400D3CA66 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659091E218BA400D3CA66 /* ChatDetailViewController.swift */; };
+		88B44C2B1E28450B00BADA4D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B44C2A1E28450B00BADA4D /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		886659061E20BBAC00D3CA66 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		886659081E216F7E00D3CA66 /* BoolaBooks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoolaBooks.entitlements; sourceTree = "<group>"; };
 		886659091E218BA400D3CA66 /* ChatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailViewController.swift; sourceTree = "<group>"; };
+		88B44C2A1E28450B00BADA4D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				886659091E218BA400D3CA66 /* ChatDetailViewController.swift */,
 				8848FC311E24D3B2005CBC6E /* MessageTableViewCell.swift */,
 				88286A9B1E1A091B00C6A161 /* Listing.swift */,
+				88B44C2A1E28450B00BADA4D /* AboutViewController.swift */,
 			);
 			path = BoolaBooks;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				88286AA01E1AB3B200C6A161 /* SearchResultsTableViewController.swift in Sources */,
 				88286A981E19A66700C6A161 /* ScanViewController.swift in Sources */,
 				886659051E20BB7500D3CA66 /* ChatTableViewController.swift in Sources */,
+				88B44C2B1E28450B00BADA4D /* AboutViewController.swift in Sources */,
 				8866590A1E218BA400D3CA66 /* ChatDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
