@@ -61,6 +61,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         // parse the messasge
         ws?.event.message = { message in
             if let text = message as? String {
+                // if it is actual received message
                 if text.range(of: "sender_name") != nil {
                     let encodedString : NSData = (text as NSString).data(using: String.Encoding.utf8.rawValue)! as NSData
                     var json = JSON(data: encodedString as Data)
@@ -68,6 +69,22 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                     self.imageStrings.append("\(json["message"]["sender_image"])")
                     self.messagesTableView.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
                     self.messagesTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
+                    
+                    // mark incoming message as read (when already in an open chat)
+                    let dataDict = ["message_id": "\(json["message"]["message_id"])", "action": "read_message"] as [String: Any?]
+                    let dataJSON = JSON(dataDict)
+                    let dataRawString = dataJSON.rawString()
+                    
+                    let identifierDict = ["channel": "ConversationsChannel", "conversation_id": self.conversationID!] as [String: Any?]
+                    let identifierJSON = JSON(identifierDict)
+                    let identifierRawString = identifierJSON.rawString()
+                    
+                    let dict = ["command": "message", "identifier": identifierRawString, "data": dataRawString ] as [String: Any?]
+                    let json2 = JSON(dict)
+                    let msg = json2.rawString()
+                    
+                    self.ws?.send(msg!)
+                    print("Sent: \(msg!)")
                 }
                 print("RECEIVED:\(text)")
             }

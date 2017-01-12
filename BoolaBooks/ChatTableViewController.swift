@@ -65,7 +65,7 @@ class ChatTableViewController: UITableViewController {
         let courses: Array<String> = publication["courses"] as! Array<String>
         
         let unreadCount = chat["num_unread_by_seller"] as? Int
-        let unread = unreadCount! > 0 ? "**" : ""
+        let unread = unreadCount! > 0 ? "(*) " : ""
         
         // Populate the labels in the table cell
         cell.titleLabel.text = unread + (publication["title"] as? String)!
