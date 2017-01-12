@@ -77,6 +77,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print("error \(error)")
             } else {
                 let fbResult = result as! Dictionary<String, AnyObject>
+                
+                // image has some nesting that we have to pull out first
+                let fbPicTemp1 = fbResult["picture"] as? Dictionary<String, Any>
+                let fbPicTemp2 = fbPicTemp1?["data"] as? Dictionary<String, Any>
+                var fbPicURL = fbPicTemp2?["url"] as? String
+                let fbPicSilo = fbPicTemp2?["is_silhouette"] as? Int
+                
+                if fbPicSilo == 0 {
+                    fbPicURL = "" //no image for fb user
+                }
+
                 // USING FB INFO NOW LOG IN TO APP
                 let parameters: Parameters = [
                     "user": [
@@ -84,7 +95,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         "provider": "facebook",
                         "uid": fbResult["id"] as? String,
                         "name": fbResult["name"] as? String,
-                        "image": fbResult["picture"] as? String,
+                        "image": fbPicURL,
                         "oauth_token": FBSDKAccessToken.current().tokenString
                     ]
                 ]
