@@ -24,6 +24,12 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Dismiss KB  - touch outside the field after editing has started
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchField.resignFirstResponder()
+        self.view.endEditing(true)
+    }
+    
 
     
     // MARK: - Navigation

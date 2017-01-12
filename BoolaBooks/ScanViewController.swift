@@ -29,6 +29,12 @@ class ScanViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Dismiss KB  - touch outside the field after editing has started
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        manualISBNfield.resignFirstResponder()
+        self.view.endEditing(true)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

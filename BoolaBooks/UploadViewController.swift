@@ -54,7 +54,11 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-
+    // Dismiss KB  - touch outside the field after editing has started
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        priceField.resignFirstResponder()
+        self.view.endEditing(true)
+    }
     
     // MARK: - Navigation
 
