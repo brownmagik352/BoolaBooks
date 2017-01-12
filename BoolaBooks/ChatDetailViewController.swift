@@ -25,6 +25,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     var ws: WebSocket?
     var messages: Array<String> = [] // actual text of messages
     var imageStrings: Array<String> = [] // image of message sender
+    var names: Array<String> = [] // name of message sender
     
     // MARK: - Base Functions
     
@@ -67,6 +68,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                     var json = JSON(data: encodedString as Data)
                     self.messages.append("\(json["message"]["text"])")
                     self.imageStrings.append("\(json["message"]["sender_image"])")
+                    self.names.append("\(json["message"]["sender_name"])")
                     self.messagesTableView.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
                     self.messagesTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
                     
@@ -137,10 +139,12 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell: MessageTableViewCell = self.messagesTableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell") as! MessageTableViewCell
         
         // get cell value
+        let name = names[indexPath.row]
         let message = messages[indexPath.row]
         let imageString = imageStrings[indexPath.row]
         
         // Populate the label in the table cell
+        cell.nameLabel.text = name
         cell.messageWordsLabel.text = message
         // Populate the image in the table cell
         if let url  = NSURL(string: imageString) {

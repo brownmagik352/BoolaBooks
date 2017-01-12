@@ -152,23 +152,30 @@ class ChatTableViewController: UITableViewController {
         let seller = chat["seller"] as! Dictionary<String,Any>
         let sellerID = seller["id"] as! Int
         let sellerPhoto = "\(seller["image"]!)"
+        let sellerName = seller["name"] as! String
+        
         let buyer = chat["buyer"] as! Dictionary<String,Any>
 //        let buyerID = buyer["id"] as? Int
         let buyerPhoto = "\(buyer["image"]!)"
+        let buyerName = buyer["name"] as! String
         
         let messagesMeta = chat["messages"] as! Array<Dictionary<String, Any>>
         var messages: [String] = [] // actual text of each message
-        var imageStrings: [String] = [] // image of messeage sender
+        var imageStrings: [String] = [] // image of messege sender
+        var names: [String] = [] // name of message sender
         for i in 0..<messagesMeta.count {
             messages.append("\(messagesMeta[i]["text"]!)")
             if messagesMeta[i]["sender_id"] as! Int == sellerID {
                 imageStrings.append(sellerPhoto)
+                names.append(sellerName)
             } else {
                 imageStrings.append(buyerPhoto)
+                names.append(buyerName)
             }
         }
         chatDetailViewController.messages = messages
         chatDetailViewController.imageStrings = imageStrings
+        chatDetailViewController.names = names
         
     }
  

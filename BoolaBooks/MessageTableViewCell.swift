@@ -13,6 +13,7 @@ class MessageTableViewCell: UITableViewCell {
     // Mark: - Properties
     @IBOutlet weak var senderImage: UIImageView!
     @IBOutlet weak var messageWordsLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

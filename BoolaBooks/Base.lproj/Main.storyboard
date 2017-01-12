@@ -196,8 +196,17 @@
                                                         <constraint firstAttribute="width" constant="45" id="P1W-la-t7p"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vi-rQ-hU7">
-                                                    <rect key="frame" x="50" y="11" width="291" height="44"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vi-rQ-hU7">
+                                                    <rect key="frame" x="50" y="16" width="291" height="42"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0u-wV-HPP">
+                                                    <rect key="frame" x="49.999999999999993" y="0.0" width="35.333333333333321" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="Umc-iP-ifH"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -207,14 +216,17 @@
                                                 <constraint firstItem="3Vi-rQ-hU7" firstAttribute="leading" secondItem="69x-tQ-IJa" secondAttribute="trailing" constant="5" id="0Oe-Ws-kvy"/>
                                                 <constraint firstAttribute="bottom" secondItem="69x-tQ-IJa" secondAttribute="bottom" id="6JG-VD-85J"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="3Vi-rQ-hU7" secondAttribute="trailing" constant="5" id="6fc-PK-i8V"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="3Vi-rQ-hU7" secondAttribute="bottom" constant="3" id="8Rc-YU-QYv"/>
-                                                <constraint firstItem="3Vi-rQ-hU7" firstAttribute="top" secondItem="DtX-If-rYT" secondAttribute="topMargin" constant="3" id="QkU-JK-Ft0"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="3Vi-rQ-hU7" secondAttribute="bottom" id="8Rc-YU-QYv"/>
+                                                <constraint firstItem="V0u-wV-HPP" firstAttribute="top" secondItem="DtX-If-rYT" secondAttribute="top" id="PQ8-Ev-rX6"/>
+                                                <constraint firstItem="V0u-wV-HPP" firstAttribute="leading" secondItem="69x-tQ-IJa" secondAttribute="trailing" constant="5" id="UZb-Fr-O5s"/>
                                                 <constraint firstItem="69x-tQ-IJa" firstAttribute="leading" secondItem="DtX-If-rYT" secondAttribute="leading" id="bbM-Cd-3hf"/>
                                                 <constraint firstItem="69x-tQ-IJa" firstAttribute="top" secondItem="DtX-If-rYT" secondAttribute="top" id="h01-ga-SWG"/>
+                                                <constraint firstItem="3Vi-rQ-hU7" firstAttribute="top" secondItem="V0u-wV-HPP" secondAttribute="bottom" constant="1" id="mhJ-bL-hEO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageWordsLabel" destination="3Vi-rQ-hU7" id="VJI-JE-SBv"/>
+                                            <outlet property="nameLabel" destination="V0u-wV-HPP" id="DCu-9T-CVF"/>
                                             <outlet property="senderImage" destination="69x-tQ-IJa" id="NU9-iO-Vpz"/>
                                         </connections>
                                     </tableViewCell>
