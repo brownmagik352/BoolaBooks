@@ -150,6 +150,10 @@ class ChatTableViewController: UITableViewController {
         let listing = chat["listing"] as! Dictionary<String, Any>
         chatDetailViewController.listingID = listing["id"] as? Int
         
+        // Has listing been sold already or not?
+        let soldAt = listing["sold_at"] as? String
+        chatDetailViewController.sold = soldAt != nil
+        
         // Send existing chat messages & images for selected Chat
         // needed for image data
         let seller = chat["seller"] as! Dictionary<String,Any>

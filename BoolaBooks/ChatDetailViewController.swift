@@ -18,10 +18,13 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     // Outlets
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var sendMessageField: UITextField!
+    @IBOutlet weak var markAsSoldButton: UIButton!
+    
     
     // Class Variables
     var conversationID: Int?
     var listingID: Int?
+    var sold: Bool?
     var ws: WebSocket?
     var messages: Array<String> = [] // actual text of messages
     var imageStrings: Array<String> = [] // image of message sender
@@ -31,6 +34,11 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.sold! {
+            markAsSoldButton.setTitle("SOLD", for: .normal)
+            markAsSoldButton.isEnabled = false
+        }
         
         // call just to make sure the messages get marked as unread
         getConversationDetail(chatID: self.conversationID!)
@@ -208,22 +216,20 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBAction func markAsSold(_ sender: UIButton) {
         
-        let prefs = UserDefaults.standard
-        let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
-            "Content-type": "application/json",
-            "Accept": "application/json"
-        ]
+        let alert = UIAlertController(title: "Are you sure?", message: "This action cannot be undone.", preferredStyle: UIAlertControllerStyle.alert)        
         
-        let urlString = "https://boolabooks.herokuapp.com/api/v1/listings/sold/\(self.listingID!)"
-        
-        Alamofire.request(urlString, method: .post, headers: headers).responseJSON { response in
-            if (response.result.error == nil) {
-                print("**SUCCESSFUL MARK AS SOLD**")
-            }
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel",
+                                                        style: .cancel) {
+                                                            action -> Void in return
         }
-
+        let yesAction: UIAlertAction = UIAlertAction(title: "Yes",
+                                                         style: .default) {
+                                                            action -> Void in self.markAsSoldAPI()
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(yesAction)
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     // MARK: - BoolaBooks API Calls
@@ -253,6 +259,26 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             //                    messages.append(json["messages"][i]["text"])
             //                }
             //            }
+        }
+    }
+    
+    func markAsSoldAPI() {
+        let prefs = UserDefaults.standard
+        let headers: HTTPHeaders = [
+            "X-User-Email": prefs.string(forKey: "email")!,
+            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "Content-type": "application/json",
+            "Accept": "application/json"
+        ]
+        
+        let urlString = "https://boolabooks.herokuapp.com/api/v1/listings/sold/\(self.listingID!)"
+        
+        Alamofire.request(urlString, method: .post, headers: headers).responseJSON { response in
+            if (response.result.error == nil) {
+                print("**SUCCESSFUL MARK AS SOLD**")
+                self.markAsSoldButton.setTitle("SOLD", for: .normal)
+                self.markAsSoldButton.isEnabled = false
+            }
         }
     }
 }

@@ -280,6 +280,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="markAsSoldButton" destination="tql-cY-AcV" id="aq9-JL-9dY"/>
                         <outlet property="messagesTableView" destination="abr-ag-N6f" id="zM7-jW-q9B"/>
                         <outlet property="sendMessageField" destination="A3j-1l-Qqv" id="6Or-ds-SGB"/>
                     </connections>
@@ -301,7 +302,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aBW-Z7-Gwh" id="RvE-Ss-sFv">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IX0-xK-EU1">
