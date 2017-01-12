@@ -9,21 +9,23 @@
 import UIKit
 import Alamofire
 
-class UploadViewController: UIViewController {
+// ModalViewControllerDelegate is a custom delegate that lets a modal pass back data to this VC (used for course table picker)
+class UploadViewController: UIViewController, ModalViewControllerDelegate {
     
     // MARK: - Properties
     var isbn: String? // Set by Segue from ScanViewController
     var publication_id: Int?
+    var courses: [String] = [] // courses to be uploaded
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var conditionControl: UISegmentedControl!
     @IBOutlet weak var buyableControl: UISegmentedControl!
-    @IBOutlet weak var courseField: UITextField!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var editionLabel: UILabel!
+    @IBOutlet weak var addCourseButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,12 @@ class UploadViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // ModalViewControllerDelegate
+    func sendModalValue(value: String) {
+        courses.append(value)
+        addCourseButton.setTitle(value, for: .normal)
     }
     
     // MARK: - Actions
@@ -47,15 +55,15 @@ class UploadViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as! CoursePickTableViewController
+        destinationVC.delegate = self;
     }
-    */
+    
     
     // MARK: - BoolaBooks API Calls
     
@@ -69,9 +77,6 @@ class UploadViewController: UIViewController {
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
-        
-        // prepare course array to be sent in params
-        let courses = [courseField.text!]
         
         // Notes not supported in MVP
         let parameters: Parameters = [
@@ -129,6 +134,9 @@ class UploadViewController: UIViewController {
                     let data = NSData(contentsOf: url as URL)
                 {
                     self.bookImage.image = UIImage(data: data as Data)
+                }
+                if let currentPublicationCourses = JSON["courses"] as? Array<String> {
+                    self.courses = self.courses + (currentPublicationCourses)
                 }
             }
         }
