@@ -26,6 +26,9 @@ class ChatTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        sellChats = []
+        buyChats = []
         getConversations()
     }
 
