@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import FBSDKCoreKit
+import FBSDKShareKit
 
 // ModalViewControllerDelegate is a custom delegate that lets a modal pass back data to this VC (used for course table picker)
 class UploadViewController: UIViewController, ModalViewControllerDelegate {
@@ -31,6 +33,16 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         ISBNLookup()
+        
+        /* FB SHARE BUTTON */
+        let content = FBSDKShareLinkContent()
+        content.contentURL = NSURL(string: "https://www.boolabooks.com") as URL! // going to rely on favicon from website for image?
+        content.contentTitle = "I just uploaded a book on BoolaBooks!"
+        content.contentDescription = "BoolaBooks is a new app for buying & selling textbooks at Yale."
+        let shareButton = FBSDKShareButton()
+        shareButton.shareContent = content;
+        shareButton.center = CGPoint(x: self.view.frame.width-shareButton.frame.width/2, y: self.view.frame.height-shareButton.frame.height/2)
+        view.addSubview(shareButton)
     }
 
     override func didReceiveMemoryWarning() {
