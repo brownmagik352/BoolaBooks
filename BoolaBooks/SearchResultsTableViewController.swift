@@ -181,6 +181,13 @@ class SearchResultsTableViewController: UITableViewController {
                 for i in 0..<json.arrayObject!.count {
                     self.listings.append(json.arrayObject?[i] as! Dictionary<String, Any>)
                 }
+                
+                if self.listings.count == 0 {
+                    let alert = UIAlertController(title: "All Sold Out!", message: "Check back periodically, books get sold fast!\n\n Also, make sure there are no typos in your search terms.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+
+                }
                 self.tableView.reloadData() // need this so that once new data is in table can pull it out
             }
         }

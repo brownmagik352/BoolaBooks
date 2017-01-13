@@ -220,6 +220,13 @@ class ChatTableViewController: UITableViewController {
                     self.buyChats.append(json["buying"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
                 
+                // no chats currently
+                if self.sellChats.count == 0 && self.buyChats.count == 0 {
+                    let alert = UIAlertController(title: "No Chats Started", message: "To start a chat, search for a book and contact the seller or upload a book and wait to be contacted.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            
                 // need this so that once new data is in table can update to show it
                 self.tableView.reloadData()
             }
