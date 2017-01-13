@@ -808,6 +808,7 @@
                         <outlet property="editionLabel" destination="ogq-iO-KhV" id="6Y0-pt-8mV"/>
                         <outlet property="priceField" destination="cyh-E2-k8a" id="1Vm-Wr-Mjw"/>
                         <outlet property="titleLabel" destination="dl0-uH-QbZ" id="nmT-Bu-lD9"/>
+                        <outlet property="uploadButton" destination="eTR-Zv-6st" id="aWG-mt-O1Q"/>
                         <outlet property="yearLabel" destination="MtE-MH-2b5" id="vU6-ID-vEQ"/>
                     </connections>
                 </viewController>

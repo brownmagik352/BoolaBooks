@@ -26,6 +26,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var editionLabel: UILabel!
     @IBOutlet weak var addCourseButton: UIButton!
+    @IBOutlet weak var uploadButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,9 +118,34 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/publications/isbn", parameters: parameters, headers: headers).responseJSON { response in
             
-            if (response.result.error == nil) {
+            debugPrint(response)
+            
+            if ((response.response?.statusCode)! == 422) {
+                
+                // alert the user to bad ISBN
+                let alert = UIAlertController(title: "Invalid ISBN", message: "Please double check your ISBN format. We recommend using the scanner.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+                // disable upload button
+                self.uploadButton.isEnabled = false
+                
+                // bail out
+                return
+            } else if ((response.response?.statusCode)! == 401) {
+                print("401")
+                // force re-login
+                return
+            } else if (response.result.error == nil) {
                 print("**SUCCESSFUL ISBN LOOKUP**")
+            } else {
+                print((response.response?.statusCode)!)
+                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
+            
             
             // Grab and display publication info
             if let result = response.result.value {
