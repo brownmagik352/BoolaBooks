@@ -63,7 +63,7 @@ class SearchResultsTableViewController: UITableViewController {
         cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info Available" // needs to show all courses actually
         cell.priceLabel.text = "$\(listing["price"]!)"
         cell.conditionLabel.text = listing["condition"] as? String
-        cell.buyableLabel.text = "\(listing["buyable"]!)"
+        cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
 //        // Get image using URL - App Transport allows for Google Books specifically right now
         if let url  = NSURL(string: (publication["image"] as? String)!),
             let data = NSData(contentsOf: url as URL)
