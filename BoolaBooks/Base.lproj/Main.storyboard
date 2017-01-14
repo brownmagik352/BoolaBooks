@@ -50,7 +50,15 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-PF-FYm">
                                         <rect key="frame" x="0.0" y="45" width="262.66666666666663" height="30"/>
-                                        <state key="normal" title="Search"/>
+                                        <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Search">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="FXG-Ll-gTI" kind="show" id="daA-qJ-3OL"/>
                                         </connections>
@@ -66,6 +74,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oOc-qC-gGM">
                         <barButtonItem key="rightBarButtonItem" title="About" id="8DR-e7-Zae">
+                            <color key="tintColor" red="0.29411764705882354" green="0.0" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="qhd-HV-it0" kind="show" identifier="aboutSegue" id="yxu-Fh-Hnz"/>
                             </connections>
@@ -251,19 +260,35 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gw9-Rn-8AN">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gw9-Rn-8AN">
                                         <rect key="frame" x="0.0" y="30" width="354" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-cY-AcV">
-                                                <rect key="frame" x="0.0" y="0.0" width="177" height="30"/>
-                                                <state key="normal" title="Mark as Sold"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="172" height="30"/>
+                                                <color key="backgroundColor" red="0.29411764705882354" green="0.0" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Mark as Sold">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="markAsSold:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="ej1-oW-05Y"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2h-fA-GgN">
-                                                <rect key="frame" x="177" y="0.0" width="177" height="30"/>
-                                                <state key="normal" title="Send"/>
+                                                <rect key="frame" x="182" y="0.0" width="172" height="30"/>
+                                                <color key="backgroundColor" red="0.29411764705882354" green="0.0" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="sendMessage:" destination="fRz-Qa-9l7" eventType="touchUpInside" id="IGJ-dt-kT3"/>
                                                 </connections>
@@ -536,6 +561,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="UuF-30-DbT">
                         <barButtonItem key="rightBarButtonItem" title="Start Chat With Seller" id="2vF-6A-l8w">
+                            <color key="tintColor" red="0.29411764705882354" green="0.0" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="startChat:" destination="7iN-2m-n6k" id="Ye7-SA-bu5"/>
                             </connections>
@@ -578,10 +604,18 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BS7-Do-mLL">
                                 <rect key="frame" x="107" y="203" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="76t-OO-lVJ"/>
                                 </constraints>
-                                <state key="normal" title="Scan ISBN"/>
+                                <state key="normal" title="Scan ISBN">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="startISBNScan:" destination="eKT-j2-b2j" eventType="touchUpInside" id="9IM-cm-kh5"/>
                                 </connections>
@@ -597,10 +631,18 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALR-Qq-hsx">
                                 <rect key="frame" x="107" y="308" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="W2m-sJ-0ck"/>
                                 </constraints>
-                                <state key="normal" title="Lookup ISBN"/>
+                                <state key="normal" title="Lookup ISBN">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="LI7-hM-W9t" kind="presentation" id="Qnr-0P-uaH"/>
                                 </connections>
@@ -684,11 +726,13 @@
                                 <items>
                                     <navigationItem title="New Book" id="1s4-yF-IFx">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="cJE-UK-3QD">
+                                            <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="cancel:" destination="LI7-hM-W9t" id="2gB-5I-9Rz"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Upload" id="eTR-Zv-6st">
+                                            <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="upload:" destination="LI7-hM-W9t" id="1Oc-kE-Ib6"/>
                                             </connections>
@@ -750,7 +794,9 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLz-d0-sG3">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
-                                        <state key="normal" title="Add Courses"/>
+                                        <state key="normal" title="Add Courses">
+                                            <color key="titleColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <segue destination="1Hs-Ox-W9F" kind="presentation" id="xL6-Hh-d0D"/>
                                         </connections>
@@ -824,6 +870,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="eKT-j2-b2j" kind="relationship" relationship="viewControllers" id="8JU-Bj-y90"/>
@@ -841,9 +888,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gjw-RF-YzX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Bjb-CZ-rpr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A8T-Qu-R2Z">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="A8T-Qu-R2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -860,9 +908,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YjJ-0G-2BA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="chat" id="ISC-kl-4H8"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bgR-xe-dIm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bgR-xe-dIm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
