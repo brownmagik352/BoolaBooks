@@ -23,16 +23,6 @@ class ScanViewController: UIViewController {
         super.viewDidLoad()
         
         scanner = MTBBarcodeScanner(previewView: scanISBNPreview)
-        
-        /* FB SHARE BUTTON */
-        let content = FBSDKShareLinkContent()
-        content.contentURL = NSURL(string: "https://www.boolabooks.com") as URL! // going to rely on favicon from website for image?
-        content.contentTitle = "I joined BoolaBooks!"
-        content.contentDescription = "BoolaBooks is a new app for buying & selling textbooks at Yale."
-        let shareButton = FBSDKShareButton()
-        shareButton.shareContent = content;
-        shareButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height - (self.tabBarController?.tabBar.frame.size.height)! - shareButton.frame.width)
-        view.addSubview(shareButton)
 
     }
 
