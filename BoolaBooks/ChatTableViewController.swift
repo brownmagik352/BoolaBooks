@@ -40,6 +40,13 @@ class ChatTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = UIFont(name: "Akkurat", size: 16.0)
+        header.textLabel?.frame = header.frame
+        header.textLabel?.textAlignment = .center
+    }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Selling"
