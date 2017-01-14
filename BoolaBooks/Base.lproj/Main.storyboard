@@ -65,7 +65,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oOc-qC-gGM">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="8DR-e7-Zae">
+                        <barButtonItem key="rightBarButtonItem" title="About" id="8DR-e7-Zae">
                             <connections>
                                 <segue destination="qhd-HV-it0" kind="show" identifier="aboutSegue" id="yxu-Fh-Hnz"/>
                             </connections>
@@ -92,7 +92,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oe7-2f-Lem" id="daa-WD-CxG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xw9-iy-MlE">
@@ -308,7 +308,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aBW-Z7-Gwh" id="RvE-Ss-sFv">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IX0-xK-EU1">
@@ -365,7 +365,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8KV-nB-U6x" id="pSC-Tm-zYZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BU5-8F-oZs">
