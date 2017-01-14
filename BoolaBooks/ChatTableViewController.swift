@@ -27,8 +27,6 @@ class ChatTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        sellChats = []
-        buyChats = []
         getConversations()
     }
 
@@ -189,7 +187,7 @@ class ChatTableViewController: UITableViewController {
     
     // MARK: - BoolaBooks API Calls
     
-    // Find all listings for a given search
+    // Find all chats
     func getConversations() {
         
         let prefs = UserDefaults.standard
@@ -216,28 +214,34 @@ class ChatTableViewController: UITableViewController {
                 return
             }
             
+            // will collect the updated chat info (can't use class versions because tableView delegate methods need non-empty ones)
+            var tempSellChats: [[String:Any]] = []
+            var tempBuyChats: [[String:Any]] = []
+
             // parse search results from JSON
             if let data = response.data {
                 let json = JSON(data: data)
                 
                 // parse all selling chats
                 for i in 0..<json["selling"].arrayObject!.count {
-                    self.sellChats.append(json["selling"].arrayObject?[i] as! Dictionary<String, Any>)
+                    tempSellChats.append(json["selling"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
                 
                 // parse all buying chats
                 for i in 0..<json["buying"].arrayObject!.count {
-                    self.buyChats.append(json["buying"].arrayObject?[i] as! Dictionary<String, Any>)
+                    tempBuyChats.append(json["buying"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
                 
                 // no chats currently
-                if self.sellChats.count == 0 && self.buyChats.count == 0 {
+                if tempSellChats.count == 0 && tempBuyChats.count == 0 {
                     let alert = UIAlertController(title: "No Chats Started", message: "To start a chat, search for a book and contact the seller or upload a book and wait to be contacted.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
             
                 // need this so that once new data is in table can update to show it
+                self.sellChats = tempSellChats
+                self.buyChats = tempBuyChats
                 self.tableView.reloadData()
             }
         }
