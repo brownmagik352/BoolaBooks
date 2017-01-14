@@ -245,8 +245,24 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/conversations/\(chatID)", headers: headers).responseJSON { response in
             
-            if (response.result.error == nil) {
-                print("**SUCCESSFUL DETAIL CHAT LOOKUP**")
+            if (response.result.error == nil) && ((response.response?.statusCode)! == 200) {
+                print("**SUCCESSFUL CHAT DETAIL LOOKUP**")
+            } else if ((response.response?.statusCode)! == 403) {
+                print("403")
+                let alert = UIAlertController(title: "You are not a part of this chat.", message: "Only a buyer and seller for a book can see the chat.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            } else if ((response.response?.statusCode)! == 401) {
+                print("401")
+                // force re-login
+                return
+            } else {
+                print((response.response?.statusCode)!)
+                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
             
             // parse search results from JSON
@@ -274,10 +290,26 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let urlString = "https://boolabooks.herokuapp.com/api/v1/listings/sold/\(self.listingID!)"
         
         Alamofire.request(urlString, method: .post, headers: headers).responseJSON { response in
-            if (response.result.error == nil) {
+            if (response.result.error == nil) && ((response.response?.statusCode)! == 200) {
                 print("**SUCCESSFUL MARK AS SOLD**")
                 self.markAsSoldButton.setTitle("SOLD", for: .normal)
                 self.markAsSoldButton.isEnabled = false
+            } else if ((response.response?.statusCode)! == 403) {
+                print("403")
+                let alert = UIAlertController(title: "You are not the seller.", message: "Only the seller may mark an item as sold.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            } else if ((response.response?.statusCode)! == 401) {
+                print("401")
+                // force re-login
+                return
+            } else {
+                print((response.response?.statusCode)!)
+                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
         }
     }

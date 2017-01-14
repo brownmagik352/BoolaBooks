@@ -31,8 +31,20 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             ]
             
             Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                if (response.result.error == nil) {
+                if (response.result.error == nil) && ((response.response?.statusCode)! == 200){
                     print("**SUCCESSFUL DEVICE REGISTRATION**")
+                } else if ((response.response?.statusCode)! == 401) {
+                    print("401")
+                    let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                } else {
+                    print((response.response?.statusCode)!)
+                    let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, but you're device is not enabled to receive notifications from BoolaBooks. Notify contact@boolabooks.com if you would like to.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
                 }
             }
             
@@ -68,7 +80,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             return
         }
         
-        print("**SUCCESSFUL LOG IN**")
+        print("**SUCCESSFUL FB LOG IN**")
         
         // Use FB Token to Get User Info
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, name, email, picture"])
@@ -101,7 +113,23 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 ]
                 
                 Alamofire.request("https://boolabooks.herokuapp.com/api/v1/auth/facebook", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-
+                    
+                    if (response.result.error == nil) && (response.response?.statusCode)! == 200 {
+                        print("**SUCCESSFUL AUTH**")
+                    } else if ((response.response?.statusCode)! == 401) {
+                        print("401")
+                        let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                        self?.present(alert, animated: true, completion: nil)
+                        return
+                    } else {
+                        print((response.response?.statusCode)!)
+                        let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                        self?.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                    
                     if let result = response.result.value {
                         let JSON = result as! NSDictionary
 
@@ -124,8 +152,20 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         ]
                         
                         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                            if (response.result.error == nil) {
+                            if (response.result.error == nil) && ((response.response?.statusCode)! == 200){
                                 print("**SUCCESSFUL DEVICE REGISTRATION**")
+                            } else if ((response.response?.statusCode)! == 401) {
+                                print("401")
+                                let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                                self?.present(alert, animated: true, completion: nil)
+                                return
+                            } else {
+                                print((response.response?.statusCode)!)
+                                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, but you're device is not enabled to receive notifications from BoolaBooks. Notify contact@boolabooks.com if you would like to.", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                                self?.present(alert, animated: true, completion: nil)
+                                return
                             }
                         }
                     }

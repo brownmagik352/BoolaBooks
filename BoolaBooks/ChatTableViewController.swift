@@ -202,10 +202,20 @@ class ChatTableViewController: UITableViewController {
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/conversations", headers: headers).responseJSON { response in
             
-            if (response.result.error == nil) {
-                print("**SUCCESSFUL CHATS LOOKUP**")
+            if (response.result.error == nil) && response.response?.statusCode == 200 {
+                print("**SUCCESSFUL ALL CHATS LOOKUP**")
+            } else if ((response.response?.statusCode)! == 401) {
+                print("401")
+                // force re-login
+                return
+            } else {
+                print((response.response?.statusCode)!)
+                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
-
+            
             // parse search results from JSON
             if let data = response.data {
                 let json = JSON(data: data)

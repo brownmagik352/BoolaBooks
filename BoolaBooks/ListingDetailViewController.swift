@@ -86,11 +86,21 @@ class ListingDetailViewController: UIViewController {
         ]
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/conversations/start", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            if (response.result.error == nil) {
+            if (response.result.error == nil) && response.response?.statusCode == 200 {
                 print("**SUCCESSFUL CHAT START**")
                 let alert = UIAlertController(title: "Chat Started", message: "You can now chat with the seller. Visit the Chat tab in the bottom right corner to get start.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+            } else if ((response.response?.statusCode)! == 401) {
+                print("401")
+                // force re-login
+                return
+            } else {
+                print((response.response?.statusCode)!)
+                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
         }
 

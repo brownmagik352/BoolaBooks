@@ -108,8 +108,16 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
         ]
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/listings/", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-            if (response.result.error == nil) {
+            
+            if (response.result.error == nil) && (response.response?.statusCode == 201) {
                 print("**SUCCESSFUL UPLOAD**")
+            } else if ((response.response?.statusCode)! == 401) {
+                print("401")
+                // force re-login
+                return
+            } else {
+                print((response.response?.statusCode)!)
+                return
             }
         }
 
@@ -130,9 +138,9 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/publications/isbn", parameters: parameters, headers: headers).responseJSON { response in
             
-            debugPrint(response)
-            
-            if ((response.response?.statusCode)! == 422) {
+            if (response.result.error == nil) && (response.response?.statusCode)! == 200 {
+                print("**SUCCESSFUL ISBN LOOKUP**")
+            } else if ((response.response?.statusCode)! == 422) {
                 
                 // alert the user to bad ISBN
                 let alert = UIAlertController(title: "Invalid ISBN", message: "Please double check your ISBN format. We recommend using the scanner.", preferredStyle: UIAlertControllerStyle.alert)
@@ -148,8 +156,6 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
                 print("401")
                 // force re-login
                 return
-            } else if (response.result.error == nil) {
-                print("**SUCCESSFUL ISBN LOOKUP**")
             } else {
                 print((response.response?.statusCode)!)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
