@@ -79,7 +79,7 @@ class ChatTableViewController: UITableViewController {
         // Populate the labels in the table cell
         cell.titleLabel.text = unread + (publication["title"] as? String)!
         cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info" // needs to show all courses actually
-        cell.priceLabel.text = "$\(listing["price"]!)"
+        cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
         // Get image using URL - App Transport allows for Google Books specifically right now

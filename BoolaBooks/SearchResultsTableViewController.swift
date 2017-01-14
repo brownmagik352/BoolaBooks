@@ -70,7 +70,7 @@ class SearchResultsTableViewController: UITableViewController {
         // Populate the labels in the table cell
         cell.titleLabel.text = publication["title"] as? String
         cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info Available" // needs to show all courses actually
-        cell.priceLabel.text = "$\(listing["price"]!)"
+        cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
 //        // Get image using URL - App Transport allows for Google Books specifically right now
@@ -150,7 +150,7 @@ class SearchResultsTableViewController: UITableViewController {
             listingDetailViewController.photoImage = UIImage(data: data as Data)
         }
         
-        listingDetailViewController.priceString = selectedListing["price"] as? String
+        listingDetailViewController.priceString = String(format: "%.2f", (selectedListing["price"] as! NSString).doubleValue)
         listingDetailViewController.conditionString = selectedListing["condition"] as? String
         listingDetailViewController.buyableString = selectedListing["buyable"] as! Bool ? "Buy" : "Rent"
         listingDetailViewController.courseString = selectedListingCourses.count > 0 ? selectedListingCourses[0] : "No Course Info Available" // needs to show all courses actually
