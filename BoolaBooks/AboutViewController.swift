@@ -12,24 +12,28 @@ class AboutViewController: UIViewController {
     
 
     @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var secondaryLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var finalString = ""
-        finalString = finalString + "Contact Information: contact@boolabooks.com.\n\n"
-        finalString = finalString + "BoolaBooks was created by \nApurv Suman (PC '16) and Aaron Shim (SY '16).\n\n"
-        finalString = finalString + "Copyright 2016 Apurv Suman.\n\n"
-        finalString = finalString + "Contributors: Timur Guler (Marketing), Megan Valentine (Design), Kevin Fung (BoolaMarket co-founder).\n\n"
-        finalString = finalString + "This application uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.\n\n"
-        finalString = finalString + "Alamofire: https://github.com/Alamofire/Alamofire, MIT License.\n\n"
-        finalString = finalString + "SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON, MIT License.\n\n"
-        finalString = finalString + "SwiftWebSocket: https://github.com/tidwall/SwiftWebSocket, MIT License.\n\n"
-        finalString = finalString + "MTBBarcodeScanner: https://github.com/mikebuss/MTBBarcodeScanner, MIT License.\n\n"
-        finalString = finalString + "Book images and information is provided courtesy of Google Books and Amazon Web Services Product Advertising. Course information obtained from http://catalog.yale.edu/ycps/subjects-of-instruction/."
+        var mainString = ""
+        mainString = mainString + "Contact Information: contact@boolabooks.com\n\n"
+        mainString = mainString + "BoolaBooks was created by:\nApurv Suman (Yale, PC '16)\nAaron Shim (Yale, SY '16)\n\n"
+        
+        var secondaryString = ""
+        secondaryString = secondaryString + "Copyright 2016 Apurv Suman.\n\n"
+        secondaryString = secondaryString + "Specal Thanks: Timur Guler (Marketing), Megan Valentine (Design), Kevin Fung (BoolaMarket co-founder).\n\n"
+        secondaryString = secondaryString + "This application uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.\n\n"
+        secondaryString = secondaryString + "Alamofire: https://github.com/Alamofire/Alamofire, MIT License.\n\n"
+        secondaryString = secondaryString + "SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON, MIT License.\n\n"
+        secondaryString = secondaryString + "SwiftWebSocket: https://github.com/tidwall/SwiftWebSocket, MIT License.\n\n"
+        secondaryString = secondaryString + "MTBBarcodeScanner: https://github.com/mikebuss/MTBBarcodeScanner, MIT License.\n\n"
+        secondaryString = secondaryString + "Book images and information are provided courtesy of Google Books and Amazon Web Services Product Advertising. Course information obtained from http://catalog.yale.edu/ycps/subjects-of-instruction/."
 
         
-        mainLabel.text = finalString
+        mainLabel.text = mainString
+        secondaryLabel.text = secondaryString
     }
 
     override func didReceiveMemoryWarning() {
