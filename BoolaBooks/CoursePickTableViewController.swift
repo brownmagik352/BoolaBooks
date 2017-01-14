@@ -21,12 +21,23 @@ class CoursePickTableViewController: UITableViewController {
     // MARK: - Properties
     var courses: Array<String> = []
     var delegate: ModalViewControllerDelegate! // need this to send back data back from modal
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)  // spinner to show during loading
 
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // Spinner Code
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.white
+        activityIndicator.backgroundColor = UIColor.black
+        activityIndicator.center = view.center
+        self.view.addSubview(self.activityIndicator)
+        
         self.tableView.contentInset = UIEdgeInsetsMake(25, 0, 0, 0)
+        
+        self.activityIndicator.startAnimating()
         getAllCourses()
     }
 
@@ -136,12 +147,14 @@ class CoursePickTableViewController: UITableViewController {
             } else if ((response.response?.statusCode)! == 401) {
                 print("401")
                 // force re-login
+                self.activityIndicator.stopAnimating()
                 return
             } else {
                 print((response.response?.statusCode)!)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.activityIndicator.stopAnimating()
                 return
             }
             
@@ -154,6 +167,7 @@ class CoursePickTableViewController: UITableViewController {
                 }
                 
                 self.tableView.reloadData() // update after API call
+                self.activityIndicator.stopAnimating()
             }
         }
     }

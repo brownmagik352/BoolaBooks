@@ -15,9 +15,15 @@ class ChatTableViewController: UITableViewController {
     // MARK: - Properties
     var sellChats: [[String:Any]] = [] // selling is going to go first (section #0) since the app is structured sell-first in general
     var buyChats: [[String:Any]] = []
-
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)  // spinner to show during loading
+    
     override func viewDidLoad() {
-        super.viewDidLoad() 
+        super.viewDidLoad()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.white
+        activityIndicator.backgroundColor = UIColor.black
+        activityIndicator.center = view.center
+        self.view.addSubview(self.activityIndicator)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +32,9 @@ class ChatTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        self.activityIndicator.startAnimating()
         getConversations()
     }
 
@@ -205,12 +213,14 @@ class ChatTableViewController: UITableViewController {
             } else if ((response.response?.statusCode)! == 401) {
                 print("401")
                 // force re-login
+                self.activityIndicator.stopAnimating()
                 return
             } else {
                 print((response.response?.statusCode)!)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.activityIndicator.stopAnimating()
                 return
             }
             
@@ -243,6 +253,7 @@ class ChatTableViewController: UITableViewController {
                 self.sellChats = tempSellChats
                 self.buyChats = tempBuyChats
                 self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
             }
         }
     }

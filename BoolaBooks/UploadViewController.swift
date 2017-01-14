@@ -18,6 +18,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
     var isbn: String? // Set by Segue from ScanViewController
     var publication_id: Int?
     var courses: [String] = [] // courses to be uploaded
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)  // spinner to show during loading
     
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var priceField: UITextField!
@@ -32,6 +33,15 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Spinner Code
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.white
+        activityIndicator.backgroundColor = UIColor.black
+        activityIndicator.center = view.center
+        self.view.addSubview(self.activityIndicator)
+        
+        self.activityIndicator.startAnimating()
         ISBNLookup()
         
         /* FB SHARE BUTTON */
@@ -151,16 +161,19 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
                 self.uploadButton.isEnabled = false
                 
                 // bail out
+                self.activityIndicator.stopAnimating()
                 return
             } else if ((response.response?.statusCode)! == 401) {
                 print("401")
                 // force re-login
+                self.activityIndicator.stopAnimating()
                 return
             } else {
                 print((response.response?.statusCode)!)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.activityIndicator.stopAnimating()
                 return
             }
             
@@ -187,6 +200,8 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
                     self.courses = self.courses + (currentPublicationCourses)
                 }
             }
+            
+            self.activityIndicator.stopAnimating()
         }
         
     }

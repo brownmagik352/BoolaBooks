@@ -17,10 +17,19 @@ class SearchResultsTableViewController: UITableViewController {
     // MARK: - Properties
     var searchQuery: String?
     var listings: [[String:Any]] = []
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)  // spinner to show during loading
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Spinner Code
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.white
+        activityIndicator.backgroundColor = UIColor.black
+        activityIndicator.center = view.center
+        self.view.addSubview(self.activityIndicator)
 
+        self.activityIndicator.startAnimating()
         search()
         
         // Uncomment the following line to preserve selection between presentations
@@ -175,12 +184,14 @@ class SearchResultsTableViewController: UITableViewController {
             } else if ((response.response?.statusCode)! == 401) {
                 print("401")
                 // force re-login
+                self.activityIndicator.stopAnimating()
                 return
             } else {
                 print((response.response?.statusCode)!)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                self.activityIndicator.stopAnimating()
                 return
             }
             
@@ -199,6 +210,7 @@ class SearchResultsTableViewController: UITableViewController {
 
                 }
                 self.tableView.reloadData() // need this so that once new data is in table can pull it out
+                self.activityIndicator.stopAnimating()
             }
         }
     }
