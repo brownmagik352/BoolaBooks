@@ -53,51 +53,70 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let request = NSMutableURLRequest(url: NSURL(string: urlWithParams)! as URL)
         ws = WebSocket(request: request as URLRequest)
         
-        // Connect to Channel
-        ws?.event.open = {
-            print("opened")
-            
-            let identifierDict = ["channel": "ConversationsChannel", "conversation_id": self.conversationID!] as [String: Any?]
-            let identifierJSON = JSON(identifierDict)
-            let identifierRawString = identifierJSON.rawString()
-            let dict = ["command": "subscribe", "identifier": identifierRawString ] as [String: Any?]
-            let json = JSON(dict)
-            let msg = json.rawString()
-            
-            self.ws?.send(msg!)
-        }
-        
-        // parse the messasge
-        ws?.event.message = { message in
-            if let text = message as? String {
-                // if it is actual received message
-                if text.range(of: "sender_name") != nil {
-                    let encodedString : NSData = (text as NSString).data(using: String.Encoding.utf8.rawValue)! as NSData
-                    var json = JSON(data: encodedString as Data)
-                    self.messages.append("\(json["message"]["text"])")
-                    self.imageStrings.append("\(json["message"]["sender_image"])")
-                    self.names.append("\(json["message"]["sender_name"])")
-                    self.messagesTableView.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
-                    self.messagesTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
-                    
-                    // mark incoming message as read (when already in an open chat)
-                    let dataDict = ["message_id": "\(json["message"]["message_id"])", "action": "read_message"] as [String: Any?]
-                    let dataJSON = JSON(dataDict)
-                    let dataRawString = dataJSON.rawString()
-                    
-                    let identifierDict = ["channel": "ConversationsChannel", "conversation_id": self.conversationID!] as [String: Any?]
-                    let identifierJSON = JSON(identifierDict)
-                    let identifierRawString = identifierJSON.rawString()
-                    
-                    let dict = ["command": "message", "identifier": identifierRawString, "data": dataRawString ] as [String: Any?]
-                    let json2 = JSON(dict)
-                    let msg = json2.rawString()
-                    
-                    self.ws?.send(msg!)
-                    print("Sent: \(msg!)")
-                }
-                print("RECEIVED:\(text)")
+        if ws != nil {
+            // Channel connected
+            ws?.event.open = {
+                print("opened")
+                
+                let identifierDict = ["channel": "ConversationsChannel", "conversation_id": self.conversationID!] as [String: Any?]
+                let identifierJSON = JSON(identifierDict)
+                let identifierRawString = identifierJSON.rawString()
+                let dict = ["command": "subscribe", "identifier": identifierRawString ] as [String: Any?]
+                let json = JSON(dict)
+                let msg = json.rawString()
+                
+                self.ws?.send(msg!)
             }
+            
+            // parse the incoming messasge
+            ws?.event.message = { message in
+                if let text = message as? String {
+                    // if it is actual received message
+                    if text.range(of: "sender_name") != nil {
+                        let encodedString : NSData = (text as NSString).data(using: String.Encoding.utf8.rawValue)! as NSData
+                        var json = JSON(data: encodedString as Data)
+                        self.messages.append("\(json["message"]["text"])")
+                        self.imageStrings.append("\(json["message"]["sender_image"])")
+                        self.names.append("\(json["message"]["sender_name"])")
+                        self.messagesTableView.insertRows(at: [IndexPath(row: self.messages.count-1, section: 0)], with: .automatic)
+                        self.messagesTableView.scrollToRow(at: IndexPath(row: self.messages.count-1, section: 0), at: UITableViewScrollPosition.bottom, animated: true)
+                        
+                        // mark incoming message as read (when already in an open chat)
+                        let dataDict = ["message_id": "\(json["message"]["message_id"])", "action": "read_message"] as [String: Any?]
+                        let dataJSON = JSON(dataDict)
+                        let dataRawString = dataJSON.rawString()
+                        
+                        let identifierDict = ["channel": "ConversationsChannel", "conversation_id": self.conversationID!] as [String: Any?]
+                        let identifierJSON = JSON(identifierDict)
+                        let identifierRawString = identifierJSON.rawString()
+                        
+                        let dict = ["command": "message", "identifier": identifierRawString, "data": dataRawString ] as [String: Any?]
+                        let json2 = JSON(dict)
+                        let msg = json2.rawString()
+                        
+                        self.ws?.send(msg!)
+                        print("Sent: \(msg!)")
+                    }
+                    print("RECEIVED:\(text)")
+                }
+            }
+            
+            ws?.event.close = { code, reason, clean in
+                print("close")
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+            ws?.event.error = { error in
+                print("error \(error)")
+                
+                // currently we are not doing anything special on error, same deal on the web client
+                //self.navigationController?.popViewController(animated: true)
+            }
+            
+        } else {
+            print("Error with WebSocket")
+            let alert = UIAlertController(title: "Something went wrong with this chat.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
