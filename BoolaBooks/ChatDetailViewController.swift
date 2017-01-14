@@ -19,6 +19,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var messagesTableView: UITableView!
     @IBOutlet weak var sendMessageField: UITextField!
     @IBOutlet weak var markAsSoldButton: UIButton!
+    @IBOutlet weak var sendMessageButton: UIButton!
     
     
     // Class Variables
@@ -34,6 +35,8 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.sendMessageField.delegate = self
         
         if self.sold! {
             markAsSoldButton.setTitle("SOLD", for: .normal)
@@ -141,6 +144,14 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    // only enable message send if there is a message
+    override func viewWillAppear(_ animated: Bool) {
+        if self.sendMessageField.text == "" {
+            self.sendMessageButton.isEnabled = false
+        } else {
+            self.sendMessageButton.isEnabled = true
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -192,6 +203,13 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         animateViewMoving(up: false, moveValue: 250)
+        
+        // update send button status if there is a message in the reply field
+        if self.sendMessageField.text == "" {
+            self.sendMessageButton.isEnabled = false
+        } else {
+            self.sendMessageButton.isEnabled = true
+        }
     }
     
     // Lifting the view up

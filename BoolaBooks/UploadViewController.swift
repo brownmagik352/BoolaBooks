@@ -12,7 +12,7 @@ import FBSDKCoreKit
 import FBSDKShareKit
 
 // ModalViewControllerDelegate is a custom delegate that lets a modal pass back data to this VC (used for course table picker)
-class UploadViewController: UIViewController, ModalViewControllerDelegate {
+class UploadViewController: UIViewController, ModalViewControllerDelegate, UITextFieldDelegate {
     
     // MARK: - Properties
     var isbn: String? // Set by Segue from ScanViewController
@@ -53,11 +53,32 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate {
         shareButton.shareContent = content;
         shareButton.center = CGPoint(x: self.view.frame.width-shareButton.frame.width/2, y: self.view.frame.height-shareButton.frame.height/2)
         view.addSubview(shareButton)
+        
+        // listen for events on this field
+        self.priceField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // when view appears, determine if price field is set and enable upload button
+    override func viewWillAppear(_ animated: Bool) {
+        if self.priceField.text == "" {
+            self.uploadButton.isEnabled = false
+        } else {
+            self.uploadButton.isEnabled = true
+        }
+    }
+    
+    // enable upload button if price has been set
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if self.priceField.text == "" {
+            self.uploadButton.isEnabled = false
+        } else {
+            self.uploadButton.isEnabled = true
+        }
     }
     
     // ModalViewControllerDelegate

@@ -10,10 +10,11 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKShareKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
     @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +28,32 @@ class SearchViewController: UIViewController {
         shareButton.shareContent = content;
         shareButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height - (self.tabBarController?.tabBar.frame.size.height)! - shareButton.frame.width)
         view.addSubview(shareButton)
+        
+        // listen for events on this field
+        self.searchField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // only enable search if there is a query
+    override func viewWillAppear(_ animated: Bool) {
+        if self.searchField.text == "" {
+            self.searchButton.isEnabled = false
+        } else {
+            self.searchButton.isEnabled = true
+        }
+    }
+    
+    // update search button status if there is a query
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if self.searchField.text == "" {
+            self.searchButton.isEnabled = false
+        } else {
+            self.searchButton.isEnabled = true
+        }
     }
     
     // Dismiss KB  - touch outside the field after editing has started

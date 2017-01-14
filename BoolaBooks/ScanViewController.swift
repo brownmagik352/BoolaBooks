@@ -11,11 +11,12 @@ import MTBBarcodeScanner
 import FBSDKCoreKit
 import FBSDKShareKit
 
-class ScanViewController: UIViewController {
+class ScanViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
     @IBOutlet weak var manualISBNfield: UITextField!
     @IBOutlet weak var scanISBNPreview: UIImageView!
+    @IBOutlet weak var lookupISBNButton: UIButton!
     var scanISBN: String?
     var scanner: MTBBarcodeScanner?
 
@@ -26,7 +27,19 @@ class ScanViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ScanViewController.stopScanner), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScanViewController.stopScanner), name:NSNotification.Name.UIApplicationWillTerminate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ScanViewController.stopScanner), name:NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        
+        // listen for events on this field
+        self.manualISBNfield.delegate = self
 
+    }
+    
+    // when view shows up make sure API button is properly enabled
+    override func viewWillAppear(_ animated: Bool) {
+        if self.manualISBNfield.text == "" {
+           self.lookupISBNButton.isEnabled = false
+        } else {
+           self.lookupISBNButton.isEnabled = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,9 +54,19 @@ class ScanViewController: UIViewController {
         stopScanner()
     }
     
+    // check for if something was added to the text field
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if self.manualISBNfield.text != "" {
+            self.lookupISBNButton.isEnabled = true
+        } else {
+            self.lookupISBNButton.isEnabled = false
+        }
+    }
+    
+    
     // Dismiss KB  - touch outside the field after editing has started
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        manualISBNfield.resignFirstResponder()
+        self.manualISBNfield.resignFirstResponder()
         self.view.endEditing(true)
     }
     
@@ -68,6 +91,7 @@ class ScanViewController: UIViewController {
                     self.scanner?.stopScanning()
                     self.scanISBN = stringValue
                     self.manualISBNfield.text = stringValue
+                    self.lookupISBNButton.isEnabled = true
                 }
             }
             
