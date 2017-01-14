@@ -26,6 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(pushNotificationSettings)
         application.registerForRemoteNotifications()
         
+        // set Bar Fonts
+        UIBarButtonItem.appearance()
+            .setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Akkurat", size: 17.0)!],
+                                    for: UIControlState.normal)
+        UITabBarItem.appearance()
+            .setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Akkurat", size: 10.0)!],
+                                    for: UIControlState.normal)
+        
         return true;
     }
     
