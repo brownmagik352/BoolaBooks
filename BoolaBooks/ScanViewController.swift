@@ -23,12 +23,22 @@ class ScanViewController: UIViewController {
         super.viewDidLoad()
         
         scanner = MTBBarcodeScanner(previewView: scanISBNPreview)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanViewController.stopScanner), name:NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanViewController.stopScanner), name:NSNotification.Name.UIApplicationWillTerminate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ScanViewController.stopScanner), name:NSNotification.Name.UIApplicationWillResignActive, object: nil)
 
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // close scanner when leaving view
+    override func viewWillDisappear(_ animated : Bool) {
+        super.viewWillDisappear(animated)
+        
+        stopScanner()
     }
     
     // Dismiss KB  - touch outside the field after editing has started
@@ -43,6 +53,9 @@ class ScanViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! UploadViewController
         destinationVC.isbn = manualISBNfield.text!
+        
+        // close scanner when advancing
+        stopScanner()
     }
     
     // MARK: - Actions
@@ -59,6 +72,12 @@ class ScanViewController: UIViewController {
             }
             
         }, error: nil)
+    }
+    
+    func stopScanner() {
+        if (self.scanner?.isScanning())! {
+            self.scanner?.stopScanning()
+        }
     }
 
 }
