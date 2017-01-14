@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Akkurat-Normal.ttf</string>
+		<string>Akkurat-Normal-Italic.ttf</string>
+		<string>Akkurat-Light.ttf</string>
+		<string>Akkurat-Bold.ttf</string>
+		<string>Akkurat-Bold-Italic.ttf</string>
+		<string>Akkurat-Light-Italic.ttf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -48,15 +57,15 @@
 		<false/>
 		<key>NSExceptionDomains</key>
 		<dict>
-            <key>graph.facebook.com</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSTemporaryExceptionMinimumTLSVersion</key>
-                <string>TLSv1.1</string>
-            </dict>
+			<key>graph.facebook.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSv1.1</string>
+			</dict>
 			<key>books.google.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>

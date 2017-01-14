@@ -23,6 +23,12 @@
 		88323CA81E14706A00B38A02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88323CA61E14706A00B38A02 /* LaunchScreen.storyboard */; };
 		88323CB01E14768D00B38A02 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88323CAF1E14768D00B38A02 /* LoginViewController.swift */; };
 		8848FC321E24D3B2005CBC6E /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8848FC311E24D3B2005CBC6E /* MessageTableViewCell.swift */; };
+		885089961E2AC7B600F169AE /* Akkurat-Bold-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 885089901E2AC7B600F169AE /* Akkurat-Bold-Italic.ttf */; };
+		885089971E2AC7B600F169AE /* Akkurat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 885089911E2AC7B600F169AE /* Akkurat-Bold.ttf */; };
+		885089981E2AC7B600F169AE /* Akkurat-Light-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 885089921E2AC7B600F169AE /* Akkurat-Light-Italic.ttf */; };
+		885089991E2AC7B600F169AE /* Akkurat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 885089931E2AC7B600F169AE /* Akkurat-Light.ttf */; };
+		8850899A1E2AC7B600F169AE /* Akkurat-Normal-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 885089941E2AC7B600F169AE /* Akkurat-Normal-Italic.ttf */; };
+		8850899B1E2AC7B600F169AE /* Akkurat-Normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 885089951E2AC7B600F169AE /* Akkurat-Normal.ttf */; };
 		886659051E20BB7500D3CA66 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659041E20BB7500D3CA66 /* ChatTableViewController.swift */; };
 		886659071E20BBAC00D3CA66 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659061E20BBAC00D3CA66 /* ChatTableViewCell.swift */; };
 		8866590A1E218BA400D3CA66 /* ChatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886659091E218BA400D3CA66 /* ChatDetailViewController.swift */; };
@@ -50,6 +56,12 @@
 		88323CA91E14706A00B38A02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88323CAF1E14768D00B38A02 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8848FC311E24D3B2005CBC6E /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		885089901E2AC7B600F169AE /* Akkurat-Bold-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Bold-Italic.ttf"; sourceTree = "<group>"; };
+		885089911E2AC7B600F169AE /* Akkurat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Bold.ttf"; sourceTree = "<group>"; };
+		885089921E2AC7B600F169AE /* Akkurat-Light-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Light-Italic.ttf"; sourceTree = "<group>"; };
+		885089931E2AC7B600F169AE /* Akkurat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Light.ttf"; sourceTree = "<group>"; };
+		885089941E2AC7B600F169AE /* Akkurat-Normal-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Normal-Italic.ttf"; sourceTree = "<group>"; };
+		885089951E2AC7B600F169AE /* Akkurat-Normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Akkurat-Normal.ttf"; sourceTree = "<group>"; };
 		886659041E20BB7500D3CA66 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		886659061E20BBAC00D3CA66 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		886659081E216F7E00D3CA66 /* BoolaBooks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoolaBooks.entitlements; sourceTree = "<group>"; };
@@ -98,6 +110,12 @@
 		88323C9C1E14706A00B38A02 /* BoolaBooks */ = {
 			isa = PBXGroup;
 			children = (
+				885089901E2AC7B600F169AE /* Akkurat-Bold-Italic.ttf */,
+				885089911E2AC7B600F169AE /* Akkurat-Bold.ttf */,
+				885089921E2AC7B600F169AE /* Akkurat-Light-Italic.ttf */,
+				885089931E2AC7B600F169AE /* Akkurat-Light.ttf */,
+				885089941E2AC7B600F169AE /* Akkurat-Normal-Italic.ttf */,
+				885089951E2AC7B600F169AE /* Akkurat-Normal.ttf */,
 				886659081E216F7E00D3CA66 /* BoolaBooks.entitlements */,
 				88323C9D1E14706A00B38A02 /* AppDelegate.swift */,
 				88323CA11E14706A00B38A02 /* Main.storyboard */,
@@ -201,8 +219,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				88323CA81E14706A00B38A02 /* LaunchScreen.storyboard in Resources */,
+				8850899A1E2AC7B600F169AE /* Akkurat-Normal-Italic.ttf in Resources */,
+				8850899B1E2AC7B600F169AE /* Akkurat-Normal.ttf in Resources */,
+				885089991E2AC7B600F169AE /* Akkurat-Light.ttf in Resources */,
+				885089981E2AC7B600F169AE /* Akkurat-Light-Italic.ttf in Resources */,
 				88323CA51E14706A00B38A02 /* Assets.xcassets in Resources */,
+				885089971E2AC7B600F169AE /* Akkurat-Bold.ttf in Resources */,
 				88323CA31E14706A00B38A02 /* Main.storyboard in Resources */,
+				885089961E2AC7B600F169AE /* Akkurat-Bold-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
