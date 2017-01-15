@@ -53,8 +53,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-lJ-cPz">
-                                <rect key="frame" x="50.666666666666657" y="332" width="313" height="73"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-lJ-cPz">
+                                <rect key="frame" x="50.666666666666657" y="335.66666666666669" width="313" height="66"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by ISBN, course#, author, etc." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Ru-tjP">
                                         <rect key="frame" x="0.0" y="0.0" width="313" height="30"/>
@@ -63,7 +63,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-PF-FYm">
-                                        <rect key="frame" x="0.0" y="45" width="313" height="28"/>
+                                        <rect key="frame" x="0.0" y="38" width="313" height="28"/>
                                         <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <state key="normal" title="Search">
@@ -220,7 +220,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="abr-ag-N6f">
-                                <rect key="frame" x="30" y="137" width="354" height="462"/>
+                                <rect key="frame" x="30" y="145" width="354" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageTableViewCell" id="weK-hJ-kv9" customClass="MessageTableViewCell" customModule="BoolaBooks" customModuleProvider="target">
@@ -276,8 +276,8 @@
                                     <outlet property="delegate" destination="fRz-Qa-9l7" id="gCg-jz-S5P"/>
                                 </connections>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="428-pl-V3O">
-                                <rect key="frame" x="30" y="619" width="354" height="58"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="428-pl-V3O">
+                                <rect key="frame" x="30" y="611" width="354" height="66"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reply" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="A3j-1l-Qqv">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
@@ -286,7 +286,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gw9-Rn-8AN">
-                                        <rect key="frame" x="0.0" y="30" width="354" height="28"/>
+                                        <rect key="frame" x="0.0" y="38" width="354" height="28"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tql-cY-AcV">
                                                 <rect key="frame" x="0.0" y="0.0" width="172" height="28"/>
