@@ -77,6 +77,9 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         if error != nil {
             print(error)
+            let alert = UIAlertController(title: "Facebook Login Failed", message: "We're sorry, please restart the app and try again.\nIf that fails, please re-install the app.\nNotify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             return
         }
         
@@ -87,6 +90,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         graphRequest?.start(completionHandler: { [weak self] connection, result, error in
             if error != nil {
                 print("error \(error)")
+                let alert = UIAlertController(title: "Facebook Login Failed", message: "We're sorry, please restart the app and try again.\nIf that fails, please re-install the app.\nNotify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+                return
             } else {
                 let fbResult = result as! Dictionary<String, AnyObject>
                 
