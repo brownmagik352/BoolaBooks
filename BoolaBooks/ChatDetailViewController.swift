@@ -189,6 +189,8 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             if let data = NSData(contentsOf: url as URL) {
                 cell.senderImage.image = UIImage(data: data as Data)
             }
+        } else {
+            cell.senderImage.image = #imageLiteral(resourceName: "bb_logo_1024")
         }
         
         return cell
