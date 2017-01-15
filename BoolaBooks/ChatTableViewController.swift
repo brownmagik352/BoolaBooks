@@ -197,6 +197,10 @@ class ChatTableViewController: UITableViewController {
         chatDetailViewController.imageStrings = imageStrings
         chatDetailViewController.names = names
         
+        // Update the App Icon Badge to reflect these messages now being read
+        let messagesRead = indexPath.section == 0 ? chat["num_unread_by_seller"] as? Int : chat["num_unread_by_buyer"] as? Int
+        UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber - messagesRead!
+        
     }
  
     
