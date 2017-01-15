@@ -94,6 +94,8 @@ class ChatTableViewController: UITableViewController {
             let data = NSData(contentsOf: url as URL)
         {
             cell.photoView.image = UIImage(data: data as Data)
+        } else {
+            cell.photoView.image = #imageLiteral(resourceName: "bb_logo_1024")
         }
         
         return cell

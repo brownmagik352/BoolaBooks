@@ -216,7 +216,10 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                     let data = NSData(contentsOf: url as URL)
                 {
                     self.bookImage.image = UIImage(data: data as Data)
+                } else {
+                    self.bookImage.image = #imageLiteral(resourceName: "bb_logo_1024")
                 }
+                
                 if let currentPublicationCourses = JSON["courses"] as? Array<String> {
                     self.courses = self.courses + (currentPublicationCourses)
                 }
