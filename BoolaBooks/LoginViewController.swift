@@ -75,6 +75,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
+        // can't get FB token
         if error != nil {
             print(error)
             let alert = UIAlertController(title: "Facebook Login Failed", message: "We're sorry, please restart the app and try again.\nIf that fails, please re-install the app.\nNotify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
@@ -87,7 +88,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
         // Use FB Token to Get User Info
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, name, email, picture"])
-        graphRequest?.start(completionHandler: { [weak self] connection, result, error in
+        let connection = FBSDKGraphRequestConnection()
+        connection.add(graphRequest, completionHandler: { [weak self] connection, result, error in
+            
+            // can't get user info using FB token
             if error != nil {
                 print("error \(error)")
                 let alert = UIAlertController(title: "Facebook Login Failed", message: "We're sorry, please restart the app and try again.\nIf that fails, please re-install the app.\nNotify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
@@ -186,6 +190,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 
             }
         })
+        
+        connection.start()
     
     }
 

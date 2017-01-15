@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zf3-85-gYv">
-                                <rect key="frame" x="57" y="197.66666666666663" width="300" height="341"/>
+                                <rect key="frame" x="57" y="150" width="300" height="341"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_and_text" translatesAutoresizingMaskIntoConstraints="NO" id="0xj-Gu-ZLH">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -36,7 +36,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan. Sell. Save." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVS-Lt-5fh">
-                                        <rect key="frame" x="27.333333333333343" y="300" width="245.66666666666666" height="40.999999999999943"/>
+                                        <rect key="frame" x="27.333333333333343" y="300" width="245.66666666666666" height="41"/>
                                         <fontDescription key="fontDescription" name="Akkurat-Bold" family="Akkurat-Bold" pointSize="32"/>
                                         <color key="textColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -46,8 +46,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Zf3-85-gYv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Zfj-fp-rgu"/>
-                            <constraint firstItem="Zf3-85-gYv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="wg7-ch-eeX"/>
+                            <constraint firstItem="Zf3-85-gYv" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-47.5" id="5eQ-cZ-RzI"/>
+                            <constraint firstItem="Zf3-85-gYv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Wsm-Js-h19"/>
                         </constraints>
                     </view>
                 </viewController>
