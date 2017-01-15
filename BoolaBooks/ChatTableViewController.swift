@@ -42,9 +42,9 @@ class ChatTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = UIFont(name: "Akkurat", size: 16.0)
+        header.textLabel?.font = UIFont(name: "Akkurat-Bold", size: 18.0)
         header.textLabel?.frame = header.frame
-        header.textLabel?.textAlignment = .center
+//        header.textLabel?.textAlignment = .center
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

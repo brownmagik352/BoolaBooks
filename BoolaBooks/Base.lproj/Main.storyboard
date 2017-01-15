@@ -54,16 +54,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-lJ-cPz">
-                                <rect key="frame" x="50.666666666666657" y="335.66666666666669" width="313" height="66"/>
+                                <rect key="frame" x="60.666666666666657" y="335.66666666666669" width="293" height="66"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by ISBN, course#, author, etc." minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Ru-tjP">
-                                        <rect key="frame" x="0.0" y="0.0" width="313" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by course#, title, ISBN, etc." minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Ru-tjP">
+                                        <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Akkurat-Italic" family="Akkurat-Italic" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ejw-PF-FYm">
-                                        <rect key="frame" x="0.0" y="38" width="313" height="28"/>
+                                        <rect key="frame" x="0.0" y="38" width="293" height="28"/>
                                         <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <state key="normal" title="Search">
@@ -513,29 +513,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="FTs-Wc-h5C">
-                                <rect key="frame" x="95" y="84" width="224" height="336"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-mC-xpo">
+                                <rect key="frame" x="95" y="74" width="224" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="4GE-bl-asH"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dfe-sg-oxA">
+                                <rect key="frame" x="10" y="566.66666666666652" width="394" height="110.33333333333337"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-mC-xpo">
-                                        <rect key="frame" x="0.0" y="0.0" width="224" height="304.66666666666669"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="J9c-qL-AMG">
-                                        <rect key="frame" x="0.0" y="304.66666666666669" width="224" height="15.666666666666629"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fV9-Uk-08x">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="15.666666666666742"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KMV-lj-ntZ">
-                                        <rect key="frame" x="0.0" y="320.33333333333326" width="224" height="15.666666666666686"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="1QY-B4-zHN">
+                                        <rect key="frame" x="0.0" y="23.666666666666742" width="394" height="15.666666666666629"/>
+                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="sYh-DA-Z7o">
+                                        <rect key="frame" x="0.0" y="47.333333333333371" width="394" height="15.666666666666629"/>
+                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1b7-gq-1go">
+                                        <rect key="frame" x="0.0" y="71" width="394" height="15.666666666666742"/>
+                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0UW-0w-EKx">
+                                        <rect key="frame" x="0.0" y="94.666666666666742" width="394" height="15.666666666666629"/>
+                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iSX-wG-2MJ">
+                                <rect key="frame" x="127" y="519.33333333333337" width="161.33333333333331" height="39.333333333333258"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="J9c-qL-AMG">
+                                        <rect key="frame" x="0.0" y="0.0" width="161.33333333333331" height="15.666666666666629"/>
+                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KMV-lj-ntZ">
+                                        <rect key="frame" x="0.0" y="23.666666666666629" width="161.33333333333331" height="15.666666666666629"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="eSh-WP-pVs">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="15.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75.666666666666657" height="15.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buyable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-NJ-JXG">
-                                                <rect key="frame" x="112" y="0.0" width="112" height="15.666666666666686"/>
+                                                <rect key="frame" x="85.666666666666657" y="0.0" width="75.666666666666657" height="15.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -544,51 +582,17 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dfe-sg-oxA">
-                                <rect key="frame" x="50" y="435" width="314" height="78.333333333333371"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fV9-Uk-08x">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="15.666666666666686"/>
-                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="1QY-B4-zHN">
-                                        <rect key="frame" x="0.0" y="15.666666666666686" width="314" height="15.666666666666629"/>
-                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="sYh-DA-Z7o">
-                                        <rect key="frame" x="0.0" y="31.333333333333314" width="314" height="15.666666666666686"/>
-                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1b7-gq-1go">
-                                        <rect key="frame" x="0.0" y="47" width="314" height="15.666666666666686"/>
-                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0UW-0w-EKx">
-                                        <rect key="frame" x="0.0" y="62.666666666666686" width="314" height="15.666666666666686"/>
-                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dfe-sg-oxA" secondAttribute="trailing" constant="50" id="CXS-cX-NDE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FTs-Wc-h5C" secondAttribute="trailing" constant="75" id="LC4-qD-x1Y"/>
-                            <constraint firstItem="FTs-Wc-h5C" firstAttribute="top" secondItem="pIx-pN-2vd" secondAttribute="bottom" constant="20" id="Ow3-sE-CL1"/>
-                            <constraint firstItem="dfe-sg-oxA" firstAttribute="top" secondItem="FTs-Wc-h5C" secondAttribute="bottom" constant="15" id="fVz-yd-lIJ"/>
-                            <constraint firstItem="dfe-sg-oxA" firstAttribute="leading" secondItem="fnu-TK-eBD" secondAttribute="leading" constant="50" id="g6O-NQ-uaZ"/>
-                            <constraint firstItem="FTs-Wc-h5C" firstAttribute="leading" secondItem="fnu-TK-eBD" secondAttribute="leadingMargin" constant="75" id="iWx-Ui-SpV"/>
-                            <constraint firstAttribute="bottom" secondItem="FTs-Wc-h5C" secondAttribute="bottom" constant="316" id="xHG-b5-210"/>
+                            <constraint firstItem="dfe-sg-oxA" firstAttribute="top" secondItem="iSX-wG-2MJ" secondAttribute="bottom" constant="8" id="3yk-ny-P0n"/>
+                            <constraint firstItem="iSX-wG-2MJ" firstAttribute="centerX" secondItem="fnu-TK-eBD" secondAttribute="centerX" id="6rk-jl-kWj"/>
+                            <constraint firstItem="G7M-mC-xpo" firstAttribute="leading" secondItem="fnu-TK-eBD" secondAttribute="leadingMargin" constant="75" id="92w-8X-vgg"/>
+                            <constraint firstAttribute="trailing" secondItem="dfe-sg-oxA" secondAttribute="trailing" constant="10" id="CXS-cX-NDE"/>
+                            <constraint firstItem="G7M-mC-xpo" firstAttribute="top" secondItem="pIx-pN-2vd" secondAttribute="bottom" constant="10" id="MnS-rK-QGE"/>
+                            <constraint firstItem="dfe-sg-oxA" firstAttribute="leading" secondItem="fnu-TK-eBD" secondAttribute="leading" constant="10" id="g6O-NQ-uaZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="G7M-mC-xpo" secondAttribute="trailing" constant="75" id="hks-iE-BFH"/>
+                            <constraint firstItem="73u-Ef-2oV" firstAttribute="top" secondItem="dfe-sg-oxA" secondAttribute="bottom" constant="10" id="x1r-pT-VlZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UuF-30-DbT">
@@ -739,7 +743,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gLX-vN-wWo">
-                                <rect key="frame" x="25" y="351" width="364" height="34"/>
+                                <rect key="frame" x="25" y="351.33333333333331" width="364" height="33.333333333333371"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGe-JL-A2p">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="22"/>
@@ -748,7 +752,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5G-cu-LB9">
-                                        <rect key="frame" x="0.0" y="22" width="364" height="12"/>
+                                        <rect key="frame" x="0.0" y="22" width="364" height="11.333333333333371"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -813,31 +817,31 @@
                                     <constraint firstAttribute="height" constant="300" id="PNU-6B-0C6"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fzG-dp-QTW">
-                                <rect key="frame" x="95" y="523" width="224" height="58"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fzG-dp-QTW">
+                                <rect key="frame" x="70" y="512" width="274" height="66"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eb9-qj-pbI">
-                                        <rect key="frame" x="0.0" y="0.0" width="224" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="274" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price ($):" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-fa-16A">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="137" height="30"/>
                                                 <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyh-E2-k8a">
-                                                <rect key="frame" x="112" y="0.0" width="112" height="30"/>
+                                                <rect key="frame" x="137" y="0.0" width="137" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Akkurat-Italic" family="Akkurat-Italic" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="guJ-8G-i82">
-                                        <rect key="frame" x="0.0" y="30" width="224" height="28"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="guJ-8G-i82">
+                                        <rect key="frame" x="0.0" y="38" width="274" height="28"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dn8-5b-LgS">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="132" height="29"/>
                                                 <segments>
                                                     <segment title="Used"/>
                                                     <segment title="New"/>
@@ -845,7 +849,7 @@
                                                 <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                             </segmentedControl>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3WR-hF-X4j">
-                                                <rect key="frame" x="112" y="0.0" width="112" height="29"/>
+                                                <rect key="frame" x="142" y="0.0" width="132" height="29"/>
                                                 <segments>
                                                     <segment title="Buy"/>
                                                     <segment title="Rent"/>
@@ -898,14 +902,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wNw-Bt-l69" firstAttribute="top" secondItem="fzG-dp-QTW" secondAttribute="bottom" constant="5" id="1AF-d0-ctK"/>
+                            <constraint firstItem="wNw-Bt-l69" firstAttribute="top" secondItem="fzG-dp-QTW" secondAttribute="bottom" constant="8" id="1AF-d0-ctK"/>
                             <constraint firstItem="6Kz-se-lb7" firstAttribute="leading" secondItem="vBV-RS-dxj" secondAttribute="leading" id="DiG-N5-y63"/>
                             <constraint firstItem="6Kz-se-lb7" firstAttribute="top" secondItem="SPK-hg-56y" secondAttribute="bottom" id="Dx3-up-6iw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lep-P7-wLm" secondAttribute="trailing" constant="75" id="FF5-ib-Fkk"/>
                             <constraint firstItem="8nx-TL-bdu" firstAttribute="top" secondItem="wNw-Bt-l69" secondAttribute="bottom" constant="10" id="IaY-Lb-92y"/>
                             <constraint firstItem="lep-P7-wLm" firstAttribute="top" secondItem="6Kz-se-lb7" secondAttribute="bottom" constant="10" id="Jbe-7Z-fQy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fzG-dp-QTW" secondAttribute="trailing" constant="75" id="Mhv-Oj-8k3"/>
-                            <constraint firstItem="fzG-dp-QTW" firstAttribute="leading" secondItem="vBV-RS-dxj" secondAttribute="leadingMargin" constant="75" id="UJd-Mw-Ntr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fzG-dp-QTW" secondAttribute="trailing" constant="50" id="Mhv-Oj-8k3"/>
+                            <constraint firstItem="fzG-dp-QTW" firstAttribute="leading" secondItem="vBV-RS-dxj" secondAttribute="leadingMargin" constant="50" id="UJd-Mw-Ntr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wNw-Bt-l69" secondAttribute="trailing" constant="10" id="j2e-oS-OrS"/>
                             <constraint firstItem="6Kz-se-lb7" firstAttribute="centerX" secondItem="lep-P7-wLm" secondAttribute="centerX" id="l2n-xL-fKt"/>
                             <constraint firstItem="lep-P7-wLm" firstAttribute="leading" secondItem="vBV-RS-dxj" secondAttribute="leadingMargin" constant="75" id="n8Q-LK-DiC"/>
@@ -955,7 +959,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gjw-RF-YzX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Bjb-CZ-rpr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A8T-Qu-R2Z">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="A8T-Qu-R2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
