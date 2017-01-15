@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zf3-85-gYv">
-                                <rect key="frame" x="57" y="150" width="300" height="341"/>
+                                <rect key="frame" x="57" y="155.66666666666669" width="300" height="330.66666666666663"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_and_text" translatesAutoresizingMaskIntoConstraints="NO" id="0xj-Gu-ZLH">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
@@ -36,8 +36,8 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan. Sell. Save." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVS-Lt-5fh">
-                                        <rect key="frame" x="27.333333333333343" y="300" width="245.66666666666666" height="41"/>
-                                        <fontDescription key="fontDescription" name="Akkurat-Bold" family="Akkurat-Bold" pointSize="32"/>
+                                        <rect key="frame" x="58" y="300" width="184.33333333333331" height="30.666666666666629"/>
+                                        <fontDescription key="fontDescription" name="Akkurat-Bold" family="Akkurat-Bold" pointSize="24"/>
                                         <color key="textColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
