@@ -175,7 +175,7 @@ class SearchResultsTableViewController: UITableViewController {
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = ["query": searchQuery!, "num_items": 20 ]
+        let parameters: Parameters = ["query": searchQuery!, "num_items": 90 ] //totally arbitrary, Aaron's can only support up to 100
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/search", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
 
@@ -200,7 +200,12 @@ class SearchResultsTableViewController: UITableViewController {
                 let json = JSON(data: data)
                 // avoid null at end
                 for i in 0..<json.arrayObject!.count {
-                    self.listings.append(json.arrayObject?[i] as! Dictionary<String, Any>)
+                    let listing = json.arrayObject?[i] as! Dictionary<String, Any>
+                    // only show items that haven't been sold
+                    let soldAt = listing["sold_at"] as? String
+                    if soldAt == nil {
+                        self.listings.append(listing)
+                    }
                 }
                 
                 if self.listings.count == 0 {
