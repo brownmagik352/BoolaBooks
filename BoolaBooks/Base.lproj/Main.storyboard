@@ -54,7 +54,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cyP-lJ-cPz">
-                                <rect key="frame" x="60.666666666666657" y="335.66666666666669" width="293" height="66"/>
+                                <rect key="frame" x="60.666666666666657" y="335" width="293" height="66"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by course#, title, ISBN, etc." minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gu8-Ru-tjP">
                                         <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
@@ -243,7 +243,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="V0u-wV-HPP">
-                                                    <rect key="frame" x="49.999999999999993" y="0.0" width="43.333333333333321" height="15"/>
+                                                    <rect key="frame" x="50" y="0.0" width="44" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="Umc-iP-ifH"/>
                                                     </constraints>
@@ -514,9 +514,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G7M-mC-xpo">
-                                <rect key="frame" x="95" y="74" width="224" height="300"/>
+                                <rect key="frame" x="95" y="74" width="224" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="4GE-bl-asH"/>
+                                    <constraint firstAttribute="height" constant="250" id="4GE-bl-asH"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dfe-sg-oxA">
@@ -639,7 +639,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="isbn" translatesAutoresizingMaskIntoConstraints="NO" id="VXQ-4V-B7b">
-                                <rect key="frame" x="95" y="385" width="225" height="75"/>
+                                <rect key="frame" x="94.666666666666686" y="385" width="225" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="225" id="bgc-00-TVZ"/>
                                     <constraint firstAttribute="height" constant="75" id="ncL-2g-JNL"/>
@@ -755,13 +755,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gLX-vN-wWo">
                                 <rect key="frame" x="25" y="351.33333333333331" width="364" height="33.333333333333371"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGe-JL-A2p">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGe-JL-A2p">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="22"/>
                                         <fontDescription key="fontDescription" name="Akkurat-Bold" family="Akkurat-Bold" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="blah" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5G-cu-LB9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secondary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5G-cu-LB9">
                                         <rect key="frame" x="0.0" y="22" width="364" height="11.333333333333371"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="12"/>
                                         <nil key="textColor"/>
@@ -822,9 +822,9 @@
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="lep-P7-wLm">
-                                <rect key="frame" x="95" y="74" width="224" height="300"/>
+                                <rect key="frame" x="95" y="74" width="224" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="PNU-6B-0C6"/>
+                                    <constraint firstAttribute="height" constant="250" id="PNU-6B-0C6"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fzG-dp-QTW">
@@ -969,7 +969,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gjw-RF-YzX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Bjb-CZ-rpr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="A8T-Qu-R2Z">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A8T-Qu-R2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -989,7 +989,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YjJ-0G-2BA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="chat" id="ISC-kl-4H8"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bgR-xe-dIm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bgR-xe-dIm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
