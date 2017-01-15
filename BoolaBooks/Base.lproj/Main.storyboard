@@ -243,7 +243,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="V0u-wV-HPP">
-                                                    <rect key="frame" x="50" y="0.0" width="44" height="15"/>
+                                                    <rect key="frame" x="49.999999999999993" y="0.0" width="43.333333333333321" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="Umc-iP-ifH"/>
                                                     </constraints>
@@ -555,25 +555,25 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iSX-wG-2MJ">
-                                <rect key="frame" x="127" y="519.33333333333337" width="161.33333333333331" height="39.333333333333258"/>
+                                <rect key="frame" x="126.33333333333331" y="519.33333333333337" width="161.33333333333337" height="39.333333333333258"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="J9c-qL-AMG">
-                                        <rect key="frame" x="0.0" y="0.0" width="161.33333333333331" height="15.666666666666629"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="161.33333333333337" height="15.666666666666629"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="KMV-lj-ntZ">
-                                        <rect key="frame" x="0.0" y="23.666666666666629" width="161.33333333333331" height="15.666666666666629"/>
+                                        <rect key="frame" x="0.0" y="23.666666666666629" width="161.33333333333337" height="15.666666666666629"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Condition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="eSh-WP-pVs">
-                                                <rect key="frame" x="0.0" y="0.0" width="75.666666666666657" height="15.666666666666629"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75.666666666666671" height="15.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buyable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="8Ln-NJ-JXG">
-                                                <rect key="frame" x="85.666666666666657" y="0.0" width="75.666666666666657" height="15.666666666666629"/>
+                                                <rect key="frame" x="85.666666666666671" y="0.0" width="75.6666666666667" height="15.666666666666629"/>
                                                 <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -701,6 +701,12 @@
                                     <navigationItem id="F0s-5R-tX2"/>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fEh-7o-Ajq">
+                                <rect key="frame" x="30" y="381" width="354" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Akkurat-Bold" family="Akkurat-Bold" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -709,7 +715,9 @@
                             <constraint firstItem="0PK-Gq-abW" firstAttribute="centerX" secondItem="ybs-rV-gam" secondAttribute="centerX" id="AtS-e1-451"/>
                             <constraint firstItem="niS-9S-K4e" firstAttribute="leading" secondItem="ybs-rV-gam" secondAttribute="leading" id="CJI-eM-hCV"/>
                             <constraint firstItem="rJB-7k-ZIr" firstAttribute="centerX" secondItem="ybs-rV-gam" secondAttribute="centerX" id="GJX-Zg-Pt2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fEh-7o-Ajq" secondAttribute="trailing" constant="10" id="IZZ-D8-jNu"/>
                             <constraint firstItem="BS7-Do-mLL" firstAttribute="centerX" secondItem="ybs-rV-gam" secondAttribute="centerX" id="IuR-To-NQP"/>
+                            <constraint firstItem="fEh-7o-Ajq" firstAttribute="leading" secondItem="ybs-rV-gam" secondAttribute="leadingMargin" constant="10" id="JNo-3r-dVB"/>
                             <constraint firstItem="VXQ-4V-B7b" firstAttribute="centerX" secondItem="ybs-rV-gam" secondAttribute="centerX" id="UWW-KC-uzI"/>
                             <constraint firstItem="niS-9S-K4e" firstAttribute="centerX" secondItem="0PK-Gq-abW" secondAttribute="centerX" id="Xgj-cI-LLo"/>
                             <constraint firstItem="VXQ-4V-B7b" firstAttribute="top" secondItem="ALR-Qq-hsx" secondAttribute="bottom" constant="50" id="bS9-dc-2zq"/>
@@ -717,10 +725,12 @@
                             <constraint firstItem="rJB-7k-ZIr" firstAttribute="top" secondItem="0PK-Gq-abW" secondAttribute="bottom" constant="50" id="jFb-ng-Tq4"/>
                             <constraint firstItem="BS7-Do-mLL" firstAttribute="top" secondItem="VXQ-4V-B7b" secondAttribute="bottom" constant="8" id="jUO-VV-0Eb"/>
                             <constraint firstItem="niS-9S-K4e" firstAttribute="top" secondItem="vbv-6e-ubZ" secondAttribute="bottom" id="kgq-I3-jcW"/>
+                            <constraint firstItem="VXQ-4V-B7b" firstAttribute="top" secondItem="fEh-7o-Ajq" secondAttribute="bottom" constant="4" id="rXv-Cg-XcP"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sell" image="sell" id="NN7-62-xsx"/>
                     <connections>
+                        <outlet property="lightingTipLabel" destination="fEh-7o-Ajq" id="uBW-ik-QDT"/>
                         <outlet property="lookupISBNButton" destination="ALR-Qq-hsx" id="mVZ-mq-9kF"/>
                         <outlet property="manualISBNfield" destination="rJB-7k-ZIr" id="79Q-gQ-zBb"/>
                         <outlet property="scanISBNPreview" destination="VXQ-4V-B7b" id="pqY-AX-xAW"/>

@@ -17,6 +17,9 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var manualISBNfield: UITextField!
     @IBOutlet weak var scanISBNPreview: UIImageView!
     @IBOutlet weak var lookupISBNButton: UIButton!
+    @IBOutlet weak var lightingTipLabel: UILabel!
+    
+    
     var scanISBN: String?
     var scanner: MTBBarcodeScanner?
 
@@ -83,12 +86,13 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Actions
     @IBAction func startISBNScan(_ sender: UIButton) {
+        self.lightingTipLabel.text = "The scanner works MUCH better with good lighting."
         self.scanner?.startScanning(resultBlock: { codes in
             let codeObjects = codes as! [AVMetadataMachineReadableCodeObject]?
             for code in codeObjects! {
                 let stringValue = code.stringValue!
                 if stringValue.characters.count == 13 {
-                    self.scanner?.stopScanning()
+                    self.stopScanner()
                     self.scanISBN = stringValue
                     self.manualISBNfield.text = stringValue
                     self.lookupISBNButton.isEnabled = true
@@ -98,7 +102,10 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
         }, error: nil)
     }
     
+    // custom version of pod's stop scanning 
+    // checks for scanner scanning and removes help text on lighting
     func stopScanner() {
+        self.lightingTipLabel.text = ""
         if (self.scanner?.isScanning())! {
             self.scanner?.stopScanning()
         }
