@@ -213,7 +213,7 @@ class SearchResultsTableViewController: UITableViewController {
                 }
                 
                 if self.listings.count == 0 {
-                    let alert = UIAlertController(title: "All Sold Out!", message: "Check back periodically, books get sold fast!\n\n Also, make sure there are no typos in your search terms.", preferredStyle: UIAlertControllerStyle.alert)
+                    let alert = UIAlertController(title: "All Sold Out!", message: "\nBooks get sold fast!\n\nCheck back periodically, more books show up as shopping period goes on.\n\n Also, check for typos in your search.\n\n", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
 
