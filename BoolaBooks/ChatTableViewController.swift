@@ -79,13 +79,20 @@ class ChatTableViewController: UITableViewController {
         let listing = chat["listing"] as! Dictionary<String, Any>
         let publication = listing["publication"] as! Dictionary<String, Any>
         let courses: Array<String> = publication["courses"] as! Array<String>
+        var allCoursesString = ""
+        for i in 0..<courses.count {
+            allCoursesString = allCoursesString + courses[i]
+            if (i < courses.count - 1) {
+                allCoursesString = allCoursesString + ", "
+            }
+        }
         
         let unreadCount = indexPath.section == 0 ? chat["num_unread_by_seller"] as? Int : chat["num_unread_by_buyer"] as? Int 
         let unread = unreadCount! > 0 ? "(*) " : ""
         
         // Populate the labels in the table cell
         cell.titleLabel.text = unread + (publication["title"] as? String)!
-        cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info" // needs to show all courses actually
+        cell.courseLabel.text = allCoursesString
         cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"

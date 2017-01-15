@@ -65,11 +65,18 @@ class SearchResultsTableViewController: UITableViewController {
         let listing = listings[indexPath.row]
         let publication = listing["publication"] as! Dictionary<String, Any>
         let courses: Array<String> = publication["courses"] as! Array<String>
+        var allCoursesString = ""
+        for i in 0..<courses.count {
+            allCoursesString = allCoursesString + courses[i]
+            if (i < courses.count - 1) {
+                allCoursesString = allCoursesString + ", "
+            }
+        }
         
         
         // Populate the labels in the table cell
         cell.titleLabel.text = publication["title"] as? String
-        cell.courseLabel.text = courses.count > 0 ? courses[0] : "No Course Info Available" // needs to show all courses actually
+        cell.courseLabel.text = allCoursesString
         cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
@@ -144,6 +151,13 @@ class SearchResultsTableViewController: UITableViewController {
         let selectedListing = listings[indexPath.row]
         let selectedListingPublication = selectedListing["publication"] as! Dictionary<String, Any>
         let selectedListingCourses: Array<String> = selectedListingPublication["courses"] as! Array<String>
+        var selectedListingAllCoursesString = ""
+        for i in 0..<selectedListingCourses.count {
+            selectedListingAllCoursesString = selectedListingAllCoursesString + selectedListingCourses[i]
+            if (i < selectedListingCourses.count - 1) {
+                selectedListingAllCoursesString = selectedListingAllCoursesString + ", "
+            }
+        }
 
         // pass on the data in the segue, have to pass it to variables rather than the label directly
         if let url  = NSURL(string: (selectedListingPublication["image"] as? String)!),
@@ -157,7 +171,7 @@ class SearchResultsTableViewController: UITableViewController {
         listingDetailViewController.priceString = String(format: "%.2f", (selectedListing["price"] as! NSString).doubleValue)
         listingDetailViewController.conditionString = selectedListing["condition"] as? String
         listingDetailViewController.buyableString = selectedListing["buyable"] as! Bool ? "Buy" : "Rent"
-        listingDetailViewController.courseString = selectedListingCourses.count > 0 ? selectedListingCourses[0] : "No Course Info Available" // needs to show all courses actually
+        listingDetailViewController.courseString = selectedListingAllCoursesString
         listingDetailViewController.titleString = selectedListingPublication["title"] as? String
         listingDetailViewController.authorString = selectedListingPublication["author"] as? String
         listingDetailViewController.yearString = selectedListingPublication["year"] as? String
