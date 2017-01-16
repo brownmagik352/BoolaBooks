@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Uvl-Pn-yfE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PCY-Zs-PtE">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,7 +29,7 @@
         <!--Login View Controller-->
         <scene sceneID="1iw-iN-PTy">
             <objects>
-                <viewController id="Uvl-Pn-yfE" customClass="LoginViewController" customModule="BoolaBooks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" id="Uvl-Pn-yfE" customClass="LoginViewController" customModule="BoolaBooks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ibe-94-Hm2"/>
                         <viewControllerLayoutGuide type="bottom" id="BC7-LR-8g3"/>
@@ -272,7 +272,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="V0u-wV-HPP">
-                                                    <rect key="frame" x="50" y="0.0" width="44" height="15"/>
+                                                    <rect key="frame" x="49.999999999999993" y="0.0" width="43.333333333333321" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="Umc-iP-ifH"/>
                                                     </constraints>
@@ -998,7 +998,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gjw-RF-YzX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Bjb-CZ-rpr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A8T-Qu-R2Z">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="A8T-Qu-R2Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1018,7 +1018,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YjJ-0G-2BA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="chat" id="ISC-kl-4H8"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bgR-xe-dIm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="bgR-xe-dIm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>

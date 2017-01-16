@@ -13,54 +13,6 @@ import Alamofire
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var fbExplainText: UILabel!
-    
-    
-    // needed to move past initial login screen if already authenticated
-    override func viewDidAppear(_ animated: Bool) {
-        
-        let prefs = UserDefaults.standard
-        if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token"),  let _ = prefs.string(forKey: "fb_uid") {
-            
-            self.fbExplainText.text = ""
-            
-            // register device for notifications
-            let headers: HTTPHeaders = [
-                "X-User-Email": prefs.string(forKey: "email")!,
-                "X-User-Token": prefs.string(forKey: "rails_token")!,
-                "Content-type": "application/json",
-                "Accept": "application/json"
-            ]
-            
-            let parameters: Parameters = [
-                "apn_token": prefs.string(forKey: "device_token")!
-            ]
-            
-            Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                if (response.result.error == nil) && ((response.response?.statusCode)! == 200){
-                    print("**SUCCESSFUL DEVICE REGISTRATION**")
-                } else if ((response.response?.statusCode)! == 401) {
-                    print("401")
-                    let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    return
-                } else {
-                    print((response.response?.statusCode)!)
-                    let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, but you're device is not enabled to receive notifications from BoolaBooks. Notify contact@boolabooks.com if you would like to.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    return
-                }
-            }
-            
-            // ADVANCE TO NEXT SCREEN IF APP TOKEN EXISTS (USER IS ALREADY LOGGED IN)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "tabView")
-            self.present(vc, animated: true, completion: nil)
-
-        }
-        
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,44 +110,10 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
                         prefs.setValue(JSON["uid"]!, forKey: "fb_uid")
                         
-                        // register device for notifications
-                        let headers: HTTPHeaders = [
-                            "X-User-Email": prefs.string(forKey: "email")!,
-                            "X-User-Token": prefs.string(forKey: "rails_token")!,
-                            "Content-type": "application/json",
-                            "Accept": "application/json"
-                        ]
-                        
-                        let parameters: Parameters = [
-                            "apn_token": prefs.string(forKey: "device_token")!
-                        ]
-                        
-                        Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                            if (response.result.error == nil) && ((response.response?.statusCode)! == 200){
-                                print("**SUCCESSFUL DEVICE REGISTRATION**")
-                            } else if ((response.response?.statusCode)! == 401) {
-                                print("401")
-                                let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
-                                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
-                                self?.present(alert, animated: true, completion: nil)
-                                return
-                            } else {
-                                print((response.response?.statusCode)!)
-                                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, but you're device is not enabled to receive notifications from BoolaBooks. Notify contact@boolabooks.com if you would like to.", preferredStyle: UIAlertControllerStyle.alert)
-                                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
-                                self?.present(alert, animated: true, completion: nil)
-                                return
-                            }
-                        }
+                        // return to original view that brought us here
+                        self?.dismiss(animated: true, completion: nil)
                     }
-
                 }
-                
-                // ADVANCE TO NEXT SCREEN AFTER LOGIN
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "tabView")
-                self?.present(vc, animated: true, completion: nil)
-                
             }
         })
         
