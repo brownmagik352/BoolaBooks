@@ -92,8 +92,10 @@ class ListingDetailViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             } else if ((response.response?.statusCode)! == 401) {
-                print("401")
-                // force re-login
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+                vc.explainString = "There was a problem with your account.\nPlease logout, log back in, and re-try your previous action."
+                self.present(vc, animated: true, completion: nil)
                 return
             } else {
                 print((response.response?.statusCode)!)

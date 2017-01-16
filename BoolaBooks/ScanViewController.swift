@@ -69,7 +69,8 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
         } else {
             // present loginview if not
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "loginView")
+            let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+            vc.explainString = "The ONLY info we use from Facebook:\nyour name, email, and public profile photo"
             self.present(vc, animated: true, completion: nil)
         }
         

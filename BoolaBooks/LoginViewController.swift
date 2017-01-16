@@ -13,6 +13,7 @@ import Alamofire
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var fbExplainText: UILabel!
+    var explainString: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.center = view.center
         view.addSubview(loginButton)
         
-        self.fbExplainText.text = "The ONLY info we use from Facebook:\nyour name, email, and public profile photo"
+        self.fbExplainText.text = explainString
         
         loginButton.delegate = self
         
@@ -44,7 +45,6 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         
         print("**SUCCESSFUL FB LOG IN**")
-        self.fbExplainText.text = ""
         
         // Use FB Token to Get User Info
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, name, email, picture"])

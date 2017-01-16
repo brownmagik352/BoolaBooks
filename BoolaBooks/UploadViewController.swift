@@ -41,9 +41,6 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
         activityIndicator.center = view.center
         self.view.addSubview(self.activityIndicator)
         
-        self.activityIndicator.startAnimating()
-        ISBNLookup()
-        
         /* FB SHARE BUTTON */
         let content = FBSDKShareLinkContent()
         content.contentURL = NSURL(string: "https://www.boolabooks.com") as URL! // going to rely on favicon from website for image?
@@ -53,6 +50,9 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
         shareButton.shareContent = content;
         shareButton.center = CGPoint(x: self.view.frame.width-shareButton.frame.width/2, y: self.view.frame.height-shareButton.frame.height/2)
         view.addSubview(shareButton)
+        
+        self.activityIndicator.startAnimating()
+        ISBNLookup()
         
         // listen for events on this field
         self.priceField.delegate = self
@@ -143,8 +143,11 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
             if (response.result.error == nil) && (response.response?.statusCode == 201) {
                 print("**SUCCESSFUL UPLOAD**")
             } else if ((response.response?.statusCode)! == 401) {
-                print("401")
-                // force re-login
+                // present login screen on 401
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+                vc.explainString = "There was a problem with your account.\nPlease logout, log back in, and re-try your previous action."
+                self.present(vc, animated: true, completion: nil)
                 return
             } else {
                 print((response.response?.statusCode)!)
@@ -185,9 +188,12 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 self.activityIndicator.stopAnimating()
                 return
             } else if ((response.response?.statusCode)! == 401) {
-                print("401")
-                // force re-login
                 self.activityIndicator.stopAnimating()
+                // present login screen on 401
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+                vc.explainString = "There was a problem with your account.\nPlease logout, log back in, and re-try your previous action."
+                self.present(vc, animated: true, completion: nil)
                 return
             } else {
                 print((response.response?.statusCode)!)

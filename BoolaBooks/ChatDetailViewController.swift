@@ -293,8 +293,11 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.present(alert, animated: true, completion: nil)
                 return
             } else if ((response.response?.statusCode)! == 401) {
-                print("401")
-                // force re-login
+                // present login screen on 401
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+                vc.explainString = "There was a problem with your account.\nPlease logout, log back in, and re-try your previous action."
+                self.present(vc, animated: true, completion: nil)
                 return
             } else {
                 print((response.response?.statusCode)!)
@@ -340,8 +343,11 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.present(alert, animated: true, completion: nil)
                 return
             } else if ((response.response?.statusCode)! == 401) {
-                print("401")
-                // force re-login
+                // present login screen on 401
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
+                vc.explainString = "There was a problem with your account.\nPlease logout, log back in, and re-try your previous action."
+                self.present(vc, animated: true, completion: nil)
                 return
             } else {
                 print((response.response?.statusCode)!)
