@@ -844,7 +844,7 @@
                                         <barButtonItem key="rightBarButtonItem" title="Upload" id="eTR-Zv-6st">
                                             <color key="tintColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
-                                                <action selector="upload:" destination="LI7-hM-W9t" id="1Oc-kE-Ib6"/>
+                                                <action selector="upload:" destination="LI7-hM-W9t" id="Uas-E7-OXl"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

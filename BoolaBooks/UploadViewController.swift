@@ -95,8 +95,8 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
     
     @IBAction func upload(_ sender: UIBarButtonItem) {
         uploadListing()
-        dismiss(animated: true, completion: nil)
     }
+    
     
     // Dismiss KB  - touch outside the field after editing has started
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -142,6 +142,15 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
             
             if (response.result.error == nil) && (response.response?.statusCode == 201) {
                 print("**SUCCESSFUL UPLOAD**")
+                
+                // alert the user to a successful upload and exit the upload modal
+                let alert = UIAlertController(title: "Successful Upload", message: "Your book has been uploaded.\nBuyers can now search for your book.\nYou'll be contacted by the buyer(s) directly.", preferredStyle: UIAlertControllerStyle.alert)
+                let okAction: UIAlertAction = UIAlertAction(title: "Got It",
+                                                             style: .default) {
+                                                                action -> Void in self.dismiss(animated: true, completion: nil)
+                }
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
             } else if ((response.response?.statusCode)! == 401) {
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -151,6 +160,9 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 return
             } else {
                 print((response.response?.statusCode)!)
+                let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 return
             }
         }
