@@ -12,11 +12,16 @@ import Alamofire
 
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
+    @IBOutlet weak var fbExplainText: UILabel!
+    
+    
     // needed to move past initial login screen if already authenticated
     override func viewDidAppear(_ animated: Bool) {
         
         let prefs = UserDefaults.standard
         if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token"),  let _ = prefs.string(forKey: "fb_uid") {
+            
+            self.fbExplainText.text = ""
             
             // register device for notifications
             let headers: HTTPHeaders = [
@@ -65,6 +70,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.center = view.center
         view.addSubview(loginButton)
         
+        self.fbExplainText.text = "The ONLY info we use from Facebook:\nyour name, email, and public profile photo"
+        
         loginButton.delegate = self
         
     }
@@ -85,6 +92,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         
         print("**SUCCESSFUL FB LOG IN**")
+        self.fbExplainText.text = ""
         
         // Use FB Token to Get User Info
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, name, email, picture"])
