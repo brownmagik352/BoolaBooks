@@ -19,11 +19,6 @@ class ChatTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = UIColor.white
-        activityIndicator.backgroundColor = UIColor.black
-        activityIndicator.center = view.center
-        self.view.addSubview(self.activityIndicator)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +29,11 @@ class ChatTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(animated)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor.white
+        activityIndicator.backgroundColor = UIColor.black
+        activityIndicator.center = view.center
+        self.view.addSubview(self.activityIndicator)
         self.activityIndicator.startAnimating()
         getConversations()
     }
