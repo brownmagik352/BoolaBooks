@@ -18,6 +18,7 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var buyableLabel: UILabel!
+    @IBOutlet weak var soldlabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

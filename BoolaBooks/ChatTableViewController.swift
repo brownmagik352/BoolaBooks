@@ -96,6 +96,7 @@ class ChatTableViewController: UITableViewController {
         cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
+        cell.soldlabel.text = (listing["sold_at"] as? String) != nil ? "SOLD" : ""
         // Get image using URL - App Transport allows for Google Books specifically right now
         if let url  = NSURL(string: (publication["image"] as? String)!),
             let data = NSData(contentsOf: url as URL)
