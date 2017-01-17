@@ -23,6 +23,7 @@ class ListingDetailViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var editionLabel: UILabel!
     @IBOutlet weak var seeNotesButton: UIButton!
+    @IBOutlet weak var startChatButton: UIBarButtonItem!
     
     // segue capture variables
     var photoImage: UIImage?
@@ -53,6 +54,10 @@ class ListingDetailViewController: UIViewController {
             seeNotesButton.isEnabled = false
             seeNotesButton.setTitle("No notes for this book", for: .normal)
             seeNotesButton.setTitleColor(UIColor.gray, for: .normal)
+        }
+        
+        if self.listingID == nil {
+            self.startChatButton.isEnabled = false
         }
     }
 

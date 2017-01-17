@@ -30,6 +30,17 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     var messages: Array<String> = [] // actual text of messages
     var imageStrings: Array<String> = [] // image of message sender
     var names: Array<String> = [] // name of message sender
+    // listing info to pass on
+    var photoString: String?
+    var priceString: NSString?
+    var conditionString: String?
+    var buyableString: String?
+    var courses: Array<String> = []
+    var titleString: String?
+    var authorString: String?
+    var yearString: String?
+    var editionString: String?
+    var notesString: String?
     
     // MARK: - Base Functions
     
@@ -153,15 +164,45 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        let listingDetailViewController = segue.destination as! ListingDetailViewController
+        
+        /* ADJUST THIS COMING FROM CHAT DETAIL INSTEAD */
+        // grab the necessary info about the selected listing
+        var allCoursesString = "" //at worst is empty string
+        for i in 0..<self.courses.count {
+            allCoursesString = allCoursesString + self.courses[i]
+            if (i < self.courses.count - 1) {
+                allCoursesString = allCoursesString + ", "
+            }
+        }
+        
+        // pass on the data in the segue, have to pass it to variables rather than the label directly
+        if let url  = NSURL(string: self.photoString!),
+            let data = NSData(contentsOf: url as URL)
+        {
+            listingDetailViewController.photoImage = UIImage(data: data as Data)
+        } else {
+            listingDetailViewController.photoImage = #imageLiteral(resourceName: "bb_logo_1024")
+        }
+        
+        listingDetailViewController.priceString = String(format: "%.2f", (self.priceString)!.doubleValue)
+        listingDetailViewController.conditionString = self.conditionString
+        listingDetailViewController.buyableString = self.buyableString
+        listingDetailViewController.courseString = allCoursesString
+        listingDetailViewController.titleString = self.titleString
+        listingDetailViewController.authorString = self.authorString
+        listingDetailViewController.yearString = self.yearString
+        listingDetailViewController.editionString = self.editionString
+        listingDetailViewController.listingID = nil
+        listingDetailViewController.notesString = self.notesString
     }
-    */
+    
     
     // MARK: - TableView Protocol
     
@@ -307,16 +348,23 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 return
             }
             
-            // parse search results from JSON
-            //            if let data = response.data {
-            //                let json = JSON(data: data)
-            //
-            //                var messages: [String] = []
-            //
-            //                for i in 0..<json["messages"].count {
-            //                    messages.append(json["messages"][i]["text"])
-            //                }
-            //            }
+            if let result = response.result.value {
+                let JSON = result as! NSDictionary
+                
+                // all info needed for individual listing info
+                let listing = JSON["listing"] as! Dictionary<String, Any>
+                let publication = listing["publication"] as! Dictionary<String, Any>
+                self.photoString = publication["image"] as? String
+                self.priceString = listing["price"] as? NSString
+                self.conditionString = listing["condition"] as? String
+                self.buyableString = (listing["buyable"] as? Int) == 1 ? "Buy" : "Sell"
+                self.courses = publication["courses"] as! Array<String>
+                self.titleString = publication["title"] as? String
+                self.authorString = publication["author"] as? String
+                self.yearString = publication["year"] as? String
+                self.editionString = publication["edition"] as? String
+                self.notesString = listing["notes"] as? String
+            }
         }
     }
     

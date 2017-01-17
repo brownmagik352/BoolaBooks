@@ -373,6 +373,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="abr-ag-N6f" secondAttribute="trailing" constant="10" id="zly-1Y-2xD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="vMz-lQ-TpP">
+                        <barButtonItem key="rightBarButtonItem" title="See Book" id="PoI-Xr-Wqs">
+                            <connections>
+                                <segue destination="7iN-2m-n6k" kind="show" id="nEe-cm-dCr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="markAsSoldButton" destination="tql-cY-AcV" id="aq9-JL-9dY"/>
                         <outlet property="messagesTableView" destination="abr-ag-N6f" id="zM7-jW-q9B"/>
@@ -382,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HhW-3M-icT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3244.9275362318845" y="937.50000000000011"/>
+            <point key="canvasLocation" x="3245" y="938"/>
         </scene>
         <!--Add Notes View Controller-->
         <scene sceneID="3lf-RZ-Pxx">
@@ -724,6 +731,7 @@
                         <outlet property="photoView" destination="G7M-mC-xpo" id="syR-z7-pdO"/>
                         <outlet property="priceLabel" destination="J9c-qL-AMG" id="lnW-Ox-HIS"/>
                         <outlet property="seeNotesButton" destination="nhp-MV-tii" id="cEK-AT-3pn"/>
+                        <outlet property="startChatButton" destination="2vF-6A-l8w" id="QI0-xV-zhQ"/>
                         <outlet property="titleLabel" destination="1QY-B4-zHN" id="fmX-1b-bCN"/>
                         <outlet property="yearLabel" destination="1b7-gq-1go" id="rwD-TZ-OaI"/>
                     </connections>
@@ -1181,4 +1189,7 @@
         <image name="isbn" width="156" height="104"/>
         <image name="sell" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="nEe-cm-dCr"/>
+    </inferredMetricsTieBreakers>
 </document>
