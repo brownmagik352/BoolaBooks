@@ -22,6 +22,7 @@ class ListingDetailViewController: UIViewController {
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var editionLabel: UILabel!
+    @IBOutlet weak var seeNotesButton: UIButton!
     
     // segue capture variables
     var photoImage: UIImage?
@@ -33,6 +34,7 @@ class ListingDetailViewController: UIViewController {
     var authorString: String?
     var yearString: String?
     var editionString: String?
+    var notesString: String?
     var listingID: Int?
 
     override func viewDidLoad() {
@@ -47,6 +49,11 @@ class ListingDetailViewController: UIViewController {
         authorLabel.text = authorString
         yearLabel.text = yearString
         editionLabel.text = editionString
+        if self.notesString == "" {
+            seeNotesButton.isEnabled = false
+            seeNotesButton.setTitle("No notes for this book", for: .normal)
+            seeNotesButton.setTitleColor(UIColor.gray, for: .normal)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,15 +62,15 @@ class ListingDetailViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as! SeeNotesViewController
+        destinationVC.notesString = self.notesString!
     }
-    */
+ 
     
     // MARK: - Actions
     

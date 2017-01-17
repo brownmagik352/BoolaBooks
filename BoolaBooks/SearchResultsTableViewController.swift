@@ -177,6 +177,7 @@ class SearchResultsTableViewController: UITableViewController {
         listingDetailViewController.yearString = selectedListingPublication["year"] as? String
         listingDetailViewController.editionString = selectedListingPublication["edition"] as? String
         listingDetailViewController.listingID = selectedListing["id"] as? Int
+        listingDetailViewController.notesString = selectedListing["notes"] as? String
     }
     
     

@@ -18,6 +18,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
     var isbn: String? // Set by Segue from ScanViewController
     var publication_id: Int?
     var courses: [String] = [] // courses to be uploaded
+    var notes: String = "" //Notes to be uploaded
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)  // spinner to show during loading
     
     @IBOutlet weak var bookImage: UIImageView!
@@ -30,6 +31,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var editionLabel: UILabel!
     @IBOutlet weak var addCourseButton: UIButton!
+    @IBOutlet weak var addNotesButton: UIButton!
     @IBOutlet weak var uploadButton: UIBarButtonItem!
 
     override func viewDidLoad() {
@@ -83,9 +85,14 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
     }
     
     // ModalViewControllerDelegate
-    func sendModalValue(value: String) {
+    func sendModalValue1(value: String) {
         courses.append(value)
         addCourseButton.setTitle("New Course: " + value, for: .normal)
+    }
+    
+    func sendModalValue2(value: String) {
+        notes.append(value)
+        addNotesButton.setTitle("Notes Added", for: .normal)
     }
     
     // MARK: - Actions
@@ -109,8 +116,18 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! CoursePickTableViewController
-        destinationVC.delegate = self;
+        
+        if sender as! UIButton == addCourseButton {
+            let destinationVC = segue.destination as! CoursePickTableViewController
+            destinationVC.delegate = self
+        } else {
+            let destinationVC = segue.destination as! AddNotesViewController
+            destinationVC.delegate = self
+            if self.notes != "" {
+                destinationVC.placeholderString = self.notes
+            }
+        }
+        
     }
     
     
@@ -134,8 +151,8 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 "condition": conditionControl.titleForSegment(at: conditionControl.selectedSegmentIndex)!,
                 "buyable": buyableControl.titleForSegment(at: buyableControl.selectedSegmentIndex) == "Buy",
                 "price": Float(priceField.text!) ?? 0.00,
-                "notes": "",
-                "courses": courses
+                "notes": self.notes,
+                "courses": self.courses
             ]
         ]
         

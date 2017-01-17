@@ -13,7 +13,8 @@ import SwiftyJSON
 // need this to send back data back from modal
 // source: http://stackoverflow.com/questions/28502653/passing-data-from-modal-segue-to-parent
 protocol ModalViewControllerDelegate {
-    func sendModalValue(value: String)
+    func sendModalValue1(value: String) // sending courses back
+    func sendModalValue2(value: String) // sending notes back
 }
 
 class CoursePickTableViewController: UITableViewController {
@@ -124,7 +125,7 @@ class CoursePickTableViewController: UITableViewController {
         let courseNumber = cell.courseNumberLabel.text!
         
         // sending only one course back
-        self.delegate.sendModalValue(value: courseNumber)
+        self.delegate.sendModalValue1(value: courseNumber)
         dismiss(animated: true, completion: nil)
         
     }
