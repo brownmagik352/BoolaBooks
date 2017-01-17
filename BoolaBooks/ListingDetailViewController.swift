@@ -44,11 +44,11 @@ class ListingDetailViewController: UIViewController {
         priceLabel.text = "$" + priceString!
         conditionLabel.text = conditionString
         buyableLabel.text = buyableString
-        courseLabel.text = courseString
-        titleLabel.text = titleString
-        authorLabel.text = authorString
-        yearLabel.text = yearString
-        editionLabel.text = editionString
+        courseLabel.text = courseString != "" ? courseString : "No course info" //at worse will be empty string, see searchResults prepare method
+        titleLabel.text = titleString != "" && titleString != nil ? titleString : "No title info"
+        authorLabel.text = authorString != "" && authorString != nil ? authorString : "No edition info"
+        yearLabel.text = yearString != "" &&  yearString != nil ? yearString : "No year info"
+        editionLabel.text = editionString != "" && editionString != nil ? editionString : "No edition info"
         if self.notesString == "" {
             seeNotesButton.isEnabled = false
             seeNotesButton.setTitle("No notes for this book", for: .normal)

@@ -79,7 +79,7 @@ class ChatTableViewController: UITableViewController {
         let listing = chat["listing"] as! Dictionary<String, Any>
         let publication = listing["publication"] as! Dictionary<String, Any>
         let courses: Array<String> = publication["courses"] as! Array<String>
-        var allCoursesString = ""
+        var allCoursesString = "" //at worst it will be empty string
         for i in 0..<courses.count {
             allCoursesString = allCoursesString + courses[i]
             if (i < courses.count - 1) {
@@ -92,7 +92,7 @@ class ChatTableViewController: UITableViewController {
         
         // Populate the labels in the table cell
         cell.titleLabel.text = unread + (publication["title"] as? String)!
-        cell.courseLabel.text = allCoursesString
+        cell.courseLabel.text = allCoursesString != "" ? allCoursesString : "No course info" // at worst is empty string see declaration
         cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"

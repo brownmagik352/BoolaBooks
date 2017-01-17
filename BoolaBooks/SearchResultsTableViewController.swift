@@ -65,7 +65,7 @@ class SearchResultsTableViewController: UITableViewController {
         let listing = listings[indexPath.row]
         let publication = listing["publication"] as! Dictionary<String, Any>
         let courses: Array<String> = publication["courses"] as! Array<String>
-        var allCoursesString = ""
+        var allCoursesString = "" // at worst is empty string
         for i in 0..<courses.count {
             allCoursesString = allCoursesString + courses[i]
             if (i < courses.count - 1) {
@@ -76,7 +76,7 @@ class SearchResultsTableViewController: UITableViewController {
         
         // Populate the labels in the table cell
         cell.titleLabel.text = publication["title"] as? String
-        cell.courseLabel.text = allCoursesString
+        cell.courseLabel.text = allCoursesString != "" ? allCoursesString : "No course info"  // see declaration, at worst is empty strings
         cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
         cell.conditionLabel.text = listing["condition"] as? String
         cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
@@ -151,7 +151,7 @@ class SearchResultsTableViewController: UITableViewController {
         let selectedListing = listings[indexPath.row]
         let selectedListingPublication = selectedListing["publication"] as! Dictionary<String, Any>
         let selectedListingCourses: Array<String> = selectedListingPublication["courses"] as! Array<String>
-        var selectedListingAllCoursesString = ""
+        var selectedListingAllCoursesString = "" //at worst is empty string
         for i in 0..<selectedListingCourses.count {
             selectedListingAllCoursesString = selectedListingAllCoursesString + selectedListingCourses[i]
             if (i < selectedListingCourses.count - 1) {

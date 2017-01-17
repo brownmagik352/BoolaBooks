@@ -242,11 +242,17 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 // Grab publication ID for listing
                 self.publication_id = JSON["id"] as? Int
                 
+                // Check for empty strings, display alternatives
+                let titleString = JSON["title"] as? String
+                let authorString = JSON["author"] as? String
+                let yearString = JSON["year"] as? String
+                let editionString = JSON["edition"] as? String
+                
                 // Display publication info
-                self.titleLabel.text = JSON["title"] as? String
-                self.authorLabel.text = JSON["author"] as? String
-                self.yearLabel.text = JSON["year"] as? String
-                self.editionLabel.text = JSON["edition"] as? String
+                self.titleLabel.text = titleString != "" && titleString != nil ? titleString: "No title info"
+                self.authorLabel.text = authorString != "" && authorString != nil ? authorString : "No author info"
+                self.yearLabel.text = yearString != "" && yearString != nil ? yearString : "No year info"
+                self.editionLabel.text = editionString != "" && editionString != nil ? editionString : "No edition info"
                 // Get image using URL - App Transport allows for Google Books specifically right now
                 if let url  = NSURL(string: (JSON["image"] as? String)!),
                     let data = NSData(contentsOf: url as URL)
