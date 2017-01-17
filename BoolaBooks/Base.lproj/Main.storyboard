@@ -26,6 +26,135 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Email Login View Controller-->
+        <scene sceneID="xzT-3q-GZn">
+            <objects>
+                <viewController id="SW0-4w-uxh" customClass="EmailLoginViewController" customModule="BoolaBooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oTo-mn-IpV"/>
+                        <viewControllerLayoutGuide type="bottom" id="8jf-34-DSk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yXC-OU-yEh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bb_logo_1024" translatesAutoresizingMaskIntoConstraints="NO" id="yzV-2w-75t">
+                                <rect key="frame" x="132" y="30" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="3gV-LT-9sv"/>
+                                    <constraint firstAttribute="height" constant="150" id="ocA-gg-6rB"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="3ng-ea-Xu9">
+                                <rect key="frame" x="30" y="238.66666666666663" width="354" height="309"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TEo-RH-Zeb">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="104.00000000000003"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PrP-dl-Blh">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="30.000000000000028"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1a-Yt-vek">
+                                                <rect key="frame" x="0.0" y="38.000000000000028" width="354" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KP-AP-uTm">
+                                                <rect key="frame" x="0.0" y="76.000000000000028" width="354" height="28"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <state key="normal" title="Log In">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1ig-IF-a4e">
+                                        <rect key="frame" x="0.0" y="129.00000000000003" width="354" height="179.99999999999997"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5IS-x9-tj6">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9nB-0O-kPa">
+                                                <rect key="frame" x="0.0" y="38" width="354" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CUF-BR-Jqq">
+                                                <rect key="frame" x="0.0" y="76" width="354" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZB-KD-vfw">
+                                                <rect key="frame" x="0.0" y="114" width="354" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45U-em-0n4">
+                                                <rect key="frame" x="0.0" y="151.99999999999994" width="354" height="28"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                                <state key="normal" title="Sign Up">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVE-mt-6Cd">
+                                <rect key="frame" x="132" y="698" width="150" height="28"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="t3I-IR-aYw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="SW0-4w-uxh" eventType="touchUpInside" id="m0x-lt-0Gw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aVE-mt-6Cd" firstAttribute="centerX" secondItem="yXC-OU-yEh" secondAttribute="centerX" id="7dP-a5-2Cn"/>
+                            <constraint firstItem="yzV-2w-75t" firstAttribute="centerX" secondItem="yXC-OU-yEh" secondAttribute="centerX" id="8gw-GV-Fqh"/>
+                            <constraint firstItem="yzV-2w-75t" firstAttribute="top" secondItem="oTo-mn-IpV" secondAttribute="bottom" constant="10" id="Faf-LX-Agc"/>
+                            <constraint firstItem="3ng-ea-Xu9" firstAttribute="leading" secondItem="yXC-OU-yEh" secondAttribute="leadingMargin" constant="10" id="O9r-XD-oR6"/>
+                            <constraint firstItem="3ng-ea-Xu9" firstAttribute="centerY" secondItem="yXC-OU-yEh" secondAttribute="centerY" constant="25" id="QWR-NR-eK9"/>
+                            <constraint firstItem="8jf-34-DSk" firstAttribute="top" secondItem="aVE-mt-6Cd" secondAttribute="bottom" constant="10" id="gCw-Nt-8nv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3ng-ea-Xu9" secondAttribute="trailing" constant="10" id="hnJ-aA-6ph"/>
+                            <constraint firstItem="3ng-ea-Xu9" firstAttribute="centerX" secondItem="yXC-OU-yEh" secondAttribute="centerX" id="qva-NS-yF7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="aVE-mt-6Cd" id="VFU-Zw-DeV"/>
+                        <outlet property="confirmPasswordSignUpField" destination="eZB-KD-vfw" id="RY5-BL-HQI"/>
+                        <outlet property="emailLoginField" destination="PrP-dl-Blh" id="yxr-0h-b2I"/>
+                        <outlet property="emailSignUpField" destination="9nB-0O-kPa" id="I3s-eY-mt9"/>
+                        <outlet property="loginButton" destination="6KP-AP-uTm" id="JVk-9P-pNo"/>
+                        <outlet property="nameSignUpField" destination="5IS-x9-tj6" id="zKF-K9-ftv"/>
+                        <outlet property="passwordLoginField" destination="s1a-Yt-vek" id="4st-dU-KAx"/>
+                        <outlet property="passwordSignUpField" destination="CUF-BR-Jqq" id="KRN-wl-R8L"/>
+                        <outlet property="signUpButton" destination="45U-em-0n4" id="8zY-cR-vig"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jhz-M2-5Cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1816" y="-73"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="1iw-iN-PTy">
             <objects>
@@ -51,24 +180,48 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnF-6C-t9E">
+                                <rect key="frame" x="157" y="318" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9Pl-GZ-6xN"/>
+                                    <constraint firstAttribute="width" constant="100" id="nwd-hc-mlf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="14"/>
+                                <state key="normal" title="Log in with Email">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="SW0-4w-uxh" kind="presentation" id="jmp-fc-5pz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BnF-6C-t9E" firstAttribute="centerX" secondItem="II1-d3-MQq" secondAttribute="centerX" id="05u-3n-q03"/>
                             <constraint firstItem="PiT-ug-apm" firstAttribute="centerX" secondItem="II1-d3-MQq" secondAttribute="centerX" id="6dd-Fw-glc"/>
                             <constraint firstItem="PiT-ug-apm" firstAttribute="centerY" secondItem="II1-d3-MQq" secondAttribute="centerY" constant="50" id="7pY-Yg-eNA"/>
                             <constraint firstItem="PiT-ug-apm" firstAttribute="leading" secondItem="II1-d3-MQq" secondAttribute="leading" constant="25" id="JDt-ET-V7V"/>
                             <constraint firstAttribute="trailing" secondItem="PiT-ug-apm" secondAttribute="trailing" constant="25" id="bPC-M9-IE6"/>
                             <constraint firstItem="kP5-3u-hkD" firstAttribute="top" secondItem="ibe-94-Hm2" secondAttribute="bottom" constant="10" id="dTP-SP-wvC"/>
+                            <constraint firstItem="BnF-6C-t9E" firstAttribute="centerY" secondItem="II1-d3-MQq" secondAttribute="centerY" constant="-35" id="jYx-9s-thI"/>
                             <constraint firstItem="kP5-3u-hkD" firstAttribute="centerX" secondItem="II1-d3-MQq" secondAttribute="centerX" id="oqB-U4-wPR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="fbExplainText" destination="PiT-ug-apm" id="hyS-Xc-cEx"/>
+                        <outlet property="loginWithEmailButton" destination="BnF-6C-t9E" id="6gA-iH-vVf"/>
+                        <outlet property="loginWithEmailButtonWidth" destination="nwd-hc-mlf" id="pQC-7A-4hh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOc-qm-AoI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-200.00000000000003" y="-73.369565217391312"/>
+            <point key="canvasLocation" x="-657" y="-73"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="Lqz-dl-Qu0">
@@ -166,16 +319,16 @@
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uYM-SW-S5D">
-                                            <rect key="frame" x="102" y="0.0" width="210" height="36.666666666666664"/>
+                                            <rect key="frame" x="102" y="0.0" width="210.33333333333331" height="36.666666666666664"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UWM-i3-6o5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="210" height="15.666666666666666"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="210.33333333333331" height="15.666666666666666"/>
                                                     <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="W7x-zq-TXJ">
-                                                    <rect key="frame" x="0.0" y="15.666666666666664" width="210" height="21"/>
+                                                    <rect key="frame" x="0.0" y="15.666666666666664" width="210.33333333333331" height="21"/>
                                                     <fontDescription key="fontDescription" name="Akkurat-Light" family="Akkurat-Light" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -183,7 +336,7 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zgG-2A-Zge">
-                                            <rect key="frame" x="320.33333333333326" y="5" width="75.666666666666686" height="79.666666666666671"/>
+                                            <rect key="frame" x="320.33333333333326" y="5" width="75.666666666666686" height="80"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ycZ-jt-EbY">
                                                     <rect key="frame" x="0.0" y="0.0" width="75.666666666666686" height="20"/>
@@ -196,12 +349,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buyable" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YR3-ag-jBK">
-                                                    <rect key="frame" x="0.0" y="40" width="75.666666666666686" height="19.666666666666671"/>
+                                                    <rect key="frame" x="0.0" y="40" width="75.666666666666686" height="20"/>
                                                     <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="25E-es-wRF">
-                                                    <rect key="frame" x="0.0" y="59.666666666666671" width="75.666666666666686" height="20"/>
+                                                    <rect key="frame" x="0.0" y="60" width="75.666666666666686" height="20"/>
                                                     <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

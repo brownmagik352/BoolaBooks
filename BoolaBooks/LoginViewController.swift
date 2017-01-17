@@ -13,7 +13,9 @@ import Alamofire
 class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var fbExplainText: UILabel!
+    @IBOutlet weak var loginWithEmailButton: UIButton!
     var explainString: String?
+    @IBOutlet weak var loginWithEmailButtonWidth: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,8 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         loginButton.readPermissions = ["public_profile", "email"]
         loginButton.center = view.center
         view.addSubview(loginButton)
+        
+        self.loginWithEmailButtonWidth.constant = loginButton.frame.width
         
         self.fbExplainText.text = explainString
         
