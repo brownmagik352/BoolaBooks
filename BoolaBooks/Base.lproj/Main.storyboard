@@ -272,7 +272,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="V0u-wV-HPP">
-                                                    <rect key="frame" x="49.999999999999993" y="0.0" width="43.333333333333321" height="15"/>
+                                                    <rect key="frame" x="50" y="0.0" width="44" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="Umc-iP-ifH"/>
                                                     </constraints>
@@ -857,7 +857,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fzG-dp-QTW">
-                                <rect key="frame" x="70" y="512" width="274" height="66"/>
+                                <rect key="frame" x="70" y="502" width="274" height="66"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eb9-qj-pbI">
                                         <rect key="frame" x="0.0" y="0.0" width="274" height="30"/>
@@ -900,38 +900,44 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wNw-Bt-l69">
-                                <rect key="frame" x="30" y="586" width="354" height="140"/>
+                                <rect key="frame" x="30" y="576" width="354" height="150"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BLz-d0-sG3">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="28"/>
-                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
-                                        <state key="normal" title="Add Courses">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="25"/>
+                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="14"/>
+                                        <state key="normal" title="Add Course (Optional)">
                                             <color key="titleColor" red="0.29411764709999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="1Hs-Ox-W9F" kind="presentation" id="xL6-Hh-d0D"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Courses" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="X6P-Ik-58w">
+                                        <rect key="frame" x="0.0" y="25" width="354" height="25"/>
+                                        <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="dl0-uH-QbZ">
-                                        <rect key="frame" x="0.0" y="28" width="354" height="28"/>
+                                        <rect key="frame" x="0.0" y="50" width="354" height="25"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ort-WS-w7C">
-                                        <rect key="frame" x="0.0" y="56" width="354" height="28"/>
+                                        <rect key="frame" x="0.0" y="75" width="354" height="25"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="MtE-MH-2b5">
-                                        <rect key="frame" x="0.0" y="84" width="354" height="28"/>
+                                        <rect key="frame" x="0.0" y="100" width="354" height="25"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ogq-iO-KhV">
-                                        <rect key="frame" x="0.0" y="112" width="354" height="28"/>
+                                        <rect key="frame" x="0.0" y="125" width="354" height="25"/>
                                         <fontDescription key="fontDescription" name="Akkurat" family="Akkurat" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -961,6 +967,7 @@
                         <outlet property="bookImage" destination="lep-P7-wLm" id="VFa-yg-WSp"/>
                         <outlet property="buyableControl" destination="3WR-hF-X4j" id="jJG-S0-tQn"/>
                         <outlet property="conditionControl" destination="dn8-5b-LgS" id="Tke-4D-u0l"/>
+                        <outlet property="coursesLabel" destination="X6P-Ik-58w" id="hom-U2-7fA"/>
                         <outlet property="editionLabel" destination="ogq-iO-KhV" id="6Y0-pt-8mV"/>
                         <outlet property="priceField" destination="cyh-E2-k8a" id="1Vm-Wr-Mjw"/>
                         <outlet property="titleLabel" destination="dl0-uH-QbZ" id="nmT-Bu-lD9"/>

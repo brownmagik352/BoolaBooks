@@ -24,6 +24,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
     @IBOutlet weak var priceField: UITextField!
     @IBOutlet weak var conditionControl: UISegmentedControl!
     @IBOutlet weak var buyableControl: UISegmentedControl!
+    @IBOutlet weak var coursesLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
@@ -84,7 +85,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
     // ModalViewControllerDelegate
     func sendModalValue(value: String) {
         courses.append(value)
-        addCourseButton.setTitle(value, for: .normal)
+        addCourseButton.setTitle("New Course: " + value, for: .normal)
     }
     
     // MARK: - Actions
@@ -238,8 +239,17 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                     self.bookImage.image = #imageLiteral(resourceName: "bb_logo_1024")
                 }
                 
+                // get current course information
                 if let currentPublicationCourses = JSON["courses"] as? Array<String> {
                     self.courses = self.courses + (currentPublicationCourses)
+                    var allCoursesString = ""
+                    for i in 0..<currentPublicationCourses.count {
+                        allCoursesString = allCoursesString + currentPublicationCourses[i]
+                        if (i < currentPublicationCourses.count - 1) {
+                            allCoursesString = allCoursesString + ", "
+                        }
+                    }
+                    self.coursesLabel.text = allCoursesString
                 }
             }
             
