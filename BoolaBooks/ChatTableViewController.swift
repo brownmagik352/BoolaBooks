@@ -88,17 +88,17 @@ class ChatTableViewController: UITableViewController {
         }
         
         let unreadCount = indexPath.section == 0 ? chat["num_unread_by_seller"] as? Int : chat["num_unread_by_buyer"] as? Int 
-        let unread = unreadCount! > 0 ? "(*) " : ""
+        let unread = (unreadCount ?? 0) > 0 ? "(*) " : ""
         
         // Populate the labels in the table cell
-        cell.titleLabel.text = unread + (publication["title"] as? String)!
+        cell.titleLabel.text = unread + (publication["title"] as? String ?? "No title info")
         cell.courseLabel.text = allCoursesString != "" ? allCoursesString : "No course info" // at worst is empty string see declaration
-        cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
-        cell.conditionLabel.text = listing["condition"] as? String
-        cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
+        cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as? NSString ?? "").doubleValue)
+        cell.conditionLabel.text = listing["condition"] as? String ?? "No condition info"
+        cell.buyableLabel.text = (listing["buyable"] as? Bool ?? true) ? "Buy" : "Rent"
         cell.soldlabel.text = (listing["sold_at"] as? String) != nil ? "SOLD" : ""
         // Get image using URL - App Transport allows for Google Books specifically right now
-        if let url  = NSURL(string: (publication["image"] as? String)!),
+        if let url  = NSURL(string: (publication["image"] as? String ?? "")),
             let data = NSData(contentsOf: url as URL)
         {
             cell.photoView.image = UIImage(data: data as Data)
@@ -183,22 +183,22 @@ class ChatTableViewController: UITableViewController {
         // Send existing chat messages & images for selected Chat
         // needed for image data
         let seller = chat["seller"] as! Dictionary<String,Any>
-        let sellerID = seller["id"] as! Int
-        let sellerPhoto = "\(seller["image"]!)"
-        let sellerName = seller["name"] as! String
+        let sellerID = seller["id"] as? Int
+        let sellerPhoto = "\(seller["image"] ?? "")"
+        let sellerName = seller["name"] as? String ?? ""
         
         let buyer = chat["buyer"] as! Dictionary<String,Any>
 //        let buyerID = buyer["id"] as? Int
-        let buyerPhoto = "\(buyer["image"]!)"
-        let buyerName = buyer["name"] as! String
+        let buyerPhoto = "\(buyer["image"] ?? "")"
+        let buyerName = buyer["name"] as? String ?? ""
         
         let messagesMeta = chat["messages"] as! Array<Dictionary<String, Any>>
         var messages: [String] = [] // actual text of each message
         var imageStrings: [String] = [] // image of messege sender
         var names: [String] = [] // name of message sender
         for i in 0..<messagesMeta.count {
-            messages.append("\(messagesMeta[i]["text"]!)")
-            if messagesMeta[i]["sender_id"] as! Int == sellerID {
+            messages.append("\(messagesMeta[i]["text"] ?? "")")
+            if messagesMeta[i]["sender_id"] as? Int ?? -1 == sellerID {
                 imageStrings.append(sellerPhoto)
                 names.append(sellerName)
             } else {
@@ -212,7 +212,7 @@ class ChatTableViewController: UITableViewController {
         
         // Update the App Icon Badge to reflect these messages now being read
         let messagesRead = indexPath.section == 0 ? chat["num_unread_by_seller"] as? Int : chat["num_unread_by_buyer"] as? Int
-        UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber - messagesRead!
+        UIApplication.shared.applicationIconBadgeNumber = UIApplication.shared.applicationIconBadgeNumber - (messagesRead ?? 0)
         
     }
  
@@ -224,8 +224,8 @@ class ChatTableViewController: UITableViewController {
         
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
@@ -234,7 +234,7 @@ class ChatTableViewController: UITableViewController {
             
             if (response.result.error == nil) && response.response?.statusCode == 200 {
                 print("**SUCCESSFUL ALL CHATS LOOKUP**")
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 self.activityIndicator.stopAnimating()
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -243,7 +243,7 @@ class ChatTableViewController: UITableViewController {
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? 0)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -260,12 +260,12 @@ class ChatTableViewController: UITableViewController {
                 let json = JSON(data: data)
                 
                 // parse all selling chats
-                for i in 0..<json["selling"].arrayObject!.count {
+                for i in 0..<(json["selling"].arrayObject?.count ?? 0) {
                     tempSellChats.append(json["selling"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
                 
                 // parse all buying chats
-                for i in 0..<json["buying"].arrayObject!.count {
+                for i in 0..<(json["buying"].arrayObject?.count ?? 0) {
                     tempBuyChats.append(json["buying"].arrayObject?[i] as! Dictionary<String, Any>)
                 }
                 

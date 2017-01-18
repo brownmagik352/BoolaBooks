@@ -49,13 +49,13 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.sendMessageField.delegate = self
         
-        if self.sold! {
+        if (self.sold ?? false) {
             markAsSoldButton.setTitle("SOLD", for: .normal)
             markAsSoldButton.isEnabled = false
         }
         
         // call just to make sure the messages get marked as unread
-        getConversationDetail(chatID: self.conversationID!)
+        getConversationDetail(chatID: self.conversationID!) //conversationID is guaranteed
         
         // initialize messages table & newMessage Field
         self.messagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell") // required for tableViews embedded in UIViewControllers
@@ -63,7 +63,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Initialize WebSocket
         let prefs = UserDefaults.standard
-        let urlWithParams = "wss://boolabooks.herokuapp.com/cable?token=\(prefs.string(forKey: "rails_token")!)&uid=\(prefs.string(forKey: "uid")!)"
+        let urlWithParams = "wss://boolabooks.herokuapp.com/cable?token=\(prefs.string(forKey: "rails_token")!)&uid=\(prefs.string(forKey: "uid")!)" //these values had to have existed to get this far
         let request = NSMutableURLRequest(url: NSURL(string: urlWithParams)! as URL)
         ws = WebSocket(request: request as URLRequest)
         
@@ -79,7 +79,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 let json = JSON(dict)
                 let msg = json.rawString()
                 
-                self.ws?.send(msg!)
+                self.ws?.send(msg!) //msg is clearly guaranteed just above
             }
             
             // parse the incoming messasge
@@ -183,7 +183,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         // pass on the data in the segue, have to pass it to variables rather than the label directly
-        if let url  = NSURL(string: self.photoString!),
+        if let url  = NSURL(string: self.photoString ?? ""),
             let data = NSData(contentsOf: url as URL)
         {
             listingDetailViewController.photoImage = UIImage(data: data as Data)
@@ -191,16 +191,16 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             listingDetailViewController.photoImage = #imageLiteral(resourceName: "bb_logo_1024")
         }
         
-        listingDetailViewController.priceString = String(format: "%.2f", (self.priceString)!.doubleValue)
-        listingDetailViewController.conditionString = self.conditionString
-        listingDetailViewController.buyableString = self.buyableString
+        listingDetailViewController.priceString = String(format: "%.2f", (self.priceString ?? "0").doubleValue)
+        listingDetailViewController.conditionString = self.conditionString ?? "No condition info"
+        listingDetailViewController.buyableString = self.buyableString ?? "No buyable info"
         listingDetailViewController.courseString = allCoursesString
-        listingDetailViewController.titleString = self.titleString
-        listingDetailViewController.authorString = self.authorString
-        listingDetailViewController.yearString = self.yearString
-        listingDetailViewController.editionString = self.editionString
+        listingDetailViewController.titleString = self.titleString ?? "No title info"
+        listingDetailViewController.authorString = self.authorString ?? "No author info"
+        listingDetailViewController.yearString = self.yearString ?? "No year info"
+        listingDetailViewController.editionString = self.editionString ?? "No edition info"
         listingDetailViewController.listingID = nil
-        listingDetailViewController.notesString = self.notesString
+        listingDetailViewController.notesString = self.notesString ?? ""
     }
     
     
@@ -317,23 +317,23 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/conversations/\(chatID)", headers: headers).responseJSON { response in
             
-            if (response.result.error == nil) && ((response.response?.statusCode)! == 200) {
+            if (response.result.error == nil) && (response.response?.statusCode == 200) {
                 print("**SUCCESSFUL CHAT DETAIL LOOKUP**")
-            } else if ((response.response?.statusCode)! == 403) {
+            } else if (response.response?.statusCode == 403) {
                 print("403")
                 let alert = UIAlertController(title: "You are not a part of this chat.", message: "Only a buyer and seller for a book can see the chat.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
@@ -341,7 +341,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? 0)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -354,16 +354,16 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 // all info needed for individual listing info
                 let listing = JSON["listing"] as! Dictionary<String, Any>
                 let publication = listing["publication"] as! Dictionary<String, Any>
-                self.photoString = publication["image"] as? String
-                self.priceString = listing["price"] as? NSString
-                self.conditionString = listing["condition"] as? String
-                self.buyableString = (listing["buyable"] as? Int) == 1 ? "Buy" : "Sell"
+                self.photoString = publication["image"] as? String ?? ""
+                self.priceString = listing["price"] as? NSString ?? "0.00"
+                self.conditionString = listing["condition"] as? String ?? "No course info"
+                self.buyableString = (listing["buyable"] as? Int ?? 1) == 1 ? "Buy" : "Sell"
                 self.courses = publication["courses"] as! Array<String>
-                self.titleString = publication["title"] as? String
-                self.authorString = publication["author"] as? String
-                self.yearString = publication["year"] as? String
-                self.editionString = publication["edition"] as? String
-                self.notesString = listing["notes"] as? String
+                self.titleString = publication["title"] as? String ?? "No title info"
+                self.authorString = publication["author"] as? String ?? "No author info"
+                self.yearString = publication["year"] as? String ?? "No year info"
+                self.editionString = publication["edition"] as? String ?? "No edition info"
+                self.notesString = listing["notes"] as? String ?? "No notes"
             }
         }
     }
@@ -371,26 +371,26 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func markAsSoldAPI() {
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
         
-        let urlString = "https://boolabooks.herokuapp.com/api/v1/listings/sold/\(self.listingID!)"
+        let urlString = "https://boolabooks.herokuapp.com/api/v1/listings/sold/\(self.listingID!)" //lisingID is guaranteed
         
         Alamofire.request(urlString, method: .post, headers: headers).responseJSON { response in
-            if (response.result.error == nil) && ((response.response?.statusCode)! == 200) {
+            if (response.result.error == nil) && (response.response?.statusCode == 200) {
                 print("**SUCCESSFUL MARK AS SOLD**")
                 self.markAsSoldButton.setTitle("SOLD", for: .normal)
                 self.markAsSoldButton.isEnabled = false
-            } else if ((response.response?.statusCode)! == 403) {
+            } else if (response.response?.statusCode == 403) {
                 print("403")
                 let alert = UIAlertController(title: "You are not the seller.", message: "Only the seller may mark an item as sold.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
@@ -398,7 +398,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? "")
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
