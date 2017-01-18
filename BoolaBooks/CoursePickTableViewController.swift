@@ -21,7 +21,7 @@ class CoursePickTableViewController: UITableViewController {
     
     // MARK: - Properties
     var courses: Array<String> = []
-    var delegate: ModalViewControllerDelegate! // need this to send back data back from modal
+    var delegate: ModalViewControllerDelegate! // need this to send back data back from modal, guaranteed by upload VC's prepare segue
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)  // spinner to show during loading
 
     
@@ -122,7 +122,7 @@ class CoursePickTableViewController: UITableViewController {
         
         // get cell & course number
         let cell = sender.superview?.superview as! CoursePickTableViewCell
-        let courseNumber = cell.courseNumberLabel.text!
+        let courseNumber = cell.courseNumberLabel.text! //guaranteed based on how table cells are drawn
         
         // sending only one course back
         self.delegate.sendModalValue1(value: courseNumber)
@@ -135,8 +135,8 @@ class CoursePickTableViewController: UITableViewController {
     func getAllCourses() {
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
@@ -145,7 +145,7 @@ class CoursePickTableViewController: UITableViewController {
             
             if (response.result.error == nil) && response.response?.statusCode == 200 {
                 print("**SUCCESSFUL ALL COURSES LOOKUP**")
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 self.activityIndicator.stopAnimating()
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -154,7 +154,7 @@ class CoursePickTableViewController: UITableViewController {
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? 0)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -167,7 +167,9 @@ class CoursePickTableViewController: UITableViewController {
                 
                 for i in 0..<JSON.count {
                     var tempCourseDict = JSON[i] as! Dictionary<String, Any>
-                    self.courses.append(tempCourseDict["number"]! as! String)
+                    if let courseNum = tempCourseDict["number"] as? String {
+                        self.courses.append(courseNum)
+                    }
                 }
                 
                 self.tableView.reloadData() // update after API call

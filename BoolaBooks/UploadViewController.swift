@@ -138,13 +138,13 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
         
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
         
-        // Notes not supported in MVP
+        // know publication and price field have to have a value based on isbn lookup
         let parameters: Parameters = [
             "listing": [
                 "publication_id": publication_id!,
@@ -169,7 +169,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 }
                 alert.addAction(okAction)
                 self.present(alert, animated: true, completion: nil)
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
@@ -177,7 +177,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? 0)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -192,19 +192,19 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
         
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = ["isbn": self.isbn! ]
+        let parameters: Parameters = ["isbn": self.isbn!] // know this has a value based on scanVC passing
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/publications/isbn", parameters: parameters, headers: headers).responseJSON { response in
             
-            if (response.result.error == nil) && (response.response?.statusCode)! == 200 {
+            if (response.result.error == nil) && response.response?.statusCode == 200 {
                 print("**SUCCESSFUL ISBN LOOKUP**")
-            } else if ((response.response?.statusCode)! == 422) {
+            } else if (response.response?.statusCode == 422) {
                 
                 // alert the user to bad ISBN
                 let alert = UIAlertController(title: "Invalid ISBN", message: "Please double check your ISBN format. We recommend using the scanner.", preferredStyle: UIAlertControllerStyle.alert)
@@ -217,7 +217,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 // bail out
                 self.activityIndicator.stopAnimating()
                 return
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 self.activityIndicator.stopAnimating()
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -226,7 +226,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? 0)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -254,7 +254,7 @@ class UploadViewController: UIViewController, ModalViewControllerDelegate, UITex
                 self.yearLabel.text = yearString != "" && yearString != nil ? yearString : "No year info"
                 self.editionLabel.text = editionString != "" && editionString != nil ? editionString : "No edition info"
                 // Get image using URL - App Transport allows for Google Books specifically right now
-                if let url  = NSURL(string: (JSON["image"] as? String)!),
+                if let url  = NSURL(string: JSON["image"] as? String ?? ""),
                     let data = NSData(contentsOf: url as URL)
                 {
                     self.bookImage.image = UIImage(data: data as Data)

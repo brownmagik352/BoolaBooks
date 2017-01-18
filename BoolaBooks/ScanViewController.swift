@@ -47,10 +47,10 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
             ]
             
             Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                if (response.result.error == nil) && ((response.response?.statusCode ?? 0) == 200) {
+                if (response.result.error == nil) && (response.response?.statusCode == 200) {
                     print("**SUCCESSFUL DEVICE REGISTRATION**")
                     self.deviceRegistered = true
-                } else if ((response.response?.statusCode ?? 0) == 401) {
+                } else if (response.response?.statusCode == 401) {
                     print("401")
                     let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))

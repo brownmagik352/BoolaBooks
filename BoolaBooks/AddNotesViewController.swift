@@ -12,7 +12,7 @@ class AddNotesViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var newNotesField: UITextView!
     @IBOutlet weak var addButton: UIBarButtonItem!
-    var delegate: ModalViewControllerDelegate! // need this to send back data back from modal
+    var delegate: ModalViewControllerDelegate! // need this to send back data back from modal, guaranteed by uploadVC's prepare segue
     var placeholderString = "Notes are a great way to provide extra information to buyers.\n\nPlease know that adding notes is entirely optional."
 
     override func viewDidLoad() {
