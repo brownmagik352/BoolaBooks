@@ -154,15 +154,18 @@ class ChatTableViewController: UITableViewController {
         
         // Figure out which cell/chat was selected
         guard let chatDetailViewController = segue.destination as? ChatDetailViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
+//            fatalError("Unexpected destination: \(segue.destination)")
+            return
         }
         
         guard let selectedChatCell = sender as? ChatTableViewCell else {
-            fatalError("Unexpected sender: \(sender)")
+//            fatalError("Unexpected sender: \(sender)")
+            return
         }
         
         guard let indexPath = tableView.indexPath(for: selectedChatCell) else {
-            fatalError("The selected cell is not being displayed by the table")
+//            fatalError("The selected cell is not being displayed by the table")
+            return
         }
         
         // Send ConversationID for selected Chat

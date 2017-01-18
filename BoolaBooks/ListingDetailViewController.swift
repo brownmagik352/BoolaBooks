@@ -42,9 +42,9 @@ class ListingDetailViewController: UIViewController {
         super.viewDidLoad()
 
         photoView.image = photoImage
-        priceLabel.text = "$" + priceString!
-        conditionLabel.text = conditionString
-        buyableLabel.text = buyableString
+        priceLabel.text = "$" + (priceString ?? "0.00")
+        conditionLabel.text = conditionString ?? "No Condition Info"
+        buyableLabel.text = buyableString ?? "No Buyable Info"
         courseLabel.text = courseString != "" ? courseString : "No course info" //at worse will be empty string, see searchResults prepare method
         titleLabel.text = titleString != "" && titleString != nil ? titleString : "No title info"
         authorLabel.text = authorString != "" && authorString != nil ? authorString : "No edition info"
@@ -73,7 +73,7 @@ class ListingDetailViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! SeeNotesViewController
-        destinationVC.notesString = self.notesString!
+        destinationVC.notesString = self.notesString ?? ""
     }
  
     
@@ -83,15 +83,15 @@ class ListingDetailViewController: UIViewController {
         
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
         
         let firstMessage = "Hi! I'm interested in buying your book."
         
-        // Notes not supported in MVP
+        // listingID guaranteed
         let parameters: Parameters = [
             "listing_id": self.listingID!,
             "first_message": firstMessage
@@ -103,14 +103,14 @@ class ListingDetailViewController: UIViewController {
                 let alert = UIAlertController(title: "Chat Started", message: "You can now chat with the seller. Visit the Chat tab in the bottom right corner to get start.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
                 vc.explainString = "There was a problem with your account.\nPlease log back in and re-try your previous action."
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? 0)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)

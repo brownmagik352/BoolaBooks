@@ -26,7 +26,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         content.contentDescription = "BoolaBooks is a new app for buying & selling textbooks at Yale."
         let shareButton = FBSDKShareButton()
         shareButton.shareContent = content;
-        shareButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height - (self.tabBarController?.tabBar.frame.size.height)! - shareButton.frame.width)
+        shareButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height - (self.tabBarController?.tabBar.frame.size.height ?? 10) - shareButton.frame.width)
         view.addSubview(shareButton)
         
         // listen for events on this field
@@ -73,7 +73,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
             return
         }
         let destinationVC = segue.destination as! SearchResultsTableViewController
-        destinationVC.searchQuery = searchField.text!
+        destinationVC.searchQuery = searchField.text ?? ""
     }
     
 

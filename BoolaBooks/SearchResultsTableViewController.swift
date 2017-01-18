@@ -77,11 +77,11 @@ class SearchResultsTableViewController: UITableViewController {
         // Populate the labels in the table cell
         cell.titleLabel.text = publication["title"] as? String
         cell.courseLabel.text = allCoursesString != "" ? allCoursesString : "No course info"  // see declaration, at worst is empty strings
-        cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as! NSString).doubleValue)
-        cell.conditionLabel.text = listing["condition"] as? String
-        cell.buyableLabel.text = (listing["buyable"] as? Bool)! ? "Buy" : "Rent"
+        cell.priceLabel.text = "$" + String(format: "%.2f", (listing["price"] as? NSString ?? "0").doubleValue)
+        cell.conditionLabel.text = listing["condition"] as? String ?? "Used"
+        cell.buyableLabel.text = (listing["buyable"] as? Bool ?? true) ? "Buy" : "Rent"
 //        // Get image using URL - App Transport allows for Google Books specifically right now
-        if let url  = NSURL(string: (publication["image"] as? String)!),
+        if let url  = NSURL(string: (publication["image"] as? String ?? "")),
             let data = NSData(contentsOf: url as URL)
         {
             cell.photoView.image = UIImage(data: data as Data)
@@ -136,15 +136,18 @@ class SearchResultsTableViewController: UITableViewController {
         //using code from Apple guide for convenience
         
         guard let listingDetailViewController = segue.destination as? ListingDetailViewController else {
-            fatalError("Unexpected destination: \(segue.destination)")
+//            fatalError("Unexpected destination: \(segue.destination)")
+            return
         }
         
         guard let selectedListingCell = sender as? ListingTableViewCell else {
-            fatalError("Unexpected sender: \(sender)")
+//            fatalError("Unexpected sender: \(sender)")
+            return
         }
         
         guard let indexPath = tableView.indexPath(for: selectedListingCell) else {
-            fatalError("The selected cell is not being displayed by the table")
+//            fatalError("The selected cell is not being displayed by the table")
+            return
         }
         
         // grab the necessary info about the selected listing
@@ -160,7 +163,7 @@ class SearchResultsTableViewController: UITableViewController {
         }
 
         // pass on the data in the segue, have to pass it to variables rather than the label directly
-        if let url  = NSURL(string: (selectedListingPublication["image"] as? String)!),
+        if let url  = NSURL(string: (selectedListingPublication["image"] as? String ?? "")),
             let data = NSData(contentsOf: url as URL)
         {
             listingDetailViewController.photoImage = UIImage(data: data as Data)
@@ -168,16 +171,16 @@ class SearchResultsTableViewController: UITableViewController {
             listingDetailViewController.photoImage = #imageLiteral(resourceName: "bb_logo_1024")
         }
         
-        listingDetailViewController.priceString = String(format: "%.2f", (selectedListing["price"] as! NSString).doubleValue)
-        listingDetailViewController.conditionString = selectedListing["condition"] as? String
-        listingDetailViewController.buyableString = selectedListing["buyable"] as! Bool ? "Buy" : "Rent"
+        listingDetailViewController.priceString = String(format: "%.2f", (selectedListing["price"] as? NSString ?? "0").doubleValue)
+        listingDetailViewController.conditionString = selectedListing["condition"] as? String ?? "No Condition Info"
+        listingDetailViewController.buyableString = (selectedListing["buyable"] as? Bool ?? true) ? "Buy" : "Rent"
         listingDetailViewController.courseString = selectedListingAllCoursesString
-        listingDetailViewController.titleString = selectedListingPublication["title"] as? String
-        listingDetailViewController.authorString = selectedListingPublication["author"] as? String
-        listingDetailViewController.yearString = selectedListingPublication["year"] as? String
-        listingDetailViewController.editionString = selectedListingPublication["edition"] as? String
+        listingDetailViewController.titleString = selectedListingPublication["title"] as? String ?? "No Course Info"
+        listingDetailViewController.authorString = selectedListingPublication["author"] as? String ?? "No Author Info"
+        listingDetailViewController.yearString = selectedListingPublication["year"] as? String ?? "No Year Info"
+        listingDetailViewController.editionString = selectedListingPublication["edition"] as? String ?? "No Edition Info"
         listingDetailViewController.listingID = selectedListing["id"] as? Int
-        listingDetailViewController.notesString = selectedListing["notes"] as? String
+        listingDetailViewController.notesString = selectedListing["notes"] as? String ?? ""
     }
     
     
@@ -188,19 +191,19 @@ class SearchResultsTableViewController: UITableViewController {
         
         let prefs = UserDefaults.standard
         let headers: HTTPHeaders = [
-            "X-User-Email": prefs.string(forKey: "email")!,
-            "X-User-Token": prefs.string(forKey: "rails_token")!,
+            "X-User-Email": prefs.string(forKey: "email") ?? "",
+            "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
             "Content-type": "application/json",
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = ["query": searchQuery!, "num_items": 90 ] //totally arbitrary, Aaron's can only support up to 100
+        let parameters: Parameters = ["query": searchQuery!, "num_items": 90 ] //totally arbitrary, Aaron's can only support up to 100, searchQuery guanteed by SearchVC's prepare segue
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/search", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
 
             if (response.result.error == nil) && (response.response?.statusCode == 200) {
                 print("**SUCCESSFUL SEARCH**")
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 self.activityIndicator.stopAnimating()
                 // present login screen on 401
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -209,7 +212,7 @@ class SearchResultsTableViewController: UITableViewController {
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
-                print((response.response?.statusCode)!)
+                print(response.response?.statusCode ?? 0)
                 let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -221,7 +224,7 @@ class SearchResultsTableViewController: UITableViewController {
             if let data = response.data {
                 let json = JSON(data: data)
                 // avoid null at end
-                for i in 0..<json.arrayObject!.count {
+                for i in 0..<(json.arrayObject?.count ?? 0) {
                     let listing = json.arrayObject?[i] as! Dictionary<String, Any>
                     // only show items that haven't been sold
                     let soldAt = listing["sold_at"] as? String
