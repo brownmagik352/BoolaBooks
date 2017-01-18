@@ -87,12 +87,11 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
     // Register User with Email
     func register() {
         
-        // Notes not supported in MVP
         let parameters: Parameters = [
             "user": [
-                "name": nameSignUpField.text,
-                "email": emailSignUpField.text,
-                "password": passwordSignUpField.text
+                "name": nameSignUpField.text ?? "",
+                "email": emailSignUpField.text ?? "",
+                "password": passwordSignUpField.text ?? ""
             ]
         ]
         
@@ -100,7 +99,7 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
             
             if (response.result.error == nil) && (response.response?.statusCode == 201) {
                 print("**SUCCESSFUL EMAIL REGISTRATION**")
-            } else if ((response.response?.statusCode)! == 422) {
+            } else if (response.response?.statusCode == 422) {
                 let alert = UIAlertController(title: "Your Sign Up is Bad", message: "Please double-check your sign-up info. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -117,9 +116,16 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
                 
                 // save login info
                 let prefs = UserDefaults.standard
-                prefs.setValue(JSON["email"]!, forKey: "email")
-                prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
-                prefs.setValue(JSON["uid"]!, forKey: "uid")
+                if let email = JSON["email"], let auth_token = JSON["authentication_token"], let uid = JSON["uid"] {
+                    prefs.setValue(email, forKey: "email")
+                    prefs.setValue(auth_token, forKey: "rails_token")
+                    prefs.setValue(uid, forKey: "uid")
+                } else {
+                    let alert = UIAlertController(title: "Something went wrong saving your credentials.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
                 
                 // redirect back to SCAN (or stay until login view is used)
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
@@ -132,17 +138,17 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
     // login with email
     func login() {
         
-        // Notes not supported in MVP
+        //
         let parameters: Parameters = [
-            "email": emailLoginField.text!,
-            "password": passwordLoginField.text!    
+            "email": emailLoginField.text ?? "",
+            "password": passwordLoginField.text ?? ""
         ]
         
         Alamofire.request("https://boolabooks.herokuapp.com/api/v1/auth/sign_in", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             
             if (response.result.error == nil) && (response.response?.statusCode == 200) {
                 print("**SUCCESSFUL EMAIL LOGIN**")
-            } else if ((response.response?.statusCode)! == 401) {
+            } else if (response.response?.statusCode == 401) {
                 let alert = UIAlertController(title: "Incorrect login info.", message: "Please double-check your login info. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
@@ -159,9 +165,16 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
                 
                 // save login info
                 let prefs = UserDefaults.standard
-                prefs.setValue(JSON["email"]!, forKey: "email")
-                prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
-                prefs.setValue(JSON["uid"]!, forKey: "uid")
+                if let email = JSON["email"], let auth_token = JSON["authentication_token"], let uid = JSON["uid"] {
+                    prefs.setValue(email, forKey: "email")
+                    prefs.setValue(auth_token, forKey: "rails_token")
+                    prefs.setValue(uid, forKey: "uid")
+                } else {
+                    let alert = UIAlertController(title: "Something went wrong saving your credentials.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
                 
                 // redirect back to SCAN
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)

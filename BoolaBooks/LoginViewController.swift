@@ -89,16 +89,16 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 
                 Alamofire.request("https://boolabooks.herokuapp.com/api/v1/auth/facebook", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
                     
-                    if (response.result.error == nil) && (response.response?.statusCode)! == 200 {
+                    if (response.result.error == nil) && (response.response?.statusCode == 200) {
                         print("**SUCCESSFUL AUTH**")
-                    } else if ((response.response?.statusCode)! == 401) {
+                    } else if (response.response?.statusCode == 401) {
                         print("401")
                         let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                         self?.present(alert, animated: true, completion: nil)
                         return
                     } else {
-                        print((response.response?.statusCode)!)
+                        print(response.response?.statusCode ?? 0)
                         let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                         self?.present(alert, animated: true, completion: nil)
@@ -110,9 +110,17 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
 
                         // save login info
                         let prefs = UserDefaults.standard
-                        prefs.setValue(JSON["email"]!, forKey: "email")
-                        prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
-                        prefs.setValue(JSON["uid"]!, forKey: "uid")
+                        if let email = JSON["email"], let auth_token = JSON["authentication_token"], let uid = JSON["uid"] {
+                            prefs.setValue(email, forKey: "email")
+                            prefs.setValue(auth_token, forKey: "rails_token")
+                            prefs.setValue(uid, forKey: "uid")
+                        } else {
+                            let alert = UIAlertController(title: "Something went wrong saving your credentials.", message: "We're sorry, please try again later. Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
+                            self?.present(alert, animated: true, completion: nil)
+                            return
+                        }
+                        
                         
                         // return to original view that brought us here
                         self?.dismiss(animated: true, completion: nil)
