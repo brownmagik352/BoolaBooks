@@ -106,7 +106,7 @@ class ListingDetailViewController: UIViewController {
             } else if ((response.response?.statusCode)! == 401) {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "loginView") as! LoginViewController
-                vc.explainString = "There was a problem with your account.\nPlease logout, log back in, and re-try your previous action."
+                vc.explainString = "There was a problem with your account.\nPlease log back in and re-try your previous action."
                 self.present(vc, animated: true, completion: nil)
                 return
             } else {
