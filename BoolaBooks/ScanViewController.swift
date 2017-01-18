@@ -20,8 +20,6 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lookupISBNButton: UIButton!
     @IBOutlet weak var lightingTipLabel: UILabel!
     
-    
-    var scanISBN: String?
     var scanner: MTBBarcodeScanner?
     var deviceRegistered = false
     
@@ -38,28 +36,28 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
             
             // register device for notifications
             let headers: HTTPHeaders = [
-                "X-User-Email": prefs.string(forKey: "email")!,
-                "X-User-Token": prefs.string(forKey: "rails_token")!,
+                "X-User-Email": prefs.string(forKey: "email") ?? "",
+                "X-User-Token": prefs.string(forKey: "rails_token") ?? "",
                 "Content-type": "application/json",
                 "Accept": "application/json"
             ]
             
             let parameters: Parameters = [
-                "apn_token": prefs.string(forKey: "device_token")!
+                "apn_token": prefs.string(forKey: "device_token") ?? ""
             ]
             
             Alamofire.request("https://boolabooks.herokuapp.com/api/v1/register_ios", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
-                if (response.result.error == nil) && ((response.response?.statusCode)! == 200) {
+                if (response.result.error == nil) && ((response.response?.statusCode ?? 0) == 200) {
                     print("**SUCCESSFUL DEVICE REGISTRATION**")
                     self.deviceRegistered = true
-                } else if ((response.response?.statusCode)! == 401) {
+                } else if ((response.response?.statusCode ?? 0) == 401) {
                     print("401")
                     let alert = UIAlertController(title: "Login Failed", message: "We're sorry, please restart the app and try again. If that fails, please re-install the app (you won't lose any of your data). Notify contact@boolabooks.com if the problem persists.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                     return
                 } else {
-                    print((response.response?.statusCode)!)
+                    print((response.response?.statusCode ?? 0))
                     let alert = UIAlertController(title: "Something went wrong.", message: "We're sorry, but you're device is not enabled to receive notifications from BoolaBooks. Notify contact@boolabooks.com if you would like to.", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "Got It", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
@@ -131,7 +129,7 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! UploadViewController
-        destinationVC.isbn = manualISBNfield.text!
+        destinationVC.isbn = manualISBNfield.text ?? ""
         
         // close scanner when advancing
         stopScanner()
@@ -143,10 +141,9 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
         self.scanner?.startScanning(resultBlock: { codes in
             let codeObjects = codes as! [AVMetadataMachineReadableCodeObject]?
             for code in codeObjects! {
-                let stringValue = code.stringValue!
-                if stringValue.characters.count == 13 {
+                let stringValue = code.stringValue ?? ""
+                if stringValue.characters.count == 13 || stringValue.characters.count == 10 {
                     self.stopScanner()
-                    self.scanISBN = stringValue
                     self.manualISBNfield.text = stringValue
                     self.lookupISBNButton.isEnabled = true
                 }
@@ -159,7 +156,7 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
     // checks for scanner scanning and removes help text on lighting
     func stopScanner() {
         self.lightingTipLabel.text = ""
-        if (self.scanner?.isScanning())! {
+        if self.scanner?.isScanning() ?? false {
             self.scanner?.stopScanning()
         }
     }
