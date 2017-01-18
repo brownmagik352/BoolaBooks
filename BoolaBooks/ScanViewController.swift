@@ -29,7 +29,7 @@ class ScanViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
         let prefs = UserDefaults.standard
-        if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token"),  let _ = prefs.string(forKey: "fb_uid") {
+        if let _ = prefs.string(forKey: "email"), let _ = prefs.string(forKey: "rails_token"),  let _ = prefs.string(forKey: "uid") {
             
             // don't re-register the device in the same session
             if deviceRegistered {

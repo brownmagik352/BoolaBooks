@@ -63,7 +63,7 @@ class ChatDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         // Initialize WebSocket
         let prefs = UserDefaults.standard
-        let urlWithParams = "wss://boolabooks.herokuapp.com/cable?token=\(prefs.string(forKey: "rails_token")!)&uid=\(prefs.string(forKey: "fb_uid")!)"
+        let urlWithParams = "wss://boolabooks.herokuapp.com/cable?token=\(prefs.string(forKey: "rails_token")!)&uid=\(prefs.string(forKey: "uid")!)"
         let request = NSMutableURLRequest(url: NSURL(string: urlWithParams)! as URL)
         ws = WebSocket(request: request as URLRequest)
         

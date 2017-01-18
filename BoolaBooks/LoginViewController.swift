@@ -112,7 +112,7 @@ class LoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                         let prefs = UserDefaults.standard
                         prefs.setValue(JSON["email"]!, forKey: "email")
                         prefs.setValue(JSON["authentication_token"]!, forKey: "rails_token")
-                        prefs.setValue(JSON["uid"]!, forKey: "fb_uid")
+                        prefs.setValue(JSON["uid"]!, forKey: "uid")
                         
                         // return to original view that brought us here
                         self?.dismiss(animated: true, completion: nil)
